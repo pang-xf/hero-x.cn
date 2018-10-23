@@ -12,6 +12,7 @@ import { setContext, getLocation, getRouteData } from './utils'
 
 /* Plugins */
 import nuxt_plugin_axios_5ad2b53e from 'nuxt_plugin_axios_5ad2b53e' // Source: ./axios.js
+import nuxt_plugin_vueSwiper_9707ea30 from 'nuxt_plugin_vueSwiper_9707ea30' // Source: ../plugins/vueSwiper (ssr: false)
 
 
 // Component: <no-ssr>
@@ -135,6 +136,9 @@ async function createApp (ssrContext) {
   
   if (typeof nuxt_plugin_axios_5ad2b53e === 'function') await nuxt_plugin_axios_5ad2b53e(app.context, inject)
   
+  if (process.client) { 
+    if (typeof nuxt_plugin_vueSwiper_9707ea30 === 'function') await nuxt_plugin_vueSwiper_9707ea30(app.context, inject)
+  }
 
   // If server-side, wait for async component to be resolved first
   if (process.server && ssrContext && ssrContext.url) {

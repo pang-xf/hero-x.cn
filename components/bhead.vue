@@ -1,6 +1,6 @@
 <template>
   <header class='header'>
-    导航栏
+    导航条
   </header>
 </template>
 <script>

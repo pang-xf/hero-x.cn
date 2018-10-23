@@ -1,0 +1,83 @@
+body {font-size:1em;}
+html {font-size: 100%;}
+
+.pxtoRem (@px) when (iscolor(@c)){
+	color: @c;
+}
+// 盒子宽高
+.size(@w, @h) { width: @w; height: @h; }
+// 字体颜色 + 自身 Hover
+.color(@color, @hovercolor) {
+  color: @color;
+  &:hover { color: @hovercolor; }
+}
+// 多行省略
+.ellipsis-mult(@n: 3) {
+  display: -webkit-box; -webkit-box-orient: vertical;-webkit-line-clamp: @n; word-break: break-all;
+  -o-text-overflow: ellipsis; -ms-text-overflow: ellipsis; text-overflow:ellipsis; overflow: hidden;
+}
+// 2x 3x 背景图片
+.bg-image(@url) {
+  background-image: url("@url + '@2x.png'");
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+  background-image: url("@url + '@3x.png'");
+  }
+}
+// 链接默认无下划线，hover后有下划线的样式
+.hover-link() {
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+// 向右的空心三角箭头
+.icon-arrow-right(@width: 8px, @height: 8px, @line-width: 1px, @color: transparent) {
+  margin-right: @width / 8 * 2; // 简单抵消偏移
+  // XXX: 考虑到控件的已有实现 暂不写逆向偏移抵消
+  width: @width;
+  height: @height;
+  border-top: @line-width solid @color;
+  border-right: @line-width solid @color;
+  box-sizing: border-box;
+  transform: rotate(45deg);
+}
+// 向左的空心三角箭头
+.icon-arrow-left(@width: 8px, @height: 8px, @line-width: 1px, @color: transparent) {
+  margin-left: @width / 8 * 2;
+  width: @width;
+  height: @height;
+  border-top: @line-width solid @color;
+  border-left: @line-width solid @color;
+  box-sizing: border-box;
+  transform: rotate(-45deg);
+}
+// 向下的空心三角箭头
+.icon-arrow-down(@width: 8px, @height: 8px, @line-width: 1px, @color: transparent) {
+  width: @width;
+  height: @height;
+  border-bottom: @line-width solid @color;
+  border-left: @line-width solid @color;
+  box-sizing: border-box;
+  transform: rotate(-45deg);
+}
+// 向上的空心三角箭头
+.icon-arrow-up(@width: 8px, @height: 8px, @line-width: 1px, @color: transparent) {
+  width: @width;
+  height: @height;
+  border-top: @line-width solid @color;
+  border-left: @line-width solid @color;
+  box-sizing: border-box;
+  transform: rotate(45deg);
+}
+// 禁止文本被选择
+.user-select() { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.global{
+  .global-bg{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: url(https://ws4.sinaimg.cn/large/006tNc79gy1fsjwp17aptj30bg0bg0rx.jpg)repeat;
+    background-size: 100% 100%;
+  }
+}

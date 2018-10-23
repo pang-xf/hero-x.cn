@@ -1,0 +1,22 @@
+{
+  "name": "hero-x",
+  "version": "1.0.0",
+  "description": "My divine Nuxt.js project",
+  "author": "liyushilezhi",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "start": "nuxt start",
+    "build": "nuxt build",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.0.0",
+    "cross-env": "^5.2.0",
+    "nuxt": "^2.0.0",
+    "postcss-px2rem": "^0.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

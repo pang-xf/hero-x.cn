@@ -6,8 +6,8 @@
   </div>
 </template>
 <script>
-import bheads from '../components/bhead'
-import bfooter from '../components/bfooter'
+import bheads from '~/components/bhead'
+import bfooter from '~/components/bfooter'
 export default {
   components: {
     bfooter,

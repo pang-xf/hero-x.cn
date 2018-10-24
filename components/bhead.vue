@@ -17,4 +17,4 @@ export default {
   }
 }
 </script>
-<style src='../assets/css/head.less' lang="less" scoped></style>
+<style src='~/assets/css/head.less' lang="less" scoped></style>

@@ -53,4 +53,4 @@ export default {
   }
 }
 </script>
-<style src='../../assets/css/index.less' lang="less" scoped></style>
+<style src='~/assets/css/index.less' lang="less" scoped></style>

@@ -42,5 +42,5 @@ export default {
 }
 </script>
 
-<style src='../../assets/icon/iconfont.css' scoped></style>
-<style src='../../assets/css/article.less' lang="less" scoped></style>
+<style src='~/assets/icon/iconfont.css' scoped></style>
+<style src='~/assets/css/article.less' lang="less" scoped></style>

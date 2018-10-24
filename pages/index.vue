@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import barticle from '../components/index/barticle'
-import swiper from '../components/index/swiper'
-import about from '../components/index/about'
-import hotArticle from '../components/index/hotArticle'
-import ad from '../components/ad'
+import barticle from '~/components/index/barticle'
+import swiper from '~/components/index/swiper'
+import about from '~/components/index/about'
+import hotArticle from '~/components/index/hotArticle'
+import ad from '~/components/ad'
 export default {
   components: {
     barticle,swiper,about,hotArticle,ad
@@ -32,5 +32,5 @@ export default {
   }
 }
 </script>
-<style src='../assets/css/global.less' lang="less"></style>
-<style src='../assets/css/index.less' lang="less" scoped></style>
+<style src='~/assets/css/global.less' lang="less"></style>
+<style src='~/assets/css/index.less' lang="less" scoped></style>

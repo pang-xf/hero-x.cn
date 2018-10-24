@@ -19,8 +19,15 @@
   position: relative;
   transition: all .3s;
   margin-bottom: 10px;
+  transition:All 0.4s linear;
   &:hover{
     background: #eee;
+    .art-right{
+      img{
+        transition:All 0.4s linear;
+        transform: rotate(-10deg) scale(1.2);
+      }
+    }
   }
   .art-left{
     height: 110px;
@@ -30,6 +37,24 @@
       font-size: 22px;
       margin-bottom: 10px;
       .ellipsis-mult(1);
+      transition: all .3s;
+      position: relative;
+      &:hover{
+        transform: translateX(10px);
+      }
+      &::before{
+        content:"";
+        width:0px;
+        position:absolute;
+        display:inline-block;
+        border-bottom:2px solid #666;
+        bottom:0;
+        left:0px;
+      }
+      &:hover::before{
+        width:100%;
+        transition:all linear .2s;
+      }
     }
     .abstrack{
       font-size: 15px;
@@ -46,13 +71,16 @@
       a{
         font-size: 14px;
         color:#aaa;
-        transition: color .3s;
-        &:hover{
-          color:salmon;
-        }
       }
       span{
         margin-right: 15px;
+        transition: color .3s;
+        &:hover{
+          color:salmon;
+          a{
+            color:salmon;
+          }
+        }
       }
       .iconfont{
         margin-right: 5px;
@@ -72,11 +100,7 @@
     img{
       width: 100%;
       height: 100%;
-      transition:All 0.3s ease-in-out;
-      &:hover{
-        // transform: scale(1.8);
-        transform: rotate(-10deg) scale(1.2);
-      }
+      transition:All 0.4s linear;
     }
   }
 }

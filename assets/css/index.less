@@ -1,7 +1,7 @@
 .container{
   width: 1000px;
   min-height: calc(100vh - 140px);
-  border:1px solid slategray;
+  // border:1px solid slategray;
   margin: 10px auto 10px auto;
   display: flex;
   justify-content: space-between;
@@ -9,13 +9,21 @@
   z-index: 2;
   .left-content{
     width: 350px;
-    min-height: calc(100vh - 125px);
-    border-right:1px solid salmon;
+    min-height: calc(100vh - 140px);
+    // border-right:1px solid salmon;
+    .name{
+      font-size: 18px;
+      border-bottom: 1px solid rgba(150, 145, 145,0.2);
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
     .index-about{
       width: 100%;
-      border:1px solid salmon;
-      padding-bottom: 20px;
+      // border:1px solid salmon;
+      padding: 20px 0;
       margin-bottom: 20px;
+      position: relative;
+      top: 0;
       background: #fff;
       .img-wrap{
         width: 110px;
@@ -52,12 +60,6 @@
       width: 100%;
       background: #fff;
       padding: 20px 20px 5px 20px;
-      .name{
-        font-size: 18px;
-        border-bottom: 1px solid rgba(150, 145, 145,0.2);
-        padding-bottom: 8px;
-        margin-bottom: 15px;
-      }
       .hotArticle-wrap{
         margin-bottom: 15px;
         .title{
@@ -72,6 +74,23 @@
         }
         .read{
           font-size: 14px;
+        }
+      }
+    }
+    .inFriends{
+      width: 100%;
+      background: #fff;
+      padding: 20px 20px 5px 20px;
+      margin-top: 15px;
+      .friends-wrap{
+        padding: 10px 0;
+        a{
+          color: #666;
+          transition: all .3s;
+          margin-right: 10px;
+          &:hover{
+            color: #222
+          }
         }
       }
     }

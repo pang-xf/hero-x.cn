@@ -1,5 +1,12 @@
 <template>
-  <div class='inFriends'></div>
+  <div class='inFriends'>
+    <p class="name">我的好友</p>
+    <div class="friends-wrap">
+      <a href="#">好友1</a>
+      <a href="#">好友2</a>
+      <a href="#">好友3</a>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -15,5 +22,5 @@ export default {
   }
 }
 </script>
-<style lang='less' scoped>
-</style>
+<style src='~/assets/css/global.less' lang="less"></style>
+<style src='~/assets/css/index.less' lang="less" scoped></style>

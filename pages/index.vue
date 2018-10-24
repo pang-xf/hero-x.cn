@@ -6,6 +6,7 @@
       <div class="left-content">
         <about/>
         <hotArticle/>
+        <friends/>
       </div>
       <div class="right-content">
         <swiper/>
@@ -21,10 +22,11 @@ import barticle from '~/components/index/barticle'
 import swiper from '~/components/index/swiper'
 import about from '~/components/index/about'
 import hotArticle from '~/components/index/hotArticle'
+import friends from '~/components/index/friends'
 import ad from '~/components/ad'
 export default {
   components: {
-    barticle,swiper,about,hotArticle,ad
+    barticle,swiper,about,hotArticle,ad,friends
   },
   mounted () {
     console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")

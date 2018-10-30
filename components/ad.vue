@@ -24,14 +24,14 @@ export default {
   width: 1000px;
   height: 40px;
   font-size: 18px;
-  color: sandybrown;
+  color: #6E552F;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
   position: relative;
   margin: 10px auto;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 1px 2px #cecccc;
   .close{
     position: absolute;

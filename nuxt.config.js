@@ -25,7 +25,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#E16B8C' },
 
   /*
   ** Global CSS
@@ -39,6 +39,10 @@ module.exports = {
   plugins: [
     {
       src: '~/plugins/vueSwiper',
+      ssr: false
+    },
+    {
+      src: '~/plugins/jparticles',
       ssr: false
     },
   ],

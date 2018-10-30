@@ -1,6 +1,6 @@
 <template>
-  <div class="global">
-    <div class="global-bg"></div>
+  <div class="global" id="global">
+    <div class="global-bg" id="bg" ></div>
     <ad/>
     <section class="container">
       <div class="left-content">
@@ -25,12 +25,19 @@ import hotArticle from '~/components/index/hotArticle'
 import friends from '~/components/index/friends'
 import ad from '~/components/ad'
 export default {
+  data () {
+    return {
+    }
+  },
   components: {
     barticle,swiper,about,hotArticle,ad,friends
   },
   mounted () {
-    console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
-    // console.log('');
+    // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
+    new JParticles.particle('#bg',{
+      opacity:0.5,
+      proximity: 90,
+    });
   }
 }
 </script>

@@ -20,18 +20,21 @@ export default {
 }
 </script>
 <style lang='less' scoped>
+@import url(../assets/css/global.less);
+
 .ad{
-  width: 1000px;
+  max-width: 960px;
+  width: 100%;
   height: 40px;
   font-size: 18px;
-  color: #6E552F;
+  color: @glColor;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
   position: relative;
   margin: 10px auto;
-  background: rgba(255, 255, 255, 0.6);
+  background: @glBgColor;
   box-shadow: 0px 1px 2px #cecccc;
   .close{
     position: absolute;

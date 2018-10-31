@@ -1,8 +1,4 @@
-// 多行省略
-.ellipsis-mult(@n: 3) {
-  display: -webkit-box; -webkit-box-orient: vertical;-webkit-line-clamp: @n; word-break: break-all;
-  -o-text-overflow: ellipsis; -ms-text-overflow: ellipsis; text-overflow:ellipsis; overflow: hidden;
-}
+@import url(./global.less);
 .myflex(){
   display: flex;
   align-items: center;
@@ -14,15 +10,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
+  background: @glBgColor;
   position: relative;
   transition: all .3s;
   margin-bottom: 10px;
   border-radius: 2px;
   transition:All 0.4s linear;
   &:hover{
-    background: #eee;
+    background: @glHoverBgColor;
     .art-right{
       img{
         transition:All 0.4s linear;
@@ -40,6 +35,7 @@
       .ellipsis-mult(1);
       transition: all .3s;
       position: relative;
+      cursor: pointer;
       &:hover{
         transform: translateX(10px);
       }
@@ -48,7 +44,7 @@
         width:0px;
         position:absolute;
         display:inline-block;
-        border-bottom:2px solid #666;
+        border-bottom:2px solid @glColor;
         bottom:0;
         left:0px;
       }
@@ -59,27 +55,27 @@
     }
     .abstrack{
       font-size: 15px;
-      color:#666;
+      color:@glSolganColor;
       margin-bottom: 20px;
       max-height: 33px;
       .ellipsis-mult(2);
     }
     .meta{
       font-size: 14px;
-      color:#aaa;
+      color:@glSolganColor;
       display: flex;
       align-items: center;
       a{
         font-size: 14px;
-        color:#aaa;
+        color:@glSolganColor;
       }
       span{
         margin-right: 15px;
         transition: color .3s;
         &:hover{
-          color:salmon;
+          color:@glHoverColor;
           a{
-            color:salmon;
+            color:@glHoverColor;
           }
         }
       }
@@ -104,6 +100,16 @@
       transition:All 0.4s linear;
     }
   }
+}
+.article-page{
+  min-height: calc(100vh - 100px);
+  width: 100%;
+  max-width: 960px;
+  background: #fff;
+  z-index: 2;
+  position: relative;
+  background: @glBgColor;
+  margin: 40px auto;
 }
 @media (max-width:1000px){
   .art-right{

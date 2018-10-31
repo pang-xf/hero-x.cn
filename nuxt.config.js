@@ -19,6 +19,9 @@ module.exports = {
         rel: 'stylesheet',
         href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
       },
+    ],
+    noscript: [
+      { innerHTML: 'This website requires JavaScript.' }
     ]
   },
 
@@ -31,6 +34,10 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    {
+      src: '~assets/css/global.less',
+      lang: 'less'
+    },
   ],
 
   /*
@@ -46,7 +53,10 @@ module.exports = {
       ssr: false
     },
   ],
-
+  vendor: [
+    'marked',
+    'highlight.js',
+  ],
   /*
   ** Nuxt.js modules
   */

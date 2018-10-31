@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
+import '../assets/css/global.less'
+
 
 import _6f6c098b from '../layouts/default.vue'
 
@@ -9,7 +11,7 @@ const layouts = { "_default": _6f6c098b }
 
 
 export default {
-  head: {"title":"hero-x","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0"},{"hid":"description","name":"description","content":"My divine Nuxt.js project"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Fnormalize\u002F8.0.0\u002Fnormalize.css"}],"style":[],"script":[]},
+  head: {"title":"hero-x","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0"},{"hid":"description","name":"description","content":"My Nuxt.js project"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Fnormalize\u002F8.0.0\u002Fnormalize.css"}],"noscript":[{"innerHTML":"This website requires JavaScript."}],"style":[],"script":[]},
   render(h, props) {
     const loadingEl = h('nuxt-loading', { ref: 'loading' })
     const layoutEl = h(this.layout || 'nuxt')

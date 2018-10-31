@@ -1,6 +1,7 @@
 <template>
-  <div class="global" id="global">
+  <div class="global">
     <div class="global-bg" id="bg" ></div>
+    <bheads/>
     <ad/>
     <section class="container">
       <div class="left-content">
@@ -9,11 +10,12 @@
         <friends/>
       </div>
       <div class="right-content">
-        <swiper/>
+        <!-- <swiper/> -->
         <barticle v-for="(item,index) in 10" :key="index"></barticle>
         <p style="margin: 20px auto;text-align:center">这里应该有个分页器</p>
       </div>
     </section>
+    <bfooter/>
   </div>
 </template>
 
@@ -24,20 +26,22 @@ import about from '~/components/index/about'
 import hotArticle from '~/components/index/hotArticle'
 import friends from '~/components/index/friends'
 import ad from '~/components/ad'
+import bheads from '~/components/bhead'
+import bfooter from '~/components/bfooter'
 export default {
   data () {
     return {
     }
   },
   components: {
-    barticle,swiper,about,hotArticle,ad,friends
+    barticle,swiper,about,hotArticle,ad,friends,bfooter,bheads
   },
   mounted () {
-    // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
     new JParticles.particle('#bg',{
       opacity:0.5,
       proximity: 90,
     });
+    // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
   }
 }
 </script>

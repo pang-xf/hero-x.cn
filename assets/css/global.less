@@ -1,12 +1,15 @@
+@charset 'utf-8';
+
 body {font-size:1em;}
 html {font-size: 100%;}
 
 
 // 主题色 
-// @glColor:
-// @glHoverColor:
-// @glbgColor:
-// @gl
+@glColor:#080808;
+@glSolganColor:#434343;
+@glHoverColor: #60373E;
+@glBgColor:rgba(255, 255, 255, 0.6);
+@glHoverBgColor:rgba(255, 255, 255, 0.8);
 .pxtoRem (@px) when (iscolor(@c)){
 	color: @c;
 }
@@ -84,14 +87,12 @@ a{
 }
 // 禁止文本被选择
 .user-select() { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-.global{
-  .global-bg{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background: #000;
-  }
+.global-bg{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: #000;
 }

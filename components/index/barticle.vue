@@ -1,7 +1,7 @@
 <template>
   <div class='article'>
     <div class="art-left">
-      <p class="title" :title="article.title">{{article.title}}</p>
+      <p class="title" :title="article.title" @click="goDetail(1)">{{article.title}}</p>
       <p class="abstrack" :title="article.content">{{article.content}}</p>
       <div class="meta">
         <span class="tag"><i class="iconfont icon-biaoqian"></i><a href="#">web</a></span>
@@ -36,6 +36,9 @@ export default {
   components: {
   },
   methods: {
+    goDetail(pid){
+      this.$router.push({path:'/article/'+pid})
+    }
   },
   mounted () {
   }

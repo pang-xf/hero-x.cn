@@ -6,7 +6,7 @@
       </div>
       <nav class="site-navigation">
         <ul class="nav-menu">
-          <li class="nav-item"><a href="">主页</a></li>
+          <li class="nav-item"><a href="/">主页</a></li>
           <li class="nav-item"><a href="">博文</a></li>
           <li class="nav-item"><a href="">资源</a></li>
           <li class="nav-item"><a href="">项目</a></li>

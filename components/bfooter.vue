@@ -1,6 +1,8 @@
 <template>
   <footer class='footer'>
-    BASE ON NUXT AND KOA,MADE BY<a href="https://github.com/hero-x" target="_blank">HERO-X</a>
+    <p>© 2018 - HEROX'S BLOG</p>
+    <p>POWER BY NUXT & KOA</p>
+    <p>- 我愿你是个谎,从未出现南墙 -</p>
   </footer>
 </template>
 <script>

@@ -5,10 +5,7 @@ const router = new Router();
 // router.use('/user', user.routes(), user.allowedMethods());
 try {
   router.get('/getUserMsg',async (ctx,next) => {
-    // console.log(ctx);
-    // console.log('----', ctx.ip)
     let data = await getMarkdown()
-    // console.log(data);
     ctx.body = {
       data: data,
       status: 200

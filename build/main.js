@@ -99,8 +99,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 async function start() {
   const app = new __WEBPACK_IMPORTED_MODULE_0_koa___default.a();
-  console.log('--------process.env.HOST-------');
-  console.log(process.env);
   // const host = process.env.NODE_ENV=='production'? 'http://47.106.163.14': '127.0.0.1'
   // const port = process.env.NODE_ENV=='production'? 3002 : 3000
   const host = process.env.HOST || '127.0.0.1';
@@ -180,10 +178,7 @@ const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
 // router.use('/user', user.routes(), user.allowedMethods());
 try {
   router.get('/getUserMsg', async (ctx, next) => {
-    // console.log(ctx);
-    // console.log('----', ctx.ip)
     let data = await getMarkdown();
-    // console.log(data);
     ctx.body = {
       data: data,
       status: 200

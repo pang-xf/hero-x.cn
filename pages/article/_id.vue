@@ -15,13 +15,11 @@ import bfooter from '~/components/bfooter'
 export default {
   data () {
     return {
-      content:'* sddd',
       data:''
     }
   },
   async asyncData ({app}) {
     let res  = await app.$axios.$get('/getUserMsg')
-    // console.log(res.data);
     return { data: res.data}
   },
   components: {
@@ -33,9 +31,6 @@ export default {
     }
   },
   mounted () {
-    // this.$axios.$get('/getUserMsg').then(res=>{
-    //   console.log(res);
-    // })
     new JParticles.particle('#bg',{
       opacity:0.5,
       proximity: 90,

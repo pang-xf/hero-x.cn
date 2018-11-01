@@ -5,9 +5,9 @@
   "author": "liyushilezhi",
   "private": true,
   "scripts": {
-    "dev": "backpack",
-    "start": "nuxt start",
-    "build": "nuxt build",
+    "dev": "backpack dev",
+    "start": "cross-env NODE_ENV=production node build/main.js",
+    "build": "nuxt build && backpack build",
     "generate": "nuxt generate"
   },
   "dependencies": {

@@ -99,8 +99,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 async function start() {
   const app = new __WEBPACK_IMPORTED_MODULE_0_koa___default.a();
-  const host = process.env.HOST || '127.0.0.1';
-  const port = process.env.PORT || 3000;
+  console.log('--------process.env.HOST-------');
+  console.log(process.env);
+  const host = 'http://47.106.163.14';
+  const port = 3002;
   app.on('error', function (err, ctx) {
     console.log('-------统一错误打印-------');
     console.log(err);
@@ -124,19 +126,17 @@ async function start() {
     await builder.build();
   }
 
-  app.use(async ctx => {
-    ctx.res.statusCode = 200;
-    ctx.respond = false; // Mark request as handled for Koa
-    ctx.req.ctx = ctx; // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
-    nuxt.render(ctx.req, ctx.res);
-    // return new Promise((resolve, reject) => {
-    //   ctx.res.on('close', resolve)
-    //   ctx.res.on('finish', resolve)
-    //   nuxt.render(ctx.req, ctx.res, promise => {
-    //     // nuxt.render passes a rejected promise into callback on error.
-    //     promise.then(resolve).catch(reject)
-    //   })
-    // })
+  app.use(async (ctx, next) => {
+    await next();
+    ctx.status = 200; // koa defaults to 404 when it sees that status is unset
+    return new Promise((resolve, reject) => {
+      ctx.res.on('close', resolve);
+      ctx.res.on('finish', resolve);
+      nuxt.render(ctx.req, ctx.res, promise => {
+        // nuxt.render passes a rejected promise into callback on error.
+        promise.then(resolve).catch(reject);
+      });
+    });
   });
 
   app.listen(port, host);
@@ -243,10 +243,8 @@ module.exports = require("nuxt");
 /***/ (function(module, exports, __webpack_require__) {
 
 const pkg = __webpack_require__(11);
-
 module.exports = {
   mode: 'universal',
-
   /*
   ** Headers of the page
   */
@@ -318,7 +316,7 @@ module.exports = {
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"hero-x","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack","start":"nuxt start","build":"backpack w22","generate":"nuxt generate"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
+module.exports = {"name":"hero-x","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ }),
 /* 12 */

@@ -1,15 +1,28 @@
 import Router from 'koa-router';
 import user from './user';
-
+const fs = require('fs')
 const router = new Router();
-
 // router.use('/user', user.routes(), user.allowedMethods());
-router.get('/getUserMsg',async (ctx) => {
-  console.log(ctx);
-  console.log('----', ctx.ip)
-  ctx.body = {
-    data: '李宇',
-    message: 200
-  };
-});
+try {
+  router.get('/getUserMsg',async (ctx,next) => {
+    // console.log(ctx);
+    // console.log('----', ctx.ip)
+    let data = await getMarkdown()
+    // console.log(data);
+    ctx.body = {
+      data: data,
+      status: 200
+    };
+  });
+} catch (error) {
+  console.log(error);
+}
+async function getMarkdown() { 
+  return new Promise((resolve,reject)=>{
+    fs.readFile('markdown/test.md','utf8', function(err, data) {
+      if (err) throw err;
+      resolve(data)
+    });
+  })
+}
 export default router;

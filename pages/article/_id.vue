@@ -3,7 +3,7 @@
     <div class="global-bg" id="bg" ></div>
     <bheads/>
     <div class='article-page'>
-      <div class="content" v-html="markedContent(content)"></div>
+      <div class="content" v-html="markedContent(data)"></div>
     </div>
     <bfooter/>
   </div>
@@ -15,14 +15,14 @@ import bfooter from '~/components/bfooter'
 export default {
   data () {
     return {
-      content:`* 测试`,
+      content:'* sddd',
       data:''
     }
   },
   async asyncData ({app}) {
-    let data  = await app.$axios.$get('/getUserMsg')
-    console.log(data);
-    return { data: data}
+    let res  = await app.$axios.$get('/getUserMsg')
+    // console.log(res.data);
+    return { data: res.data}
   },
   components: {
     bfooter,bheads
@@ -33,6 +33,9 @@ export default {
     }
   },
   mounted () {
+    // this.$axios.$get('/getUserMsg').then(res=>{
+    //   console.log(res);
+    // })
     new JParticles.particle('#bg',{
       opacity:0.5,
       proximity: 90,

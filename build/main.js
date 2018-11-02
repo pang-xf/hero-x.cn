@@ -86,9 +86,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_koa_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__koa_cors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_nuxt__);
 
 
@@ -114,7 +114,7 @@ async function start() {
   router.use('', __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */].routes());
   app.use(router.routes()).use(router.allowedMethods());
   // Import and Set Nuxt.js options
-  const config = __webpack_require__(10);
+  const config = __webpack_require__(12);
   config.dev = !(app.env === 'production');
 
   // Instantiate nuxt.js
@@ -170,23 +170,49 @@ module.exports = require("koa-bodyparser");
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__article__ = __webpack_require__(6);
 
+
+const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
+router.use('/article', __WEBPACK_IMPORTED_MODULE_1__article__["a" /* default */].routes(), __WEBPACK_IMPORTED_MODULE_1__article__["a" /* default */].allowedMethods());
+/* harmony default export */ __webpack_exports__["a"] = (router);
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
 
 const fs = __webpack_require__(7);
 const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
-// router.use('/user', user.routes(), user.allowedMethods());
-try {
-  router.get('/getUserMsg', async (ctx, next) => {
-    let data = await getMarkdown();
-    ctx.body = {
-      data: data,
-      status: 200
-    };
-  });
-} catch (error) {
-  console.log(error);
-}
+const mongoose = __webpack_require__(8);
+
+// 中间层，用来连接数据库
+const Monk = __webpack_require__(9);
+const mongodb = Monk('localhost/herox');
+const markdown = mongodb.get('markdown');
+// const main1 = async ctx => {
+//   let data = await getMarkdown()
+//   user.insert({
+//     "markdown":data
+//   })
+// }
+// main1()
+// 必须异步操作，不然读不出来数据
+const main = async ctx => {
+  const data1 = await markdown.find();
+  ctx.response.body = data1;
+};
+
+const routers = router.get('/getArticle', main).get('/getUserMsg', async (ctx, next) => {
+  let data = await getMarkdown();
+  ctx.body = {
+    data: data,
+    status: 200
+  };
+});
 async function getMarkdown() {
   return new Promise((resolve, reject) => {
     fs.readFile('markdown/test.md', 'utf8', function (err, data) {
@@ -195,27 +221,7 @@ async function getMarkdown() {
     });
   });
 }
-/* harmony default export */ __webpack_exports__["a"] = (router);
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const router = __webpack_require__(0)();
-router.get('/getUserMsg', (ctx, next) => {
-  console.log(ctx);
-  console.log('----', ctx.ip);
-  // ctx.body = JSON.stringify({"status": 200, "res": "success","data":{
-  //   'key':'liyu'
-  // }})
-  ctx.body = {
-    data: '李宇',
-    message: 200
-  };
-  return next();
-});
-/* unused harmony default export */ var _unused_webpack_default_export = (router);
+/* harmony default export */ __webpack_exports__["a"] = (routers);
 
 /***/ }),
 /* 7 */
@@ -227,19 +233,31 @@ module.exports = require("fs");
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("@koa/cors");
+module.exports = require("mongoose");
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = require("nuxt");
+module.exports = require("monk");
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports) {
+
+module.exports = require("@koa/cors");
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = require("nuxt");
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const pkg = __webpack_require__(11);
+const pkg = __webpack_require__(13);
 module.exports = {
   mode: 'universal',
   /*
@@ -303,20 +321,20 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {},
-    postcss: [__webpack_require__(12)({
+    postcss: [__webpack_require__(14)({
       remUnit: 16 // 转换基本单位
     })]
   }
 };
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"hero-x","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
+module.exports = {"name":"hero-x","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-px2rem");

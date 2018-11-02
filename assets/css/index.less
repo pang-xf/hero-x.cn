@@ -1,4 +1,70 @@
 @import url(./global.less);
+.index-page{
+  padding: 0;
+  height: 100vh;
+  margin: 0;
+  .canvas-bg-wrap{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #0B1013;
+    .canvas-bg{
+      width: 100%;
+      // background: #0B1013;
+      height: 99%;
+      z-index: 1;
+    }
+    .index-page-title-wrap{
+      color: #fff;
+      position: absolute;
+      top:50%;             
+      left:50%;             
+      transform:translate(-50%,-50%);            
+      z-index: 2;
+      font-size: 30px;
+      text-align: center;
+      font-weight: 333;
+      font-family: Sakura;
+      text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+      padding: 20px;
+      .avatar{
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+        margin-bottom: 50px;
+        img{
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          transition: all .6s;
+          &:hover{
+            transform: scale(1.2) rotate(360deg)
+          }
+        }
+      }
+      p{
+        margin-bottom: 10px;
+      }
+      a{
+        color: #fff;
+        font-weight: 333;
+        font-family: Sakura;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+        transition: all .3s;
+        &:hover{
+          color: #666;
+        }
+      }
+    }
+  }
+  .index-menus{
+    width: 100%;
+    height: 50vh;
+    background: #0B1013;
+  }
+}
 .container{
   width: 100%;
   max-width: 960px;

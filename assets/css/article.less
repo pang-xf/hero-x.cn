@@ -105,17 +105,120 @@
   min-height: calc(100vh - 100px);
   width: 100%;
   max-width: 960px;
-  background: #fff;
   z-index: 2;
   position: relative;
-  // background: @glBgColor;
-  margin: 80px auto 60px auto;
-  padding: 50px;
+  margin: 230px auto 60px auto;
   border-radius: 4px;
-  img{
-    width: 100%;
-    margin: 10px 0;
-    border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  .ap-left{
+    width: 25%;
+    .fixed{
+      position: fixed !important;
+      top: 50px;
+      width: 20%;
+    }
+    .ap-left-item{
+      background-color: #fff;
+      position: relative;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+      border-radius: 6px;
+      .ap-left-item-title{
+        padding: 1rem 1.3rem;
+        font-size: 1.16rem;
+        color: #333;
+        border-bottom: 1px solid hsla(0,0%,59%,.1);
+      }
+      .ap-left-item-body{
+        .ap-item-body-user{
+          display: flex;
+          align-items: center;
+          padding: 0.44rem 1.3rem;
+          .icon{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #ccc;
+            margin-right: 10px;
+          }
+          .icon-user{
+            background: url(../image/author.png)no-repeat;
+            background-size: cover;
+          }
+          .icon-dz{
+            background: url(../image/dianzan.png)no-repeat;
+            background-size: cover;
+          }
+          .icon-yd{
+            background: url(../image/read.png)no-repeat;
+            background-size: cover;
+          }
+          span{
+            color: #222;
+          }
+        }
+        .ap-left-item-body-wrap{
+          display: flex;
+          justify-content: space-between;
+          padding: 0.6rem 1.3rem;
+          cursor: pointer;
+          &:hover{
+            background: #ccc;
+          }
+          &:last-child{
+            padding-bottom: 14px;
+          }
+          .left-item-body-left{
+            background: url(https://ws1.sinaimg.cn/large/006tNbRwgy1fwwz4voqwwj30b40b4jri.jpg)no-repeat;
+            background-size: cover;
+            width: 25%;
+            height: 72px;
+          }
+          .left-item-body-right{
+            width: 70%;
+            font-size: 14px;
+            position: relative;
+            p{
+              .ellipsis-mult(3);
+              max-height: 48px;
+            }
+            .left-item-body-right-bottom{
+              position: absolute;
+              bottom: 0;
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+              width: 100%;
+              font-size: 12px;
+              color: #878c90;
+              .read{
+                padding: 3px 10px;
+                cursor: pointer;
+                background: #BDC0BA;
+                transition: all .3s;
+                &:hover{
+                  background: #91989F;
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .content{
+    width: 73%;
+    padding: 50px;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 6px;
+    img{
+      width: 100%;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
   }
 }
 @media (max-width:1000px){

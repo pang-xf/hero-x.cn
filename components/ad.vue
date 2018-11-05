@@ -1,7 +1,7 @@
 <template>
-  <div class='ad' v-if="show">
+  <div class='ad' v-show="$store.state.tips.showAd">
     这是一条可以关闭的通知
-    <div class="close"></div>
+    <div class="close" @click="$store.commit('tips/SET_SHOWAD',false)"></div>
   </div>
 </template>
 <script>
@@ -21,7 +21,6 @@ export default {
 </script>
 <style lang='less' scoped>
 @import url(../assets/css/global.less);
-
 .ad{
   max-width: 960px;
   width: 100%;

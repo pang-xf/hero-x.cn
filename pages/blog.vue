@@ -1,8 +1,7 @@
 <template>
   <div class="global">
-    <div class="global-bg" id="bg" ></div>
     <bheads/>
-    <ad/>
+    <!-- <ad/> -->
     <section class="container">
       <div class="left-content">
         <about/>
@@ -11,7 +10,7 @@
       </div>
       <div class="right-content">
         <!-- <swiper/> -->
-        <barticle v-for="(item,index) in 10" :key="index"></barticle>
+        <barticle v-for="(item,index) in 6" :key="index"></barticle>
         <p style="margin: 20px auto;text-align:center">这里应该有个分页器</p>
       </div>
     </section>
@@ -37,10 +36,6 @@ export default {
     barticle,swiper,about,hotArticle,ad,friends,bfooter,bheads
   },
   mounted () {
-    new JParticles.particle('#bg',{
-      opacity:0.5,
-      proximity: 90,
-    });
     // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
   }
 }

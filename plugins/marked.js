@@ -23,7 +23,6 @@ const renderer = new marked.Renderer()
 
 
 export default (content, tags, parseHtml = false) => {
-
   // 所有非链接的关键字进行内链处理
   if (tags && tags.length) {
     renderer.text = text => buildTagLink(text, tags)

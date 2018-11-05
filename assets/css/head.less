@@ -1,31 +1,66 @@
 @import url(./global.less);
+@headerHeight:40px;
+@navColor:#4F4F48;
+@navHoverColor:#C1328E;
 @keyframes stroke {
 100% {
   stroke-dashoffset: -400;
 }
 }
-header{
-  background: #fff;
-}
 .header{
-  height: 50px;
-  // .linerBg();
+  z-index: 999;
+  position: relative;
+  width: 100%;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  .heroxBg{
+    height: 250px;
+    width: 100%;
+    background-image: url(https://ws3.sinaimg.cn/large/006tNbRwgy1fwx7x287zzj31hc12vjzc.jpg);
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position:center -150px;
+  }
+}
+.blurbg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: @headerHeight;
+  filter: blur(1px);
+  z-index: 3;
+  background-position: center -10px;
+  background-repeat: no-repeat;
+}
+.scroll-header{
+  position: fixed;
+  width: 100%;
+  z-index: 999;
   background: #fff;
+  top: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+header{
+  height: @headerHeight;
+  // .linerBg();
   // background: @glBgColor;
   width: 100%;
-  position: relative;
-  z-index: 999;
-  box-shadow: 0 5px 4px -4px rgba(25,25,25,.1);
-  position: fixed;
-  top: 0;
-  z-index: 999;
+  z-index: 2;
+  // box-shadow: 0 5px 4px -4px rgba(25,25,25,.1);
+  background-color: hsla(0,0%,100%,.7);
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
   .myflex();
   .header-wrap{
     width: 960px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: @headerHeight;
   }
   .site-title{
     width: 19%;
@@ -34,7 +69,7 @@ header{
     justify-content: space-between;
     align-items: center;
     a{
-      color:#EE7785;
+      color:@navColor;
       font-size: 28px;
       font-family: Sakura;
       text-shadow: 1px 1px 1px rgba(0,0,0,.5);
@@ -43,7 +78,10 @@ header{
   .site-navigation{
     display: block;
     width: 81%;
-    height: 100%;
+    height: @headerHeight;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     ul{
       display: flex;
       align-items: center;
@@ -53,10 +91,10 @@ header{
         list-style: none;
         margin-left: 40px;
         a{
-          color: @glColor;
+          color: @navColor;
           transition: all .3s;
           &:hover{
-            color: @glHoverColor;
+            color: @navHoverColor;
           }
         }
       }

@@ -4,7 +4,7 @@ export default (text, tags) => {
   const toFirstUpperCase = str => {
     return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
   }
-
+console.log('sss');
   // 初始化标签数据（本身、全小写、全大写、首字母大写）
   const tagNames = Object.keys(tags.reduce((tagNames, { name: tagName }, index) => {
     const lowerCase = tagName.toLowerCase()

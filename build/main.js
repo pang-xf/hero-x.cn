@@ -295,9 +295,6 @@ module.exports = {
   plugins: [{
     src: '~/plugins/vueSwiper',
     ssr: false
-  }, {
-    src: '~/plugins/jparticles',
-    ssr: false
   }],
   vendor: ['marked', 'highlight.js'],
   /*

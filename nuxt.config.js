@@ -47,10 +47,6 @@ module.exports = {
       src: '~/plugins/vueSwiper',
       ssr: false
     },
-    {
-      src: '~/plugins/jparticles',
-      ssr: false
-    },
   ],
   vendor: [
     'marked',

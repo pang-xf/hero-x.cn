@@ -19,8 +19,8 @@ export default {
     }
   },
   async asyncData ({app}) {
-    // let res  = await app.$axios.$get('/article/getArticle')
-    // return { data: res.data}
+    let res  = await app.$axios.$get('/article/getArticle')
+    return { data: res.data}
   },
   components: {
     bfooter,bheads

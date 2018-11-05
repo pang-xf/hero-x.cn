@@ -8,7 +8,7 @@ html {font-size: 100%;}
 @glColor:#080808;
 @glSolganColor:#434343;
 @glHoverColor: #60373E;
-@glBgColor:rgba(255, 255, 255, 0.6);
+@glBgColor:rgba(255, 255, 255, 0.9);
 @glHoverBgColor:rgba(255, 255, 255, 0.8);
 .pxtoRem (@px) when (iscolor(@c)){
 	color: @c;
@@ -17,6 +17,15 @@ html {font-size: 100%;}
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.linerBg(){
+  background-color: #DCD9D4; 
+ background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%); 
+ background-blend-mode: soft-light,screen;
+  // background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+.linerHoverBg(){
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 10%);
 }
 // 盒子宽高
 .size(@w, @h) { width: @w; height: @h; }
@@ -80,6 +89,9 @@ html {font-size: 100%;}
   border-left: @line-width solid @color;
   box-sizing: border-box;
   transform: rotate(45deg);
+}
+li{
+  list-style: none;
 }
 div{
   box-sizing: border-box;

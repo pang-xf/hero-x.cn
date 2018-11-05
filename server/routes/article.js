@@ -16,8 +16,11 @@ const markdown = mongodb.get('markdown')
 // main1()
 // 必须异步操作，不然读不出来数据
 const main = async ctx => {
-  const data1 = await markdown.find()
-  ctx.response.body = data1
+  const resMarkDown = await markdown.find()
+  ctx.response.body = {
+    data: resMarkDown[0].markdown,
+    status: 200
+  };
 }
 
 

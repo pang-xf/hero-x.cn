@@ -3,74 +3,68 @@
   padding: 0;
   height: 100vh;
   margin: 0;
-  .canvas-bg-wrap{
-    width: 100%;
-    height: 100vh;
+  background: url(https://ws2.sinaimg.cn/large/006tNbRwgy1fwwz1ekkmgj30xc0m8q3l.jpg)no-repeat;
+  background-size: 100% 100%;
+  .index-page-title-wrap{
     position: absolute;
-    top: 0;
-    left: 0;
-    background: #0B1013;
-    .canvas-bg{
-      width: 100%;
-      // background: #0B1013;
-      height: 99%;
-      z-index: 1;
+    bottom: 50px;
+    right: 20px;
+    z-index: 2;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 333;
+    font-family: Sakura;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+    padding: 20px;
+    li{
+      float: left;
+      span{
+        margin: 0 10px;
+        color: #D7C4BB;
+      }
     }
-    .index-page-title-wrap{
-      color: #fff;
-      position: absolute;
-      top:50%;             
-      left:50%;             
-      transform:translate(-50%,-50%);            
-      z-index: 2;
-      font-size: 30px;
-      text-align: center;
+    a{
+      color: #D7C4BB;
       font-weight: 333;
       font-family: Sakura;
       text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-      padding: 20px;
-      .avatar{
-        border-radius: 50%;
-        width: 180px;
-        height: 180px;
-        margin-bottom: 50px;
-        img{
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          transition: all .6s;
-          &:hover{
-            transform: scale(1.2) rotate(360deg)
-          }
-        }
-      }
-      p{
-        margin-bottom: 10px;
-      }
-      a{
+      transition: all .3s;
+      &:hover{
         color: #fff;
-        font-weight: 333;
-        font-family: Sakura;
-        text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-        transition: all .3s;
-        &:hover{
-          color: #666;
-        }
       }
     }
   }
-  .index-menus{
-    width: 100%;
-    height: 50vh;
-    background: #0B1013;
+  .index-page-slogan-wrap{
+    position: absolute;
+    right: 0px;
+    top: 40px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 333;
+    font-family: Sakura;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+    max-width: 60%;
+    color: #D7C4BB;
+    cursor: pointer;
+    &:hover{
+      color: #fff;
+    }
+    p{
+      text-align: left;
+      transition: all .3s;
+      padding-right: 20px;
+      &:last-child{
+        padding-right: 30px;
+        text-align: right;
+      }
+    }
   }
 }
 .container{
   width: 100%;
   max-width: 960px;
   min-height: calc(100vh - 140px);
-  // border:1px solid slategray;
-  margin: 10px auto 10px auto;
+  margin: 20px auto 10px auto;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -78,7 +72,6 @@
   .left-content{
     width: 300px;
     min-height: calc(100vh - 140px);
-    // border-right:1px solid salmon;
     .name{
       font-size: 18px;
       border-bottom: 1px solid rgba(150, 145, 145,0.2);
@@ -87,13 +80,12 @@
     }
     .index-about{
       width: 100%;
-      // border:1px solid salmon;
       padding: 20px 0;
       margin-bottom: 20px;
       border-radius: 2px;
       position: relative;
       top: 0;
-      background: @glBgColor;
+      .linerBg();
       .img-wrap{
         width: 110px;
         height: 110px;
@@ -125,7 +117,7 @@
     .hotArticle{
       border-radius: 2px;
       width: 100%;
-      background: @glBgColor;
+      .linerBg();
       padding: 20px 20px 5px 20px;
       .hotArticle-wrap{
         margin-bottom: 15px;
@@ -147,7 +139,7 @@
     .inFriends{
       width: 100%;
       border-radius: 2px;
-      background: @glBgColor;
+      .linerBg();
       padding: 20px 20px 5px 20px;
       margin-top: 15px;
       .friends-wrap{
@@ -171,7 +163,7 @@
     width: 100%;
     height: 240px;
     margin-bottom: 10px;
-    background: @glBgColor;
+    .linerBg();
     overflow: hidden;
     display: block;
     border-radius: 4px;

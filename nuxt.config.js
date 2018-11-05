@@ -36,6 +36,7 @@ module.exports = {
       src: '~assets/css/global.less',
       lang: 'less'
     },
+    '~assets/css/page-transletion.css'
   ],
 
   /*

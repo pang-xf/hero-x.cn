@@ -202,8 +202,11 @@ const markdown = mongodb.get('markdown');
 // main1()
 // 必须异步操作，不然读不出来数据
 const main = async ctx => {
-  const data1 = await markdown.find();
-  ctx.response.body = data1;
+  const resMarkDown = await markdown.find();
+  ctx.response.body = {
+    data: resMarkDown[0].markdown,
+    status: 200
+  };
 };
 
 const routers = router.get('/getArticle', main).get('/getUserMsg', async (ctx, next) => {
@@ -284,7 +287,7 @@ module.exports = {
   css: [{
     src: '~assets/css/global.less',
     lang: 'less'
-  }],
+  }, '~assets/css/page-transletion.css'],
 
   /*
   ** Plugins to load before mounting the App
@@ -331,7 +334,7 @@ module.exports = {
 /* 13 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"hero-x","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
+module.exports = {"name":"HERO-X","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ }),
 /* 14 */

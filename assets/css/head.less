@@ -1,6 +1,15 @@
 @import url(./global.less);
+@keyframes stroke {
+100% {
+  stroke-dashoffset: -400;
+}
+}
+header{
+  background: #fff;
+}
 .header{
   height: 50px;
+  // .linerBg();
   background: #fff;
   // background: @glBgColor;
   width: 100%;
@@ -19,18 +28,21 @@
     height: 50px;
   }
   .site-title{
-    width: 30%;
+    width: 19%;
+    height: 99%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     a{
+      color:#EE7785;
       font-size: 28px;
-      color: #000;
-      font-weight: 333;
       font-family: Sakura;
       text-shadow: 1px 1px 1px rgba(0,0,0,.5);
     }
   }
   .site-navigation{
     display: block;
-    width: 65.8%;
+    width: 81%;
     height: 100%;
     ul{
       display: flex;

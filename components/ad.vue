@@ -33,7 +33,7 @@ export default {
   align-items: center;
   z-index: 2;
   position: relative;
-  margin: 10px auto;
+  margin: 70px auto auto auto;
   background: @glBgColor;
   box-shadow: 0px 1px 2px #cecccc;
   .close{

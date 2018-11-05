@@ -36,7 +36,8 @@ module.exports = {
       src: '~assets/css/global.less',
       lang: 'less'
     },
-    '~assets/css/page-transletion.css'
+    '~assets/css/page-transletion.css',
+    'highlight.js/styles/atom-one-dark-reasonable.css',
   ],
 
   /*

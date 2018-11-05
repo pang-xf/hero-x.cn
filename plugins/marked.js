@@ -12,6 +12,7 @@ marked.setOptions({
   smartLists: true,
   smartypants: false,
   highlight(code) {
+    console.log(code);
     return Hljs.highlightAuto(code).value
   }
 })

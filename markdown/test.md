@@ -52,7 +52,7 @@ https://www.linuxidc.com/Linux/2016-09/134907.htm
 
 ### 修改`usr/local/nginx/conf`下的`nginx.conf`
 
-```json
+```javascript
 http {
     ...省略
     upstream nodenuxt {

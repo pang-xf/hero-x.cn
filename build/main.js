@@ -193,13 +193,14 @@ const mongoose = __webpack_require__(8);
 const Monk = __webpack_require__(9);
 const mongodb = Monk('localhost/herox');
 const markdown = mongodb.get('markdown');
-// const main1 = async ctx => {
-//   let data = await getMarkdown()
-//   user.insert({
-//     "markdown":data
-//   })
-// }
-// main1()
+const main1 = async ctx => {
+  let data = await getMarkdown();
+  console.log(data);
+  user.insert({
+    "markdown": data
+  });
+};
+main1();
 // 必须异步操作，不然读不出来数据
 const main = async ctx => {
   const resMarkDown = await markdown.find();

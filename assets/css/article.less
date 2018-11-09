@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
   .linerBg();
   position: relative;
   transition: all .3s;
@@ -31,26 +31,28 @@
     margin-right: 0px;
     .title{
       font-size: 22px;
-      margin-bottom: 10px;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
       .ellipsis-mult(1);
       transition: all .3s;
       position: relative;
       cursor: pointer;
+      color: #4F4F48;
       &:hover{
-        transform: translateX(10px);
+        transform: translateX(4px);
       }
       &::before{
         content:"";
         width:0px;
         position:absolute;
         display:inline-block;
-        border-bottom:2px solid @glColor;
-        bottom:0;
+        border-bottom:1px solid #4F4F48;
+        bottom:0px;
         left:0px;
       }
       &:hover::before{
         width:100%;
-        transition:all linear .2s;
+        transition:all linear .4s;
       }
     }
     .abstrack{
@@ -107,7 +109,7 @@
   max-width: 960px;
   z-index: 2;
   position: relative;
-  margin: 230px auto 60px auto;
+  margin: 10px auto 60px auto;
   border-radius: 4px;
   display: flex;
   justify-content: space-between;

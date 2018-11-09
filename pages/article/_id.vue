@@ -1,6 +1,6 @@
 <template>
   <div  class="global">
-    <bheads/>
+    <bheads :showBanner='false' :isScroll.sync = 'isScroll'/>
     <div class='article-page'>
       <div class="ap-left">
         <div class="ap-left-item" v-if="!isScroll">
@@ -8,15 +8,15 @@
           <div class="ap-left-item-body">
             <div class="ap-item-body-user">
               <i class="icon icon-user"></i>
-              <span>作者:HEROX</span>
+              <span>作者：HEROX</span>
             </div>
             <div class="ap-item-body-user">
               <i class="icon icon-dz"></i>
-              <span>获得赞数:999</span>
+              <span>获得赞数：{{data.markdown.like}}</span>
             </div>
             <div class="ap-item-body-user">
               <i class="icon icon-yd"></i>
-              <span>获得阅读数:999</span>
+              <span>获得阅读数：{{data.markdown.read}}</span>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
           </div>
         </div>
       </div>
-      <div class="content" v-html="markedContent(data)"></div>
+      <div class="content" v-html="markedContent(data.markdown.content)"></div>
     </div>
     <bfooter/>
   </div>
@@ -89,8 +89,8 @@ export default {
       isScroll:false,
     }
   },
-  async asyncData ({app}) {
-    let res  = await app.$axios.$get('/article/getArticle')
+  async asyncData ({app,route}) {
+    let res  = await app.$axios.$get('/article/getArticleById/'+route.params.id)
     return { data: res.data}
   },
   components: {
@@ -105,7 +105,7 @@ export default {
     },
     handleScroll(){
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop,_self = this
-      if(scrollTop>170){
+      if(scrollTop>400){
           _self.isScroll = true
       }else{
           _self.isScroll = false

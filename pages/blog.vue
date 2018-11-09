@@ -1,8 +1,8 @@
 <template>
   <div class="global">
-    <bheads/>
+    <bheads :showBanner='isShowBanner' :isScroll.sync = 'isScroll'/>
     <!-- <ad/> -->
-    <section class="container">
+    <section class="container" :class="isShowBanner?'hasBannerMargin':''">
       <div class="left-content">
         <about/>
         <hotArticle/>
@@ -10,8 +10,8 @@
       </div>
       <div class="right-content">
         <!-- <swiper/> -->
-        <barticle v-for="(item,index) in 6" :key="index"></barticle>
-        <p style="margin: 20px auto;text-align:center">这里应该有个分页器</p>
+        <barticle v-for="(item,index) in article" :key="index" :article='item.markdown' :id="item._id"></barticle>
+        <!-- <p style="margin: 20px auto;text-align:center">这里应该有个分页器</p> -->
       </div>
     </section>
     <bfooter/>
@@ -30,12 +30,31 @@ import bfooter from '~/components/bfooter'
 export default {
   data () {
     return {
+      article:'',
+      isShowBanner:true,
+      isScroll:false
     }
+  },
+  async asyncData ({app}) {
+    let res  = await app.$axios.$get('/article/getArticle')
+    // console.log(res.data);
+    return { article: res.data}
   },
   components: {
     barticle,swiper,about,hotArticle,ad,friends,bfooter,bheads
   },
+  methods: {
+    handleScroll(){
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop,_self = this
+      if(scrollTop>400){
+          _self.isScroll = true
+      }else{
+          _self.isScroll = false
+      }
+    }
+  },
   mounted () {
+    window.addEventListener('scroll', this.handleScroll)
     // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
   }
 }

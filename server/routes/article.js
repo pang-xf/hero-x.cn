@@ -1,31 +1,28 @@
 import Router from 'koa-router';
 const fs = require('fs')
 const router = new Router();
-const mongoose = require('mongoose')
-
 // 中间层，用来连接数据库
-const Monk = require('monk')
-const mongodb = Monk('localhost/herox') 
-const markdown = mongodb.get('markdown')
-// const main1 = async ctx => {
-//   let data = await getMarkdown()
-//   markdown.insert({
-//     "markdown":data
-//   })
-// }
-// main1()
+const db = require('monk')('localhost/herox') 
+const markdown = db.get('markdown')
 // 必须异步操作，不然读不出来数据
-const main = async ctx => {
+const getArticle = async ctx => {
   const resMarkDown = await markdown.find()
   ctx.response.body = {
-    data: resMarkDown[0].markdown,
+    data: resMarkDown,
+    status: 200
+  };
+}
+const getArticleById = async ctx => {
+  const articles = await markdown.find({_id:ctx.params.pid})
+  ctx.response.body = {
+    data: articles[0],
     status: 200
   };
 }
 
-
 const routers = router
-  .get('/getArticle',main)
+  .get('/getArticle',getArticle)
+  .get('/getArticleById/:pid',getArticleById)
   .get('/getUserMsg',async (ctx,next) => {
     let data = await getMarkdown()
     ctx.body = {

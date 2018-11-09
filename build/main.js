@@ -86,9 +86,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_koa_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__koa_cors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_nuxt__);
 
 
@@ -114,7 +114,7 @@ async function start() {
   router.use('', __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */].routes());
   app.use(router.routes()).use(router.allowedMethods());
   // Import and Set Nuxt.js options
-  const config = __webpack_require__(12);
+  const config = __webpack_require__(11);
   config.dev = !(app.env === 'production');
 
   // Instantiate nuxt.js
@@ -187,29 +187,26 @@ router.use('/article', __WEBPACK_IMPORTED_MODULE_1__article__["a" /* default */]
 
 const fs = __webpack_require__(7);
 const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
-const mongoose = __webpack_require__(8);
-
 // 中间层，用来连接数据库
-const Monk = __webpack_require__(9);
-const mongodb = Monk('localhost/herox');
-const markdown = mongodb.get('markdown');
-// const main1 = async ctx => {
-//   let data = await getMarkdown()
-//   markdown.insert({
-//     "markdown":data
-//   })
-// }
-// main1()
+const db = __webpack_require__(8)('localhost/herox');
+const markdown = db.get('markdown');
 // 必须异步操作，不然读不出来数据
-const main = async ctx => {
+const getArticle = async ctx => {
   const resMarkDown = await markdown.find();
   ctx.response.body = {
-    data: resMarkDown[0].markdown,
+    data: resMarkDown,
+    status: 200
+  };
+};
+const getArticleById = async ctx => {
+  const articles = await markdown.find({ _id: ctx.params.pid });
+  ctx.response.body = {
+    data: articles[0],
     status: 200
   };
 };
 
-const routers = router.get('/getArticle', main).get('/getUserMsg', async (ctx, next) => {
+const routers = router.get('/getArticle', getArticle).get('/getArticleById/:pid', getArticleById).get('/getUserMsg', async (ctx, next) => {
   let data = await getMarkdown();
   ctx.body = {
     data: data,
@@ -236,31 +233,25 @@ module.exports = require("fs");
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("mongoose");
+module.exports = require("monk");
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = require("monk");
+module.exports = require("@koa/cors");
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = require("@koa/cors");
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
 module.exports = require("nuxt");
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const pkg = __webpack_require__(13);
+const pkg = __webpack_require__(12);
 module.exports = {
   mode: 'universal',
   /*
@@ -321,20 +312,20 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {},
-    postcss: [__webpack_require__(14)({
+    postcss: [__webpack_require__(13)({
       remUnit: 16 // 转换基本单位
     })]
   }
 };
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = {"name":"HERO-X","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-px2rem");

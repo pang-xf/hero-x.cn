@@ -32,7 +32,10 @@ export default {
     return {
       article:'',
       isShowBanner:true,
-      isScroll:false
+      isScroll:false,
+      talk:{
+        
+      }
     }
   },
   async asyncData ({app}) {

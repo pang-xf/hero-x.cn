@@ -51,7 +51,8 @@ export default {
   props: ['showBanner','isScroll'],
   data(){
     return{
-      banner:['https://ws2.sinaimg.cn/large/006tNbRwgy1fwzckvpqrxj318g0p0npe.jpg','https://ws4.sinaimg.cn/large/006tNbRwgy1fx5nofzh9dj31gb0vhqa4.jpg','https://ws2.sinaimg.cn/large/006tNbRwgy1fx5nopyb9uj31kw0vu0xc.jpg'],
+      banner:['https://ws2.sinaimg.cn/large/006tNbRwgy1fwzckvpqrxj318g0p0npe.jpg','https://ws4.sinaimg.cn/large/006tNbRwgy1fx5nofzh9dj31gb0vhqa4.jpg','https://ws2.sinaimg.cn/large/006tNbRwgy1fx5nopyb9uj31kw0vu0xc.jpg',
+      'https://ws1.sinaimg.cn/large/005N37m4gy1fxq5c9pglaj32yo1o0e81.jpg'],
       isPlayVideo:false,
       active:0
     }

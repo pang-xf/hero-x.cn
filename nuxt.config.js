@@ -17,6 +17,10 @@ module.exports = {
         rel: 'stylesheet',
         href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
       },
+      {
+        rel: 'stylesheet',
+        href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
+      },
     ],
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
@@ -80,6 +84,7 @@ module.exports = {
     extend(config, ctx) {
       
     },
+    extractCSS: { allChunks: true },
     postcss: [
       require('postcss-px2rem')({
         remUnit: 16 // 转换基本单位

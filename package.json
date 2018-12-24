@@ -8,7 +8,8 @@
     "dev": "backpack dev",
     "start": "cross-env NODE_ENV=production node build/main.js",
     "build": "nuxt build && backpack build",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "runTStart": "npm run build&&npm run start"
   },
   "dependencies": {
     "@koa/cors": "^2.2.2",

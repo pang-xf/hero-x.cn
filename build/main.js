@@ -198,6 +198,18 @@ const getArticle = async ctx => {
     status: 200
   };
 };
+//获取部分数据 首页 的 
+const getPartOfArticle = async ctx => {
+  let handleData = await markdown.find();
+  handleData.map(v => {
+    // 只返回10个文字
+    v.markdown.content = v.markdown.content.slice(0, 10);
+  });
+  ctx.response.body = {
+    data: handleData,
+    status: 200
+  };
+};
 const getArticleById = async ctx => {
   const articles = await markdown.find({ _id: ctx.params.pid });
   ctx.response.body = {
@@ -206,7 +218,7 @@ const getArticleById = async ctx => {
   };
 };
 
-const routers = router.get('/getArticle', getArticle).get('/getArticleById/:pid', getArticleById).get('/getUserMsg', async (ctx, next) => {
+const routers = router.get('/getArticle', getArticle).get('/getPartOfArticle', getPartOfArticle).get('/getArticleById/:pid', getArticleById).get('/getUserMsg', async (ctx, next) => {
   let data = await getMarkdown();
   ctx.body = {
     data: data,
@@ -263,6 +275,9 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, {
       rel: 'stylesheet',
       href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
+    }, {
+      rel: 'stylesheet',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
     }],
     noscript: [{ innerHTML: 'This website requires JavaScript.' }]
   },
@@ -312,6 +327,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {},
+    extractCSS: { allChunks: true },
     postcss: [__webpack_require__(13)({
       remUnit: 16 // 转换基本单位
     })]
@@ -322,7 +338,7 @@ module.exports = {
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"HERO-X","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
+module.exports = {"name":"HERO-X","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ }),
 /* 13 */

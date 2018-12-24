@@ -39,7 +39,7 @@ export default {
     }
   },
   async asyncData ({app}) {
-    let res  = await app.$axios.$get('/article/getArticle')
+    let res  = await app.$axios.$get('/article/getPartOfArticle')
     // console.log(res.data);
     return { article: res.data}
   },

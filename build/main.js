@@ -86,9 +86,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_koa_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__koa_cors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_nuxt__);
 
 
@@ -114,7 +114,7 @@ async function start() {
   router.use('', __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */].routes());
   app.use(router.routes()).use(router.allowedMethods());
   // Import and Set Nuxt.js options
-  const config = __webpack_require__(11);
+  const config = __webpack_require__(12);
   config.dev = !(app.env === 'production');
 
   // Instantiate nuxt.js
@@ -171,10 +171,13 @@ module.exports = require("koa-bodyparser");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__article__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user__ = __webpack_require__(9);
+
 
 
 const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
 router.use('/article', __WEBPACK_IMPORTED_MODULE_1__article__["a" /* default */].routes(), __WEBPACK_IMPORTED_MODULE_1__article__["a" /* default */].allowedMethods());
+router.use('/user', __WEBPACK_IMPORTED_MODULE_2__user__["a" /* default */].routes(), __WEBPACK_IMPORTED_MODULE_2__user__["a" /* default */].allowedMethods());
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
@@ -249,21 +252,73 @@ module.exports = require("monk");
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = require("@koa/cors");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
+
+const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
+// 中间层，用来连接数据库
+// const db = require('monk')('localhost/herox') 
+// const markdown = db.get('markdown')
+let userInfo = {
+    name: '李宇童鞋丶',
+    sex: 'man',
+    desc: '间歇性踌躇满志，持续性混吃等死。',
+    avatar: 'https://ws1.sinaimg.cn/large/006tNbRwgy1fyhwhz6lwsj30b40b4aa7.jpg',
+    school: 'Pan Zhi Hua University',
+    professional: 'Mathematics and computers',
+    schoolTime: '2014年-2018年',
+    job: 'web development',
+    address: 'Shen Zhen',
+    homeTown: 'Si Chuan Za Zhong',
+    email: 'me0809@yeah.net',
+    github: 'https://github.com/hero-x',
+    zhihu: 'https://www.zhihu.com/people/xiang-ge-95-60/activities',
+    juejin: 'https://juejin.im/user/59561da16fb9a06ba646355d',
+    workExe: [{
+        name: '深圳市小行家科技有限公司',
+        startTime: '2018.3',
+        endTime: '至今'
+    }],
+    project: [{
+        name: '青年驿站',
+        startTime: '2018.6',
+        endTime: '2018.11',
+        content: '青年驿站是什么..',
+        dowhat: '负责整个小程序的开发',
+        technology: 'wepy'
+    }]
+};
+const getUserInfo = async ctx => {
+    ctx.response.body = {
+        data: userInfo,
+        status: 200
+    };
+};
+
+const routers = router.get('/getUserInfo', getUserInfo);
+
+/* harmony default export */ __webpack_exports__["a"] = (routers);
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = require("nuxt");
+module.exports = require("@koa/cors");
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports) {
+
+module.exports = require("nuxt");
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const pkg = __webpack_require__(12);
+const pkg = __webpack_require__(13);
 module.exports = {
   mode: 'universal',
   /*
@@ -275,11 +330,9 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, {
       rel: 'stylesheet',
       href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
-    }, {
-      rel: 'stylesheet',
-      href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
     }],
-    noscript: [{ innerHTML: 'This website requires JavaScript.' }]
+    noscript: [{ innerHTML: 'This website requires JavaScript.' }],
+    script: [{ src: "https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077" }]
   },
 
   /*
@@ -294,7 +347,6 @@ module.exports = {
     src: '~assets/css/global.less',
     lang: 'less'
   }, '~assets/css/page-transletion.css', 'highlight.js/styles/atom-one-dark-reasonable.css'],
-
   /*
   ** Plugins to load before mounting the App
   */
@@ -328,20 +380,20 @@ module.exports = {
     */
     extend(config, ctx) {},
     extractCSS: { allChunks: true },
-    postcss: [__webpack_require__(13)({
+    postcss: [__webpack_require__(14)({
       remUnit: 16 // 转换基本单位
     })]
   }
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = {"name":"HERO-X","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","postcss-px2rem":"^0.3.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-px2rem");

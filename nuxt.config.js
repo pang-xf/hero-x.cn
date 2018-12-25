@@ -17,14 +17,13 @@ module.exports = {
         rel: 'stylesheet',
         href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
       },
-      {
-        rel: 'stylesheet',
-        href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
-      },
     ],
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
-    ]
+    ],
+    script:[
+      {src:"https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077"},
+    ],
   },
 
   /*
@@ -43,7 +42,6 @@ module.exports = {
     '~assets/css/page-transletion.css',
     'highlight.js/styles/atom-one-dark-reasonable.css',
   ],
-
   /*
   ** Plugins to load before mounting the App
   */

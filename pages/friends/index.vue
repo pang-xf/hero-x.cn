@@ -1,5 +1,7 @@
 <template>
-  <div class=''></div>
+  <div class='friends'>
+      
+  </div>
 </template>
 <script>
 export default {
@@ -15,5 +17,4 @@ export default {
   }
 }
 </script>
-<style lang='less' scoped>
-</style>
+<style src='~/assets/css/friends.less' lang="less"></style>

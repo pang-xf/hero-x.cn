@@ -1,13 +1,13 @@
 <template>
   <a class='swiper' href="#">
     <div class="swiper-content" @mouseover="mouseover" @mouseout="mouseout">
-      <div v-swiper:mySwiper="swoption">
-          <div class="swiper-wrapper">
-              <div class="swiper-slide" v-for="(item,index) in list" :key="'A'+index">
-                  <img :src="item.url">
-              </div>
-          </div>
-      </div>
+        <div v-swiper:mySwiper="swoption">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="(item,index) in list" :key="'A'+index">
+                    <img :src="item.url">
+                </div>
+            </div>
+        </div>
     </div>
   </a>
 </template>

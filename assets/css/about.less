@@ -13,7 +13,8 @@
     h2{
         text-align: left;
         padding: 10px 10px 10px 25px;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
         position: relative;
         margin: 0;
         font-size: 16px;
@@ -27,7 +28,8 @@
                 left: 15px;
                 background: #333;
                 top: 50%;
-                transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+                        transform: translateY(-50%);
             }
         }
     }
@@ -37,11 +39,13 @@
         cursor: pointer;
         color: #444;
         span{
+            -webkit-transition: all .5s;
             transition: all .5s;
             display: inline-block;
             &:hover{
                 color: #000;
-                transform: translateX(10px);
+                -webkit-transform: translateX(10px);
+                        transform: translateX(10px);
             }
         }
     }
@@ -55,6 +59,8 @@
         .about_wrap_top{
             width: 100%;
             height: 400px;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
             .top_left{
                 width: 50%;
@@ -72,9 +78,11 @@
                             width: 100%;
                             height: 100%;
                             border-radius: 50%;
+                            -webkit-transition: all .6s;
                             transition: all .6s;
                             &:hover{
-                                transform: rotate(360deg);
+                                -webkit-transform: rotate(360deg);
+                                        transform: rotate(360deg);
                             }
                         }
                     }
@@ -98,15 +106,22 @@
                 .top_left_bottom{
                     background: rgba(250, 204, 153, 0.6);
                     height: 15%;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    -webkit-box-pack: center;
+                        -ms-flex-pack: center;
+                            justify-content: center;
+                    -webkit-box-align: center;
+                        -ms-flex-align: center;
+                            align-items: center;
                     span{
                         i{
                             font-size: 30px;
                         }
                         margin-right: 16px;
                         cursor: pointer;
+                        -webkit-transition: all .6s;
                         transition: all .6s;
                         &:hover{
                             color: salmon;
@@ -135,8 +150,12 @@
                     p{
                         width: 60%;
                         padding: 10px;
+                        display: -webkit-box;
+                        display: -ms-flexbox;
                         display: flex;
-                        justify-content: space-between;
+                        -webkit-box-pack: justify;
+                            -ms-flex-pack: justify;
+                                justify-content: space-between;
                         margin: 0 auto;
                     }
                     i{
@@ -147,14 +166,21 @@
         }
         .about_wrap_center{
             width: 100%;
-            height: 400px;
+            height: 300px;
             background: rgba(204, 204, 255, 0.2);
             overflow: hidden;
-            .project_wrap{
-                width: 100%;
-                // background: url('https://ws3.sinaimg.cn/large/006tNbRwgy1fyj0pukxpoj31hc0u0ace.jpg')no-repeat;
-                // background-size: 100% 100%;
-                height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            #map{
+              width: 100%;
+              height: 100%;
             }
         }
         .about_wrap_bottom{
@@ -172,6 +198,7 @@
             }
             a{
                 color: rgba(0, 0, 0, 0.7);
+                -webkit-transition: all .3s;
                 transition: all .3s;
                 &:hover{
                     color: rgba(0, 0, 0, 1);

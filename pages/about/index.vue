@@ -50,7 +50,7 @@
             </div>
             <div class="about_wrap_center">
                 <!-- <h2>项目</h2> -->
-                <div class="project_wrap">
+                <div id="map">
                     
                 </div>
             </div>
@@ -72,6 +72,11 @@ import marked from '~/plugins/marked'
 import bheads from '~/components/bhead'
 import bfooter from '~/components/bfooter'
 export default {
+  head: {
+    script: [
+      { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }
+    ],
+  },
   data () {
     return {
         userInfo:'',
@@ -106,10 +111,13 @@ export default {
     },
   },
   mounted () {
+    // https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077
     window.addEventListener('scroll', this.handleScroll);
-    var map = new window.AMap.Map('project_wrap', {
-       center:[117.000923,36.675807],
-       zoom:11
+    var map = new AMap.Map('map', {
+       resizeEnable: true,
+       center:[113.937245,22.545176],
+       zoom:14,
+       zoomEnable:false
     });
   }
 }

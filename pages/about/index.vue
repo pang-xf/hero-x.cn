@@ -68,15 +68,14 @@
   </div>
 </template>
 <script>
-import marked from '~/plugins/marked'
 import bheads from '~/components/bhead'
 import bfooter from '~/components/bfooter'
 export default {
-  head: {
-    script: [
-      { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }
-    ],
-  },
+  // head: {
+  //   script: [
+  //     { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }
+  //   ],
+  // },
   data () {
     return {
         userInfo:'',
@@ -109,16 +108,18 @@ export default {
           _self.isScroll = false
       }
     },
+    initMap(){
+      var map = new AMap.Map('map', {
+        resizeEnable: true,
+        center:[113.937245,22.545176],
+        zoom:14,
+        zoomEnable:false
+      });
+    }
   },
   mounted () {
-    // https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077
     window.addEventListener('scroll', this.handleScroll);
-    var map = new AMap.Map('map', {
-       resizeEnable: true,
-       center:[113.937245,22.545176],
-       zoom:14,
-       zoomEnable:false
-    });
+    this.initMap();
   }
 }
 </script>

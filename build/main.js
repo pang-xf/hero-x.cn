@@ -205,8 +205,8 @@ const getArticle = async ctx => {
 const getPartOfArticle = async ctx => {
   let handleData = await markdown.find();
   handleData.map(v => {
-    // 只返回10个文字
-    v.markdown.content = v.markdown.content.slice(0, 10);
+    // 只返回20个文字
+    v.markdown.content = v.markdown.content.slice(0, 20);
   });
   ctx.response.body = {
     data: handleData,
@@ -331,7 +331,8 @@ module.exports = {
       rel: 'stylesheet',
       href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
     }],
-    noscript: [{ innerHTML: 'This website requires JavaScript.' }]
+    noscript: [{ innerHTML: 'This website requires JavaScript.' }],
+    script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }]
   },
 
   /*

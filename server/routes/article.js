@@ -16,8 +16,8 @@ const getArticle = async ctx => {
 const getPartOfArticle = async ctx => {
     let handleData = await markdown.find();
     handleData.map(v=>{
-        // 只返回10个文字
-        v.markdown.content = v.markdown.content.slice(0,10);
+        // 只返回20个文字
+        v.markdown.content = v.markdown.content.slice(0,20);
     })
     ctx.response.body = {
       data: handleData,

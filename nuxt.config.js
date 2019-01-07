@@ -42,6 +42,9 @@ module.exports = {
     '~assets/css/page-transletion.css',
     'highlight.js/styles/atom-one-dark-reasonable.css',
   ],
+  router: {
+    linkActiveClass: 'active-link'
+  },
   /*
   ** Plugins to load before mounting the App
   */
@@ -82,11 +85,6 @@ module.exports = {
     extend(config, ctx) {
       
     },
-    extractCSS: { allChunks: true },
-    postcss: [
-      require('postcss-px2rem')({
-        remUnit: 16 // 转换基本单位
-      })
-    ]
+    extractCSS: { allChunks: true }
   }
 }

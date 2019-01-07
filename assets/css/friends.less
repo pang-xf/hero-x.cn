@@ -1,6 +1,63 @@
+@import url(./global.less);
+.friends_title{
+  text-align: center;
+  color: #D7B98E;
+}
 .friends{
-  height: 100vh;
   width: 960px;
-  margin: 20px auto;
-  border:1px solid salmon;
+  min-height: 78vh;
+  margin: 0px auto;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  .friends_card{
+    display: block;
+    border:1px solid #999;
+    display: flex;
+    justify-content: space-between;
+    max-width: 23.48%;
+    border-radius: 4px;
+    padding: 2px;
+    transition: all .3s;
+    height: 78px;
+    margin: 0 10px 15px 0;
+    overflow: hidden;
+    &:nth-child(4n){
+      margin-right: 0;
+    }
+    &:hover{
+      border:1px solid #D7B98E;
+      background: #D7B98E;
+      img{
+        border-radius: 50%;
+      }
+      .right_wrap{
+        .name{
+          font-size: 18px;
+        }
+      }
+    }
+    .avatar{
+      height: 80px !important;
+      transition: all .3s;
+      border-radius: 4px;
+      display: block;
+    }
+    .right_wrap{
+      padding:10px;
+      .name{
+        color: @glColor;
+        margin-bottom: 10px;
+        transition: all .3s;
+      }
+      .text{
+        color: @glSolganColor;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        height: 26px;
+        .ellipsis-mult(2);
+      }
+    }
+  }
 }

@@ -101,7 +101,7 @@ async function start() {
   const app = new __WEBPACK_IMPORTED_MODULE_0_koa___default.a();
   // const host = process.env.NODE_ENV=='production'? 'http://47.106.163.14': '127.0.0.1'
   // const port = process.env.NODE_ENV=='production'? 3002 : 3000
-  const host = '0.0.0.0';
+  const host = '127.0.0.1';
   const port = 3000;
   app.on('error', function (err, ctx) {
     console.log('-------统一错误打印-------');

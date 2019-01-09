@@ -10,7 +10,7 @@
             <ul class="nav-menu">
               <li class="nav-item"><nuxt-link to='/blog'>首页</nuxt-link></li>
               <li class="nav-item"><nuxt-link to="/archive">极简</nuxt-link></li>
-              <li class="nav-item"><nuxt-link to="/project">项目</nuxt-link></li>
+              <!-- <li class="nav-item"><nuxt-link to="/project">项目</nuxt-link></li> -->
               <li class="nav-item"><nuxt-link to='/friends'>朋友</nuxt-link></li>
               <!-- <li class="nav-item"><a href="/friends">简历</a></li> -->
               <li class="nav-item"><nuxt-link to='/about'>关于</nuxt-link></li>
@@ -35,7 +35,7 @@
             <ul class="nav-menu">
               <li class="nav-item"><nuxt-link to='/blog'>首页</nuxt-link></li>
               <li class="nav-item"><nuxt-link to="/archive">极简</nuxt-link></li>
-              <li class="nav-item"><nuxt-link to="/project">项目</nuxt-link></li>
+              <!-- <li class="nav-item"><nuxt-link to="/project">项目</nuxt-link></li> -->
               <li class="nav-item"><nuxt-link to='/friends'>朋友</nuxt-link></li>
               <!-- <li class="nav-item"><a href="/friends">简历</a></li> -->
               <li class="nav-item"><nuxt-link to='/about'>关于</nuxt-link></li>

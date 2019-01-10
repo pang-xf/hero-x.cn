@@ -10,7 +10,7 @@
       </div>
       <div class="right-content">
         <!-- <swiper/> -->
-        <barticle v-for="(item,index) in article" :key="index" :article='item.markdown' :id="item._id"></barticle>
+        <barticle v-for="(item,index) in article" :key="index" :article='item' :id="item._id"></barticle>
         <!-- <p style="margin: 20px auto;text-align:center">这里应该有个分页器</p> -->
       </div>
     </section>

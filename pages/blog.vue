@@ -40,7 +40,7 @@ export default {
   },
   // async asyncData ({app}) {
   //   let res  = await app.$axios.$get('/article/getPartOfArticle')
-  //   // console.log(res.data);
+  //   console.log(res.data);
   //   return { article: res.data}
   // },
   components: {
@@ -60,7 +60,7 @@ export default {
     var _self = this
     window.addEventListener('scroll', this.handleScroll);
     this.$axios.get("/article/getPartOfArticle").then(res=>{
-      console.log(res.data)
+      console.log(res)
       _self.article = res.data.data
     })
     // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")

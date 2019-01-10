@@ -86,9 +86,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_koa_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__koa_cors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_nuxt__);
 
 
@@ -99,10 +99,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 async function start() {
   const app = new __WEBPACK_IMPORTED_MODULE_0_koa___default.a();
+  const host = process.env.HOST || '127.0.0.1';
+  const port = process.env.PORT || 3000;
   // const host = process.env.NODE_ENV=='production'? 'http://47.106.163.14': '127.0.0.1'
   // const port = process.env.NODE_ENV=='production'? 3002 : 3000
-  const host = '127.0.0.1';
-  const port = 3000;
+  // const host =  '127.0.0.1'
+  // const port =  3000
   app.on('error', function (err, ctx) {
     console.log('-------统一错误打印-------');
     console.log(err);
@@ -114,7 +116,7 @@ async function start() {
   router.use('', __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */].routes());
   app.use(router.routes()).use(router.allowedMethods());
   // Import and Set Nuxt.js options
-  const config = __webpack_require__(12);
+  const config = __webpack_require__(13);
   config.dev = !(app.env === 'production');
 
   // Instantiate nuxt.js
@@ -171,7 +173,7 @@ module.exports = require("koa-bodyparser");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__article__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user__ = __webpack_require__(10);
 
 
 
@@ -187,47 +189,45 @@ router.use('/user', __WEBPACK_IMPORTED_MODULE_2__user__["a" /* default */].route
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__handle_article__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__handle_article___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__handle_article__);
 
 const fs = __webpack_require__(7);
 const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
-// 中间层，用来连接数据库
-const db = __webpack_require__(8)('localhost/herox');
-const markdown = db.get('markdown');
-// 必须异步操作，不然读不出来数据
-const getArticle = async ctx => {
-  const resMarkDown = await markdown.find();
-  ctx.response.body = {
-    data: resMarkDown,
-    status: 200
-  };
-};
-//获取部分数据 首页 的 
-const getPartOfArticle = async ctx => {
-  let handleData = await markdown.find();
-  handleData.map(v => {
-    // 只返回20个文字
-    v.markdown.content = v.markdown.content.slice(0, 20);
-  });
-  ctx.response.body = {
-    data: handleData,
-    status: 200
-  };
-};
-const getArticleById = async ctx => {
-  const articles = await markdown.find({ _id: ctx.params.pid });
-  ctx.response.body = {
-    data: articles[0],
-    status: 200
-  };
-};
 
-const routers = router.get('/getArticle', getArticle).get('/getPartOfArticle', getPartOfArticle).get('/getArticleById/:pid', getArticleById).get('/getUserMsg', async (ctx, next) => {
-  let data = await getMarkdown();
-  ctx.body = {
-    data: data,
-    status: 200
-  };
-});
+// 中间层，用来连接数据库
+// const db = require('monk')('localhost/herox') 
+// const url = '47.106.163.14:27017/herox';
+// const db = require('monk')(url) 
+// const markdown = db.get('markdown')
+// 必须异步操作，不然读不出来数据
+// const getArticle = async ctx => {
+//   const resMarkDown = await markdown.find();
+//   ctx.response.body = {
+//     data: resMarkDown,
+//     status: 200
+//   };
+// }
+//获取部分数据 首页 的 
+// const getPartOfArticle = async ctx => {
+//     let handleData = await markdown.find();
+//     handleData.map(v=>{
+//         // 只返回20个文字
+//         v.markdown.content = v.markdown.content.slice(0,20);
+//     })
+//     ctx.response.body = {
+//       data: handleData,
+//       status: 200
+//     };
+//   }
+// const getArticleById = async ctx => {
+//   const articles = await markdown.find({_id:ctx.params.pid})
+//   ctx.response.body = {
+//     data: articles[0],
+//     status: 200
+//   };
+// }
+
 async function getMarkdown() {
   return new Promise((resolve, reject) => {
     fs.readFile('markdown/test.md', 'utf8', function (err, data) {
@@ -236,6 +236,23 @@ async function getMarkdown() {
     });
   });
 }
+const getPartOfArticle = async ctx => {
+  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetPartOfArticle();
+  ctx.response.body = {
+    data: data,
+    status: 200
+  };
+};
+const routers = router.get('/getPartOfArticle', getPartOfArticle);
+// .get('/getArticle',getArticle)
+// .get('/getArticleById/:pid',getArticleById)
+// .get('/getUserMsg',async (ctx,next) => {
+//     let data = await getMarkdown()
+//     ctx.body = {
+//     data: data,
+//     status: 200
+//     };
+// });
 /* harmony default export */ __webpack_exports__["a"] = (routers);
 
 /***/ }),
@@ -246,12 +263,44 @@ module.exports = require("fs");
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("monk");
+const MongoClient = __webpack_require__(9).MongoClient;
+// 自动创建数据库 runoob
+let mongoConnect = 'mongodb://47.106.163.14:27017/herox';
+const artHandle = {
+  async handlegetPartOfArticle() {
+    return new Promise((resolve, reject) => {
+      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
+        console.log("连接成功！");
+        let db = client.db('herox');
+        db.collection('markdown').find().toArray(function (err, result) {
+          if (err) {
+            console.log('Error:' + err);
+            reject(err);
+            return;
+          }
+          // result.map(v=>{
+          //     // 只返回20个文字
+          //     v.markdown.content = v.markdown.content.slice(0,20);
+          // })
+          resolve(result);
+          client.close();
+        });
+      });
+    });
+  }
+};
+module.exports = artHandle;
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports) {
+
+module.exports = require("mongodb");
+
+/***/ }),
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -303,22 +352,22 @@ const routers = router.get('/getUserInfo', getUserInfo);
 /* harmony default export */ __webpack_exports__["a"] = (routers);
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("@koa/cors");
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("nuxt");
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const pkg = __webpack_require__(13);
+const pkg = __webpack_require__(14);
 module.exports = {
   mode: 'universal',
   /*
@@ -387,10 +436,10 @@ module.exports = {
 };
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"HERO-X","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
+module.exports = {"name":"HERO-X","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongodb":"^3.1.10","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ })
 /******/ ]);

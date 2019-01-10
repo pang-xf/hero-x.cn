@@ -59,7 +59,7 @@ export default {
   mounted () {
     var _self = this
     window.addEventListener('scroll', this.handleScroll);
-    this.$axios.get("/article/getPartOfArticle").then(res=>{
+    this.$axios.get("http://47.106.163.14:3002/article/getPartOfArticle").then(res=>{
       console.log(res)
       _self.article = res.data.data
     })

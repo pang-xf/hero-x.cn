@@ -38,11 +38,10 @@ export default {
       }
     }
   },
-  // async asyncData ({app}) {
-  //   let res  = await app.$axios.$get('/article/getPartOfArticle')
-  //   console.log(res.data);
-  //   return { article: res.data}
-  // },
+  async asyncData ({app}) {
+    let res  = await app.$axios.$get('/article/getPartOfArticle')
+    return { article: res.data}
+  },
   components: {
     barticle,swiper,about,hotArticle,ad,friends,bfooter,bheads
   },
@@ -59,10 +58,10 @@ export default {
   mounted () {
     var _self = this
     window.addEventListener('scroll', this.handleScroll);
-    this.$axios.get("http://47.106.163.14:3002/article/getPartOfArticle").then(res=>{
-      console.log(res)
-      _self.article = res.data.data
-    })
+    // this.$axios.get("/article/getPartOfArticle").then(res=>{
+    //   console.log(res)
+    //   _self.article = res.data.data
+    // })
     // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
   }
 }

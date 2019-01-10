@@ -17,6 +17,7 @@ const artHandle = {
           //     // 只返回20个文字
           //     v.markdown.content = v.markdown.content.slice(0,20);
           // })
+          console.log(result);
           resolve(result)
           client.close();
         });

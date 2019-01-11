@@ -1,14 +1,15 @@
 <template>
   <div class="global">
-    <bheads :showBanner='isShowBanner' :isScroll.sync = 'isScroll'/>
-    <!-- <ad/> -->
-    <section class="container" :class="isShowBanner?'hasBannerMargin':''">
+    <bheads :isScroll.sync = 'isScroll'/>
+    <section class="container">
       <div class="left-content">
-        <about/>
+        <!-- <about/> -->
         <hotArticle/>
-        <friends/>
+        <!-- <friends/> -->
+        <tags/>
       </div>
       <div class="right-content">
+        <ad/>
         <!-- <swiper/> -->
         <barticle v-for="(item,index) in article" :key="index" :article='item' :id="item._id"></barticle>
         <!-- <p style="margin: 20px auto;text-align:center">这里应该有个分页器</p> -->
@@ -23,6 +24,7 @@ import barticle from '~/components/index/barticle'
 import swiper from '~/components/index/swiper'
 import about from '~/components/index/about'
 import hotArticle from '~/components/index/hotArticle'
+import tags from '~/components/tags'
 import friends from '~/components/index/friends'
 import ad from '~/components/ad'
 import bheads from '~/components/bhead'
@@ -43,7 +45,7 @@ export default {
     return { article: res.data}
   },
   components: {
-    barticle,swiper,about,hotArticle,ad,friends,bfooter,bheads
+    barticle,swiper,about,hotArticle,ad,friends,bfooter,bheads,tags
   },
   methods: {
     handleScroll(){
@@ -57,7 +59,7 @@ export default {
   },
   mounted () {
     var _self = this
-    window.addEventListener('scroll', this.handleScroll);
+    // window.addEventListener('scroll', this.handleScroll);
     // this.$axios.get("/article/getPartOfArticle").then(res=>{
     //   console.log(res)
     //   _self.article = res.data.data

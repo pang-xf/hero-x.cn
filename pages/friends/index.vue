@@ -3,18 +3,18 @@
       <bheads/>
       <h2 class="friends_title">FRIENDS</h2>
       <div class="friends">
-        <a href="http://www.baidu.com" class="friends_card">
-          <img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fyhwhz6lwsj30b40b4aa7.jpg" alt="" class="avatar">
+        <a href="http://guogai.top/" class="friends_card">
+          <img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fynfnldu89j308c08ct8q.jpg" alt="" class="avatar">
           <div class="right_wrap">
-            <div class="name">你的名字</div>
-            <div class="text" title="嘻嘻嘻嘻嘻嘻哈哈哈哈哈哈嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻哈哈哈哈哈哈嘻嘻嘻嘻嘻嘻">嘻嘻嘻嘻嘻嘻哈哈哈哈哈哈嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻哈哈哈哈哈哈嘻嘻嘻嘻嘻嘻</div>
+            <div class="name">gayの太君</div>
+            <div class="text" title="gay王">gay王</div>
           </div>
         </a>
-        <a href="http://www.baidu.com" class="friends_card">
-          <img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fyhwhz6lwsj30b40b4aa7.jpg" alt="" class="avatar">
+        <a href="https://www.qqstop.cn/" class="friends_card">
+          <img src="https://www.qqstop.cn/images/logo.jpg" alt="" class="avatar">
           <div class="right_wrap">
-            <div class="name">你的名字</div>
-            <div class="text" title="嘻嘻嘻嘻嘻嘻哈哈哈哈哈哈嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻哈哈哈哈哈哈嘻嘻嘻嘻嘻嘻">嘻嘻嘻嘻嘻嘻哈哈哈哈哈哈嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻哈哈哈哈哈哈嘻嘻嘻嘻嘻嘻</div>
+            <div class="name">Kevan’s Blog</div>
+            <div class="text" title="用欣赏的眼光去看待别人，用感恩的情怀去体验生活。">用欣赏的眼光去看待别人，用感恩的情怀去体验生活。</div>
           </div>
         </a>
       </div>

@@ -1,8 +1,8 @@
 <template>
-  <div class='hotArticle'>
-    <p class="name">热门文章</p>
-    <div class="hotArticle-wrap" v-for="(item,index) in 5 " :key="index">
-      <p class="title"><span>1</span>文章题目文章题目文章题目</p>
+  <div class='hotArticle' style="margin-top:10px">
+    <p class="name">标签</p>
+    <div class="tag-wrap">
+      <div class="tags" v-for="(item,index) in 15 " :key="index">前端</div>
     </div>
   </div>
 </template>

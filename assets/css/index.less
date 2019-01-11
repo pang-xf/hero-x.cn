@@ -61,9 +61,6 @@
     }
   }
 }
-.hasBannerMargin{
-  margin-top: calc(@bannerHeight - 20px)!important;
-}
 .container{
   width: 100%;
   max-width: 960px;
@@ -74,13 +71,13 @@
   position: relative;
   z-index: 2;
   .left-content{
-    width: 300px;
+    width: 280px;
     min-height: calc(100vh - 140px);
     .name{
-      font-size: 18px;
+      font-size: 16px;
       border-bottom: 1px solid rgba(150, 145, 145,0.2);
-      padding-bottom: 8px;
-      margin-bottom: 15px;
+      color: @glColor;
+      padding: 8px 15px;
     }
     .index-about{
       width: 100%;
@@ -122,21 +119,30 @@
       border-radius: 2px;
       width: 100%;
       .linerBg();
-      padding: 20px 20px 5px 20px;
+      // padding: 20px 20px 5px 20px;
       .hotArticle-wrap{
-        margin-bottom: 15px;
+        padding: 8px 15px;
+        transition: all .3s;
         .title{
-          color: salmon;
+          color: @glColor;
           display: block;
-          margin-bottom: 4px;
-          transition: all .3s;
           font-size: 14px;
-          &:hover{
-            transform: translateX(5px);
+          cursor: pointer;
+          span{
+            display: inline-block;
+            background: rgba(0,0,0,.1);
+            width: 15px;
+            text-align: center;
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 4px;
           }
         }
         .read{
           font-size: 14px;
+        }
+        &:hover{
+          background: rgba(0,0,0,.1);
         }
       }
     }
@@ -158,9 +164,27 @@
         }
       }
     }
+    .tag-wrap{
+      padding: 8px 15px;
+      .tags{
+        border:1px solid rgba(0,0,0,.2);
+        padding:4px 6px;
+        border-radius: 10px;
+        display: inline-block;
+        margin-right: 7px;
+        font-size: 14px;
+        color: @glColor;
+        transition: all .3s;
+        cursor: pointer;
+        margin-bottom: 5px;
+        &:hover{
+          color: @glHoverColor;
+        }
+      }
+    }
   }
   .right-content{
-    width: 630px;
+    width: 660px;
     min-height: calc(100vh - 140px);
   }
   .swiper{

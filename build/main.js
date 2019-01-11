@@ -243,9 +243,15 @@ const getPartOfArticle = async ctx => {
     status: 200
   };
 };
-const routers = router.get('/getPartOfArticle', getPartOfArticle);
+const getArticleById = async ctx => {
+  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handleGetArticleById(ctx.params.pid);
+  ctx.response.body = {
+    data: data,
+    status: 200
+  };
+};
+const routers = router.get('/getPartOfArticle', getPartOfArticle).get('/getArticleById/:pid', getArticleById);
 // .get('/getArticle',getArticle)
-// .get('/getArticleById/:pid',getArticleById)
 // .get('/getUserMsg',async (ctx,next) => {
 //     let data = await getMarkdown()
 //     ctx.body = {
@@ -266,8 +272,8 @@ module.exports = require("fs");
 /***/ (function(module, exports, __webpack_require__) {
 
 const MongoClient = __webpack_require__(9).MongoClient;
-// 自动创建数据库 runoob
 let mongoConnect = 'mongodb://47.106.163.14:27017/herox';
+const ObjectID = __webpack_require__(9).ObjectID;
 const artHandle = {
   async handlegetPartOfArticle() {
     return new Promise((resolve, reject) => {
@@ -275,16 +281,33 @@ const artHandle = {
         console.log("连接成功！");
         let db = client.db('herox');
         db.collection('markdown').find().toArray(function (err, result) {
+          let newArticleArr = {};
           if (err) {
             console.log('Error:' + err);
             reject(err);
             return;
           }
           // result.map(v=>{
-          //     // 只返回20个文字
-          //     v.markdown.content = v.markdown.content.slice(0,20);
+          //   console.log(v);
           // })
           resolve(result);
+          client.close();
+        });
+      });
+    });
+  },
+  async handleGetArticleById(pid) {
+    return new Promise((resolve, reject) => {
+      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
+        console.log("连接成功！");
+        let db = client.db('herox');
+        db.collection('markdown').find({ _id: ObjectID(pid) }).toArray(function (err, result) {
+          if (err) {
+            console.log('Error:' + err);
+            reject(err);
+            return;
+          }
+          resolve(result[0]);
           client.close();
         });
       });
@@ -379,9 +402,21 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, {
       rel: 'stylesheet',
       href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
+    }, {
+      rel: 'stylesheet',
+      type: 'text/css',
+      href: 'http://cdn.webfont.youziku.com/webfonts/nomal/126872/29782/5c384b62f629d808f030e494.css'
     }],
     noscript: [{ innerHTML: 'This website requires JavaScript.' }],
-    script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }]
+    script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }, { src: 'https://xhangjia.oss-cn-shenzhen.aliyuncs.com/2018/12/change/webfont.js' },
+    // { src: 'http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js' },
+    {
+      innerHTML: `
+        $youziku.load("body", "c7d2d4367c844c95b1d7ebf7c25a8e53", "LiDeBiao-Xing3");
+          $youziku.draw();
+        `
+    }],
+    __dangerouslyDisableSanitizers: ['script']
   },
 
   /*

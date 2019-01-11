@@ -1,6 +1,6 @@
 <template>
   <div class='ad' v-show="$store.state.tips.showAd">
-    这是一条可以关闭的通知
+    这个世界需要英雄
     <div class="close" @click="$store.commit('tips/SET_SHOWAD',false)"></div>
   </div>
 </template>
@@ -23,35 +23,19 @@ export default {
 @import url(../assets/css/global.less);
 .ad{
   max-width: 960px;
-  width: 100%;
+  width: 97.5%;
   height: 40px;
   font-size: 18px;
-  color: @glColor;
+  letter-spacing: 10px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
   position: relative;
-  margin: 70px auto auto auto;
-  background: @glBgColor;
-  box-shadow: 0px 1px 2px #cecccc;
-  .close{
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border:1px solid salmon;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &::before{
-      content: '\2715';
-      padding: 2px;
-    }
-  }
+  margin: 0px auto 10px auto;
+  background: #fff;
+  transform:skew(-20deg);
 }
 </style>

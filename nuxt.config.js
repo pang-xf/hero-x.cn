@@ -17,13 +17,27 @@ module.exports = {
         rel: 'stylesheet',
         href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
       },
+      {
+        rel: 'stylesheet',
+        type:'text/css',
+        href:'http://cdn.webfont.youziku.com/webfonts/nomal/126872/29782/5c384b62f629d808f030e494.css'
+      }
     ],
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
     ],
     script: [
-      { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }
-    ]
+      { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' },
+      { src: 'https://xhangjia.oss-cn-shenzhen.aliyuncs.com/2018/12/change/webfont.js' },
+      // { src: 'http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js' },
+      {
+        innerHTML: `
+        $youziku.load("body", "c7d2d4367c844c95b1d7ebf7c25a8e53", "LiDeBiao-Xing3");
+          $youziku.draw();
+        `
+      }
+    ],
+    __dangerouslyDisableSanitizers: ['script']
   },
 
   /*

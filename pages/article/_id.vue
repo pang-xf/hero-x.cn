@@ -12,11 +12,15 @@
             </div>
             <div class="ap-item-body-user">
               <i class="icon icon-dz"></i>
-              <span>获得赞数：{{data.markdown.like}}</span>
+              <span>获得赞数：{{data.like}}</span>
             </div>
             <div class="ap-item-body-user">
               <i class="icon icon-yd"></i>
-              <span>获得阅读数：{{data.markdown.read}}</span>
+              <span>获得阅读数：{{data.read}}</span>
+            </div>
+            <div class="ap-item-body-user">
+              <i class="icon icon-yd"></i>
+              <span>更新时间：{{data.time}}</span>
             </div>
           </div>
         </div>
@@ -73,7 +77,10 @@
           </div>
         </div>
       </div>
-      <div class="content" v-html="markedContent(data.markdown.content)"></div>
+      <div class="content">
+        <p class="article_title">{{data.title}}</p>
+        <div class="content_wrap" v-html="markedContent(data.content)"></div>
+      </div>
     </div>
     <bfooter/>
   </div>
@@ -90,7 +97,7 @@ export default {
     }
   },
   async asyncData ({app,route}) {
-    let res  = await app.$axios.$get('/article/getArticleById/'+route.params.id)
+    let res  = await app.$axios.$get('/article/getArticleById/'+route.params.id);
     return { data: res.data}
   },
   components: {
@@ -113,7 +120,7 @@ export default {
     }
   },
   mounted () {
-    window.addEventListener('scroll', this.handleScroll)
+    // window.addEventListener('scroll', this.handleScroll)
   }
 }
 </script>

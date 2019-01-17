@@ -3,6 +3,8 @@
     <section class="container">
       <div class="left-content">
         <about/>
+        <music/>
+        <sentence/>
         <hotArticle/>
         <!-- <friends/> -->
         <tags/>
@@ -24,6 +26,8 @@ import swiper from '~/components/index/swiper'
 import about from '~/components/index/about'
 import hotArticle from '~/components/index/hotArticle'
 import tags from '~/components/tags'
+import music from '~/components/music'
+import sentence from '~/components/sentence'
 import friends from '~/components/index/friends'
 import ad from '~/components/ad'
 import bfooter from '~/components/bfooter'
@@ -43,25 +47,12 @@ export default {
     return { article: res.data}
   },
   components: {
-    barticle,swiper,about,hotArticle,ad,friends,bfooter,tags
+    barticle,swiper,about,hotArticle,ad,friends,bfooter,tags,sentence,music
   },
   methods: {
-    handleScroll(){
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop,_self = this
-      if(scrollTop>400){
-          _self.isScroll = true
-      }else{
-          _self.isScroll = false
-      }
-    }
   },
   mounted () {
     var _self = this
-    // window.addEventListener('scroll', this.handleScroll);
-    // this.$axios.get("/article/getPartOfArticle").then(res=>{
-    //   console.log(res)
-    //   _self.article = res.data.data
-    // })
     // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
   }
 }

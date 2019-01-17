@@ -1,8 +1,8 @@
 <template>
-  <div class='hotArticle' style="margin-top:10px">
-    <p class="name">标签</p>
-    <div class="tag-wrap">
-      <div class="tags" v-for="(item,index) in 15 " :key="index">前端</div>
+  <div class='sentence left_item'>
+    <p class="name">一言</p>
+    <div class="sentence_wrap">
+      {{text}}
     </div>
   </div>
 </template>
@@ -10,6 +10,7 @@
 export default {
   data () {
     return {
+      text:'间歇性踌躇满志，持续性混吃等死。'
     }
   },
   components: {
@@ -17,6 +18,11 @@ export default {
   methods: {
   },
   mounted () {
+    let _self = this
+    this.$axios.get('https://v1.hitokoto.cn/?c=f&encode=text')
+      .then(res=>{
+        _self.text = res.data;
+      })
   }
 }
 </script>

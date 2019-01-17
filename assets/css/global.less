@@ -1,12 +1,13 @@
 @charset 'utf-8';
 @font-face {
-    font-family: 'iconfont';  /* project id 981323 */
-    src: url('//at.alicdn.com/t/font_981323_k8sa73c5vws.eot');
-    src: url('//at.alicdn.com/t/font_981323_k8sa73c5vws.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_981323_k8sa73c5vws.woff') format('woff'),
-    url('//at.alicdn.com/t/font_981323_k8sa73c5vws.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_981323_k8sa73c5vws.svg#iconfont') format('svg');
-  }
+  font-family: 'iconfont';  /* project id 981323 */
+  src: url('//at.alicdn.com/t/font_981323_9x5sbhypg6g.eot');
+  src: url('//at.alicdn.com/t/font_981323_9x5sbhypg6g.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_981323_9x5sbhypg6g.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_981323_9x5sbhypg6g.woff') format('woff'),
+  url('//at.alicdn.com/t/font_981323_9x5sbhypg6g.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_981323_9x5sbhypg6g.svg#iconfont') format('svg');
+}
 .iconfont{
     font-family:"iconfont" !important;
     font-size:16px;font-style:normal;
@@ -16,15 +17,28 @@
 }
 body {
   font-size:1em;
-  background: rgba(0,0,0,.1);
+  // background: rgba(0,0,0,.1);
   background-size: 100% 100%;
   font-family: PingFangSC-Regular,'Roboto', Verdana, "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif
 }
 code, pre{
   font-family: PingFangSC-Regular, 'Roboto', Verdana, "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
 }
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently not supported by any browser */
+}
 html {font-size: 100%;}
-
+button{
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;  //自定义边框
+  outline: none;    //消除默认点击蓝色边框效果
+}
 // 主题色 
 @bannerHeight:500px;
 @glColor:rgba(0,0,0,.54);

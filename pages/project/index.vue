@@ -11,7 +11,6 @@ export default {
   data () {
     return {
         userInfo:'',
-        isScroll:false,
     }
   },
   async asyncData ({app,route}) {
@@ -20,17 +19,8 @@ export default {
     bfooter
   },
   methods: {
-    handleScroll(){
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop,_self = this
-      if(scrollTop>170){
-          _self.isScroll = true
-      }else{
-          _self.isScroll = false
-      }
-    },
   },
   mounted () {
-    window.addEventListener('scroll', this.handleScroll);
   }
 }
 </script>

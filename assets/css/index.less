@@ -23,12 +23,12 @@
       border-radius: 4px;
       position: relative;
       .linerBg();
+      color: @glColor;
     }
     // 关于我
     .about_me{
       .about_me_wrap{
         padding: 8px 15px;
-        color: @glColor;
         font-size: 12px;
         .about_me_wrap_line1{
           display: flex;
@@ -65,7 +65,6 @@
         padding: 8px 15px;
         transition: all .3s;
         .title{
-          color: @glColor;
           display: block;
           font-size: 14px;
           cursor: pointer;
@@ -116,12 +115,109 @@
         display: inline-block;
         margin-right: 7px;
         font-size: 14px;
-        color: @glColor;
         transition: all .3s;
         cursor: pointer;
         margin-bottom: 5px;
         &:hover{
           color: @glHoverColor;
+        }
+      }
+    }
+    // 一言
+    .sentence{
+      .sentence_wrap{
+        font-size: 12px;
+        padding: 8px 15px 0;
+        line-height: 18px;
+      }
+    }
+    .music{
+      .music_wrap{
+        padding: 8px 15px 0;
+        display: flex;
+        .music_wrap_left{
+          position: relative;
+          width: 60px;
+          height: 60px;
+          &:hover{
+            i{
+              display: block;
+            }
+          }
+          i{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 4;
+            font-size: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            display: none;
+            cursor: pointer;
+          }
+          .music_album{
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            z-index: 2;
+          }
+          .music_modal{
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            border-radius: 4px;
+          }
+        }
+        .music_wrap_right{
+          padding:6px  0px 0 10px;
+          position: relative;
+          .music_wrap_right_line1{
+            .music_name{
+              font-size: 16px;
+            }
+            .music_author{
+              font-size: 12px;
+            }
+          }
+          .music_wrap_right_line2{
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            height: 16px;
+            font-size: 12px;
+            .music_progress_wrap{
+              width: 46%;
+              position: absolute;
+              top: 55%;
+              transform: translateY(-50%);
+            }
+            .music_detail{
+              position: absolute;
+              right: 0;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+            .music_progress{
+              position: absolute;
+              bottom: 0px;
+              width: 100%;
+              height: 2px;
+              border-radius: 10px;
+              background: rgba(0, 0, 0, 0.2);
+            }
+            .music_progress_act{
+              position: absolute;
+              bottom: 0px;
+              width: 0%;
+              height: 2px;
+              border-radius: 10px;
+              background: rgba(0, 0, 0, 0.6);
+            }
+          }
         }
       }
     }

@@ -1,13 +1,11 @@
 <template>
   <div  class="global">
-    <bheads/>
     <div class="project">
     </div>
     <bfooter/>
   </div>
 </template>
 <script>
-import bheads from '~/components/bhead'
 import bfooter from '~/components/bfooter'
 export default {
   data () {
@@ -19,7 +17,7 @@ export default {
   async asyncData ({app,route}) {
   },
   components: {
-    bfooter,bheads
+    bfooter
   },
   methods: {
     handleScroll(){

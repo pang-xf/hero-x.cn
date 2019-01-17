@@ -5,7 +5,6 @@ const artHandle = {
   async handlegetPartOfArticle(){
     return new Promise((resolve,reject)=>{
       MongoClient.connect(mongoConnect,{useNewUrlParser: true },function(err, client) {
-        console.log("连接成功！");
         let db = client.db('herox');
         db.collection('markdown').find().toArray(function(err, result) {
           let newArticleArr = {}
@@ -26,7 +25,6 @@ const artHandle = {
   async handleGetArticleById(pid){
     return new Promise((resolve,reject)=>{
       MongoClient.connect(mongoConnect,{useNewUrlParser: true },function(err, client) {
-        console.log("连接成功！");
         let db = client.db('herox');
         db.collection('markdown').find({_id:ObjectID(pid)}).toArray(function(err, result) {
           if (err) {

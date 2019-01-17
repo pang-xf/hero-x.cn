@@ -1,6 +1,5 @@
 <template>
   <div  class="global">
-    <bheads :showBanner='false' :isScroll.sync = 'isScroll'/>
     <div class='article-page'>
       <div class="ap-left">
         <div class="ap-left-item" v-if="!isScroll">
@@ -87,7 +86,6 @@
 </template>
 <script>
 import marked from '~/plugins/marked'
-import bheads from '~/components/bhead'
 import bfooter from '~/components/bfooter'
 export default {
   data () {
@@ -101,7 +99,7 @@ export default {
     return { data: res.data}
   },
   components: {
-    bfooter,bheads
+    bfooter
   },
   methods: {
     markedContent(content) {
@@ -110,17 +108,8 @@ export default {
     gotoArticle(){
 
     },
-    handleScroll(){
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop,_self = this
-      if(scrollTop>400){
-          _self.isScroll = true
-      }else{
-          _self.isScroll = false
-      }
-    }
   },
   mounted () {
-    // window.addEventListener('scroll', this.handleScroll)
   }
 }
 </script>

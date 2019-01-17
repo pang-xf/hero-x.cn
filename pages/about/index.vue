@@ -1,6 +1,5 @@
 <template>
   <div  class="global">
-    <bheads/>
     <div class="about">
         <div class="about_wrap">
             <div class="about_wrap_top">
@@ -68,7 +67,6 @@
   </div>
 </template>
 <script>
-import bheads from '~/components/bhead'
 import bfooter from '~/components/bfooter'
 export default {
   // head: {
@@ -97,17 +95,9 @@ export default {
     return { userInfo: res.data}
   },
   components: {
-    bfooter,bheads
+    bfooter
   },
   methods: {
-    handleScroll(){
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop,_self = this
-      if(scrollTop>170){
-          _self.isScroll = true
-      }else{
-          _self.isScroll = false
-      }
-    },
     initMap(){
       var map = new AMap.Map('map', {
         resizeEnable: true,
@@ -118,7 +108,6 @@ export default {
     }
   },
   mounted () {
-    window.addEventListener('scroll', this.handleScroll);
     this.initMap();
   }
 }

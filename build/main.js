@@ -62,7 +62,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,19 +73,25 @@ module.exports = require("koa-router");
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = require("mongodb");
+
+/***/ }),
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa_static__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa_static__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa_static___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_koa_static__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_koa_bodyparser__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_koa_bodyparser__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_koa_bodyparser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_koa_bodyparser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_koa_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__koa_cors__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(12);
@@ -148,31 +154,31 @@ async function start() {
 start();
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = require("koa");
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = require("koa-static");
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("koa-bodyparser");
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__article__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__article__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user__ = __webpack_require__(10);
 
 
@@ -183,16 +189,16 @@ router.use('/user', __WEBPACK_IMPORTED_MODULE_2__user__["a" /* default */].route
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__handle_article__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__handle_article__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__handle_article___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__handle_article__);
 
-const fs = __webpack_require__(7);
+const fs = __webpack_require__(8);
 const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
 
 // 中间层，用来连接数据库
@@ -262,23 +268,22 @@ const routers = router.get('/getPartOfArticle', getPartOfArticle).get('/getArtic
 /* harmony default export */ __webpack_exports__["a"] = (routers);
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const MongoClient = __webpack_require__(9).MongoClient;
+const MongoClient = __webpack_require__(1).MongoClient;
 let mongoConnect = 'mongodb://47.106.163.14:27017/herox';
-const ObjectID = __webpack_require__(9).ObjectID;
+const ObjectID = __webpack_require__(1).ObjectID;
 const artHandle = {
   async handlegetPartOfArticle() {
     return new Promise((resolve, reject) => {
       MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
-        console.log("连接成功！");
         let db = client.db('herox');
         db.collection('markdown').find().toArray(function (err, result) {
           let newArticleArr = {};
@@ -299,7 +304,6 @@ const artHandle = {
   async handleGetArticleById(pid) {
     return new Promise((resolve, reject) => {
       MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
-        console.log("连接成功！");
         let db = client.db('herox');
         db.collection('markdown').find({ _id: ObjectID(pid) }).toArray(function (err, result) {
           if (err) {
@@ -315,12 +319,6 @@ const artHandle = {
   }
 };
 module.exports = artHandle;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("mongodb");
 
 /***/ }),
 /* 10 */
@@ -408,15 +406,7 @@ module.exports = {
       href: 'http://cdn.webfont.youziku.com/webfonts/nomal/126872/29782/5c384b62f629d808f030e494.css'
     }],
     noscript: [{ innerHTML: 'This website requires JavaScript.' }],
-    script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }, { src: 'https://xhangjia.oss-cn-shenzhen.aliyuncs.com/2018/12/change/webfont.js' },
-    // { src: 'http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js' },
-    {
-      innerHTML: `
-        $youziku.load("body", "c7d2d4367c844c95b1d7ebf7c25a8e53", "LiDeBiao-Xing3");
-          $youziku.draw();
-        `
-    }],
-    __dangerouslyDisableSanitizers: ['script']
+    script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }]
   },
 
   /*

@@ -1,5 +1,5 @@
 <template>
-  <div class='hotArticle' style="margin-top:10px">
+  <div class='left_item'>
     <p class="name">标签</p>
     <div class="tag-wrap">
       <div class="tags" v-for="(item,index) in 15 " :key="index">前端</div>

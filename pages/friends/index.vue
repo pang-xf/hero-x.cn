@@ -1,6 +1,5 @@
 <template>
   <div class='global'>
-      <bheads/>
       <h2 class="friends_title">FRIENDS</h2>
       <div class="friends">
         <a href="http://guogai.top/" class="friends_card">
@@ -22,7 +21,6 @@
   </div>
 </template>
 <script>
-import bheads from '~/components/bhead'
 import bfooter from '~/components/bfooter'
 export default {
   data () {
@@ -30,7 +28,7 @@ export default {
     }
   },
   components: {
-    bfooter,bheads
+    bfooter
   },
   methods: {
   },

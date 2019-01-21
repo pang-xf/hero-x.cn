@@ -63,11 +63,9 @@
             </div>
         </div>
     </div>
-    <bfooter/>
   </div>
 </template>
 <script>
-import bfooter from '~/components/bfooter'
 export default {
   // head: {
   //   script: [
@@ -95,7 +93,6 @@ export default {
     return { userInfo: res.data}
   },
   components: {
-    bfooter
   },
   methods: {
     initMap(){

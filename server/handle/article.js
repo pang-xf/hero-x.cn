@@ -21,7 +21,7 @@ const artHandle = {
   /**
    * @param  {} limit 返回查询条数  默认不传为10条数据
    */
-  async handlegetPartOfArticle(limit = 10){
+  async handlegetPartOfArticle(limit = 4){
     return new Promise((resolve,reject)=>{
       MongoClient.connect(mongoConnect,{useNewUrlParser: true },function(err, client) {
         let db = client.db('herox');

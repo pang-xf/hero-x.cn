@@ -250,7 +250,7 @@ const getAllArticle = async ctx => {
   };
 };
 const getPartOfArticle = async ctx => {
-  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetPartOfArticle(ctx.params.limit ? ctx.params.limit : 1000);
+  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetPartOfArticle(ctx.params.limit ? ctx.params.limit : 5);
   ctx.response.body = {
     data: data,
     status: 200
@@ -307,7 +307,7 @@ const artHandle = {
   /**
    * @param  {} limit 返回查询条数  默认不传为10条数据
    */
-  async handlegetPartOfArticle(limit = 10) {
+  async handlegetPartOfArticle(limit = 4) {
     return new Promise((resolve, reject) => {
       MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
         let db = client.db('herox');
@@ -489,7 +489,7 @@ module.exports = {
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"HERO-X","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongodb":"^3.1.10","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
+module.exports = {"name":"herox","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongodb":"^3.1.10","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ })
 /******/ ]);

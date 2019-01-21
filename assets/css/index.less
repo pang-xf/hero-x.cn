@@ -1,9 +1,7 @@
 @import url(./global.less);
-.left-content{
+.wrap_items{
   width: 250px;
   min-height: calc(100vh - 140px);
-  float: left;
-  margin-top: 16px;
   .name{
     font-size: 16px;
     border-bottom: 1px solid rgba(150, 145, 145,0.2);
@@ -106,7 +104,7 @@
   }
   // 标签栏
   .tag-wrap{
-    padding: 15px 0 0 0;
+    padding: 15px 0 0px 15px;
     .tags{
       height: 30px;
       line-height: 30px;
@@ -140,19 +138,20 @@
   .sentence{
     .sentence_wrap{
       font-size: 12px;
-      padding: 8px 15px 0;
+      padding: 8px 15px;
       line-height: 18px;
       min-height: 30px;
     }
   }
+  // 音乐
   .music{
     .music_wrap{
-      padding: 8px 15px 0;
+      padding: 8px 15px;
       display: flex;
       .music_wrap_left{
         position: relative;
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         &:hover{
           i{
             display: block;
@@ -217,7 +216,7 @@
           }
           .music_progress{
             position: absolute;
-            bottom: 0px;
+            bottom: -2px;
             width: 100%;
             height: 2px;
             border-radius: 10px;
@@ -225,7 +224,7 @@
           }
           .music_progress_act{
             position: absolute;
-            bottom: 0px;
+            bottom: -2px;
             width: 0%;
             height: 2px;
             border-radius: 10px;
@@ -236,19 +235,15 @@
     }
   }
 }
+// 总外面的容器
 .container{
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
   min-height: calc(100vh - 140px);
-  margin:  10px auto 10px auto;
+  margin:  20px auto 10px auto;
   display: flex;
   justify-content: space-between;
   position: relative;
-  .right-content{
-    width: 800px;
-    min-height: calc(100vh - 140px);
-    margin-left: 20px;
-  }
   .swiper{
     width: 100%;
     height: 240px;

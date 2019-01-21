@@ -14,7 +14,6 @@ export const actions = {
     async getAllArticles({ commit }) {
         try {
             const data = await axios.post('/article/getAllArticle');
-            console.log(data);
             commit('SET_ARTICLE', data.data);
         } catch (error) {
           console.log(error);

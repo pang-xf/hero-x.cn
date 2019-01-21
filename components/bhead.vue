@@ -4,7 +4,7 @@
       <header>
         <div class="header-wrap">
           <div class="site-title">
-            <nuxt-link to='/'>HERO-X.CN</nuxt-link>
+            <nuxt-link to='/'>李宇童鞋丶</nuxt-link>
           </div>
           <nav class="site-navigation">
             <ul class="nav-menu">

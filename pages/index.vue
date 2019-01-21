@@ -1,11 +1,12 @@
 <template>
   <div class="global">
     <section class="container">
-      <lefWrap/>
-      <div class="right-content">
-        <ad/>
+      <leftWrap/>
+      <div class="content">
+        <!-- <ad/> -->
         <barticle v-for="(item,index) in $store.state.articles.articles" :key="index" :article='item' :id="item._id"></barticle>
       </div>
+      <rightWrap/>
     </section>
   </div>
 </template>
@@ -20,7 +21,8 @@ import music from '~/components/music'
 import sentence from '~/components/sentence'
 import friends from '~/components/index/friends'
 import ad from '~/components/ad'
-import lefWrap from '~/components/left_wrap'
+import leftWrap from '~/components/left_wrap'
+import rightWrap from '~/components/right_wrap'
 export default {
   data () {
     return {
@@ -33,7 +35,7 @@ export default {
     }
   },
   fetch ({ app,store, params }) {
-    return app.$axios.get('/article/getAllArticle')
+    return app.$axios.get('/article/getPartOfArticle')
     .then((res) => {
       store.commit('articles/SET_ARTICLE', res.data.data)
     })
@@ -43,7 +45,7 @@ export default {
   //   return { article: res.data}
   // },
   components: {
-    barticle,swiper,about,hotArticle,ad,friends,tags,sentence,music,lefWrap
+    barticle,swiper,about,hotArticle,ad,friends,tags,sentence,music,leftWrap,rightWrap
   },
   methods: {
   },

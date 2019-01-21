@@ -1,8 +1,9 @@
 <template>
   <section class="wrap_items">
-    <about/>
+    <music/>
+    <sentence/>
+    <hotArticle/>
     <!-- <friends/> -->
-    <tags/>
   </section>
 </template>
 
@@ -10,7 +11,9 @@
 import barticle from '~/components/index/barticle'
 import swiper from '~/components/index/swiper'
 import about from '~/components/index/about'
-import tags from '~/components/tags'
+import hotArticle from '~/components/index/hotArticle'
+import music from '~/components/music'
+import sentence from '~/components/sentence'
 import friends from '~/components/index/friends'
 import ad from '~/components/ad'
 export default {
@@ -29,13 +32,12 @@ export default {
     return { article: res.data}
   },
   components: {
-    barticle,swiper,about,ad,friends,tags
+    barticle,swiper,about,hotArticle,ad,friends,sentence,music
   },
   methods: {
   },
   mounted () {
     var _self = this
-    // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
   }
 }
 </script>

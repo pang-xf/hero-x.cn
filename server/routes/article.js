@@ -51,7 +51,7 @@ const getAllArticle = async ctx =>{
   };
 }
 const getPartOfArticle = async ctx =>{
-  let data = await arthandle.handlegetPartOfArticle(ctx.params.limit?ctx.params.limit:1000);
+  let data = await arthandle.handlegetPartOfArticle(ctx.params.limit?ctx.params.limit:5);
   ctx.response.body = {
     data: data,
     status: 200

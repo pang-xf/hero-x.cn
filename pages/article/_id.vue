@@ -6,6 +6,9 @@
         <div class="article_intro">
           <span class="author">李宇童鞋丶</span>发布于 <time class="time">2019-01-02 12:22:22</time> / <span class="cate">前端</span> / <span class="comment">10</span>条评论 / <span class="hot">200</span>热度
         </div>
+        <div class="article_intro counts">
+          总计<span>12000</span>字，阅读大概<span>10</span>分钟
+        </div>
         <div class="content_wrap" v-html="markedContent(data.content)"></div>
       </div>
     </div>

@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
 }
+// 首页的article
 .article{
   // width: 100%;
   width: 480px;
@@ -84,7 +85,7 @@
     }
   }
   .art-right{
-    width: 180px;
+    width: 220px;
     height: 110px;
     overflow: hidden;
     border-radius: 5px;
@@ -99,12 +100,13 @@
     }
   }
 }
+// 文章详情页
 .article-page{
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
   z-index: 2;
   position: relative;
-  margin: 10px auto 60px auto;
+  margin: 30px auto 60px auto;
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
@@ -135,6 +137,9 @@
       font-size: 12px;
       text-align: center;
       color: @art_meta_color;
+      margin-bottom: 5px;
+    }
+    .counts{
       margin-bottom: 20px;
     }
     .content_wrap{
@@ -206,8 +211,8 @@
     }
   }
 }
-@media (max-width:1000px){
-  .art-right{
-    display: none !important;
-  }
-}
+// @media (max-width:1000px){
+//   .art-right{
+//     display: none !important;
+//   }
+// }

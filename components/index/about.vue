@@ -1,6 +1,6 @@
 <template>
   <div class='about_me left_item'>
-    <p class="name">关于博主</p>
+    <p class="name"><i class="iconfont">&#xe60e;</i>关于博主</p>
     <div class="about_me_wrap">
       <div class="about_me_wrap_line1">
         <img :src="person.avatar" alt="" class="avatar">

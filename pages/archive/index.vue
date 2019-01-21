@@ -61,11 +61,9 @@
         </div>
       </div>
     </div>
-    <bfooter/>
   </div>
 </template>
 <script>
-import bfooter from '~/components/bfooter'
 export default {
   // head: {
   //   script: [
@@ -79,9 +77,6 @@ export default {
     }
   },
   async asyncData ({app,route}) {
-  },
-  components: {
-    bfooter
   },
   methods: {
   },

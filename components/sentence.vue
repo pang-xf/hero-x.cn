@@ -1,7 +1,7 @@
 <template>
-  <div class='sentence left_item'>
-    <p class="name">一言</p>
-    <div class="sentence_wrap">
+  <div class='textWrapItem left_item'>
+    <p class="name"><i class="iconfont">&#xe658;</i>一言</p>
+    <div class="textWrapItem_wrap">
       {{text}}
     </div>
   </div>

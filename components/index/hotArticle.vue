@@ -1,6 +1,6 @@
 <template>
   <div class='hotArticle left_item'>
-    <p class="name">文章</p>
+    <p class="name"><i class="iconfont">&#xe661;</i>文章</p>
     <div class="hotArticle-wrap" v-for="(item,index) in $store.state.articles.articles.slice(0,5)" :key="index">
       <p class="title" :title = item.title><span>{{index+1}}</span>{{item.title}}</p>
     </div>

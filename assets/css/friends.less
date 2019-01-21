@@ -4,24 +4,23 @@
   color: #D7B98E;
 }
 .friends{
-  width: 960px;
+  width: @glWidth;
   min-height: 78vh;
   margin: 0px auto;
   padding: 10px 20px;
-  display: flex;
-  flex-wrap: wrap;
   .friends_card{
     display: block;
     border:1px solid #999;
     display: flex;
-    justify-content: space-between;
-    max-width: 23.48%;
+    width: 23.48%;
     border-radius: 4px;
-    padding: 2px;
+    padding: 2px 2px 2px 0;
     transition: all .3s;
     height: 78px;
     margin: 0 10px 15px 0;
     overflow: hidden;
+    background: #fff;
+    float: left;
     &:nth-child(4n){
       margin-right: 0;
     }
@@ -33,7 +32,7 @@
       }
       .right_wrap{
         .name{
-          font-size: 18px;
+          // font-size: 18px;
         }
       }
     }

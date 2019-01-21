@@ -1,5 +1,5 @@
 <template>
-  <div class="project">
+  <div class="resume">
     <div class="none_build">
       <i class="iconfont">&#xe676;</i>正在建设中...
     </div>
@@ -20,4 +20,4 @@ export default {
   }
 }
 </script>
-<style src='~/assets/css/project.less' lang="less"></style>
+<style src='~/assets/css/resume.less' lang="less"></style>

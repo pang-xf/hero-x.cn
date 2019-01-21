@@ -1,5 +1,6 @@
 <template>
   <section class="wrap_items">
+    <textWrapItem :title = 'announcement.title' :content = 'announcement.content'/>
     <music/>
     <sentence/>
     <hotArticle/>
@@ -16,6 +17,7 @@ import music from '~/components/music'
 import sentence from '~/components/sentence'
 import friends from '~/components/index/friends'
 import ad from '~/components/ad'
+import textWrapItem from '~/components/textWrapItem'
 export default {
   data () {
     return {
@@ -24,6 +26,10 @@ export default {
       isScroll:false,
       talk:{
         
+      },
+      announcement:{
+        title:'公告',
+        content:'最昏暗的地方也变得明亮~。本站功能逐渐开发中... 开发时间->无限期延长~'
       }
     }
   },
@@ -32,7 +38,7 @@ export default {
     return { article: res.data}
   },
   components: {
-    barticle,swiper,about,hotArticle,ad,friends,sentence,music
+    barticle,swiper,about,hotArticle,ad,friends,sentence,music,textWrapItem
   },
   methods: {
   },

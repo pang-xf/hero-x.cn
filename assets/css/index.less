@@ -7,6 +7,10 @@
     border-bottom: 1px solid rgba(150, 145, 145,0.2);
     color: @glColor;
     padding: 8px 15px;
+    i{
+      display: inline-block;
+      margin-right: 3px;
+    }
   }
   .left_item{
     width: 100%;
@@ -135,8 +139,8 @@
     }
   }
   // 一言
-  .sentence{
-    .sentence_wrap{
+  .textWrapItem{
+    .textWrapItem_wrap{
       font-size: 12px;
       padding: 8px 15px;
       line-height: 18px;
@@ -273,6 +277,61 @@
           transform:  scale(1.1);
         }
       }
+    }
+  }
+}
+// todo
+.todo{
+  background: #fff;
+  width: @glWidth/2;
+  margin: 20px auto;
+  border-radius: 4px;
+  padding: 20px;
+  h3{
+    color:rgba(0,0,0,.84);
+    &::before{
+      content: '';
+      border-radius: 100%;
+      border: 2px solid #777;
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin: 0 8px 1px 0;
+      background-color: #4acc40;
+    }
+  }
+  p{
+    color: rgba(0,0,0,.74);
+    padding: 10px 20px;
+  }
+  .todo_item{
+    color: rgba(0,0,0,.64);
+    padding: 3px 30px;
+    position: relative;
+    &::before{
+      content: '';
+      border: 1px solid #777;
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      margin: 0 4px 1px 0;
+      // background-color: #4acc40;
+    }
+  }
+  .complete{
+    &::after{
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 7px;
+      left: 28px;
+      top: 3px;
+      border: 2px solid red;
+      border-radius: 1px;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      transform: rotate(-50deg);
     }
   }
 }

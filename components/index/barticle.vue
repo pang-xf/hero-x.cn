@@ -4,8 +4,8 @@
       <p class="title" :title="article.title">{{article.title}}</p>
       <p class="abstrack" :title="article.description">{{article.description}}</p>
       <div class="meta">
-        <span class="tag"><i class="iconfont icon-biaoqian"></i>{{article.tag}}</span>
-        <span class="time"><i class="iconfont icon-rili"></i>{{article.time}}</span>
+        <span class="tag"><i class="iconfont">&#xe625;</i>{{article.tag}}</span>
+        <span class="time"><i class="iconfont">&#xe60c;</i>{{article.time}}</span>
         <span class="read" v-if="article.read>0"><i class="iconfont icon-yanjing-kejian"></i>{{article.read}}</span>
         <span class="comments" v-if="article.comments&&article.comments.length>0"><i class="iconfont icon-pinglun"></i><a href="#">{{article.comments}}</a></span>
         <span class="like" v-if="article.like>0"><i class="iconfont icon-dianzan"></i>{{article.like}}</span>

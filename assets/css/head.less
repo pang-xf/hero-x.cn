@@ -1,7 +1,7 @@
 @import url(./global.less);
 @headerHeight:55px;
 @navColor:rgba(0,0,0,.44);
-@navHoverColor:rgba(0,0,0,.74);
+@navHoverColor:rgba(0,0,0,.94);
 .active-link{
   color: @navHoverColor !important;
 }
@@ -22,11 +22,12 @@
 }
 .header{
   z-index: 999;
-  position: relative;
+  position: fixed;
+  top: 0;
   width: 100%;
   -webkit-transition: all .4s;
   transition: all .4s;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 1);
 }
 .scroll-header{
   position: fixed;
@@ -51,16 +52,15 @@ header{
     height: @headerHeight;
   }
   .site-title{
-    width: 19%;
+    width: 30%;
     height: 99%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     a{
       color:@navColor;
-      font-size: 28px;
-      // font-family: Sakura;
-      // text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+      font-size: 24px;
+      font-family: 'Courier New';
     }
   }
   .site-navigation{

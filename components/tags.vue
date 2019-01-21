@@ -2,7 +2,10 @@
   <div class='left_item'>
     <p class="name">标签</p>
     <div class="tag-wrap">
-      <div class="tags" v-for="(item,index) in 15 " :key="index">前端</div>
+      <div class="tags" v-for="(item,index) in $store.state.articles.articles" :key="index">
+        <img :src = item.image alt="标签">
+        {{item.tag}}
+      </div>
     </div>
   </div>
 </template>

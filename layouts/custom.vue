@@ -1,9 +1,7 @@
 <template>
   <div>
     <bheads/>
-    <div class="main">
-      <nuxt class="ng"/>
-    </div>
+    <nuxt class="ng"/>
     <bfooter/>
   </div>
 </template>

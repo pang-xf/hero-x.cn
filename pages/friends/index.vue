@@ -17,18 +17,16 @@
           </div>
         </a>
       </div>
-      <bfooter/>
   </div>
 </template>
 <script>
-import bfooter from '~/components/bfooter'
 export default {
+  layout: function(context){
+    return 'custom'
+  },
   data () {
     return {
     }
-  },
-  components: {
-    bfooter
   },
   methods: {
   },

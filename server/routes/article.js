@@ -43,8 +43,15 @@ async function getMarkdown() {
     });
   })
 }
+const getAllArticle = async ctx =>{
+  let data = await arthandle.handlegetAllArticle();
+  ctx.response.body = {
+    data: data,
+    status: 200
+  };
+}
 const getPartOfArticle = async ctx =>{
-  let data = await arthandle.handlegetPartOfArticle();
+  let data = await arthandle.handlegetPartOfArticle(ctx.params.limit?ctx.params.limit:1000);
   ctx.response.body = {
     data: data,
     status: 200
@@ -58,6 +65,7 @@ const getArticleById = async ctx =>{
   };
 }
 const routers = router
+  .get('/getAllArticle',getAllArticle)
   .get('/getPartOfArticle',getPartOfArticle)
   .get('/getArticleById/:pid',getArticleById)
     // .get('/getArticle',getArticle)

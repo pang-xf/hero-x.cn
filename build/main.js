@@ -242,8 +242,15 @@ async function getMarkdown() {
     });
   });
 }
+const getAllArticle = async ctx => {
+  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetAllArticle();
+  ctx.response.body = {
+    data: data,
+    status: 200
+  };
+};
 const getPartOfArticle = async ctx => {
-  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetPartOfArticle();
+  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetPartOfArticle(ctx.params.limit ? ctx.params.limit : 1000);
   ctx.response.body = {
     data: data,
     status: 200
@@ -256,7 +263,7 @@ const getArticleById = async ctx => {
     status: 200
   };
 };
-const routers = router.get('/getPartOfArticle', getPartOfArticle).get('/getArticleById/:pid', getArticleById);
+const routers = router.get('/getAllArticle', getAllArticle).get('/getPartOfArticle', getPartOfArticle).get('/getArticleById/:pid', getArticleById);
 // .get('/getArticle',getArticle)
 // .get('/getUserMsg',async (ctx,next) => {
 //     let data = await getMarkdown()
@@ -281,26 +288,44 @@ const MongoClient = __webpack_require__(1).MongoClient;
 let mongoConnect = 'mongodb://47.106.163.14:27017/herox';
 const ObjectID = __webpack_require__(1).ObjectID;
 const artHandle = {
-  async handlegetPartOfArticle() {
+  async handlegetAllArticle() {
     return new Promise((resolve, reject) => {
       MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
         let db = client.db('herox');
         db.collection('markdown').find().toArray(function (err, result) {
-          let newArticleArr = {};
           if (err) {
             console.log('Error:' + err);
             reject(err);
             return;
           }
-          // result.map(v=>{
-          //   console.log(v);
-          // })
           resolve(result);
           client.close();
         });
       });
     });
   },
+  /**
+   * @param  {} limit 返回查询条数  默认不传为10条数据
+   */
+  async handlegetPartOfArticle(limit = 10) {
+    return new Promise((resolve, reject) => {
+      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
+        let db = client.db('herox');
+        db.collection('markdown').find().limit(limit).toArray(function (err, result) {
+          if (err) {
+            console.log('Error:' + err);
+            reject(err);
+            return;
+          }
+          resolve(result);
+          client.close();
+        });
+      });
+    });
+  },
+  /**
+   * @param  {} pid 文章的id
+   */
   async handleGetArticleById(pid) {
     return new Promise((resolve, reject) => {
       MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {

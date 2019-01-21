@@ -1,8 +1,8 @@
 <template>
   <div class='hotArticle left_item'>
-    <p class="name">热门文章</p>
-    <div class="hotArticle-wrap" v-for="(item,index) in 5 " :key="index">
-      <p class="title"><span>1</span>文章题目文章题目文章题目</p>
+    <p class="name">文章</p>
+    <div class="hotArticle-wrap" v-for="(item,index) in $store.state.articles.articles.slice(0,5)" :key="index">
+      <p class="title" :title = item.title><span>{{index+1}}</span>{{item.title}}</p>
     </div>
   </div>
 </template>

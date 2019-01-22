@@ -1,5 +1,5 @@
 <template>
-  <section class="wrap_items">
+  <section class="wrap_items left_wrap">
     <about/>
     <!-- <friends/> -->
     <tags/>

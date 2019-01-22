@@ -12,6 +12,7 @@ minimal<template>
               <li class="nav-item"><nuxt-link to="/project">Project</nuxt-link></li>
               <li class="nav-item"><nuxt-link to='/friends'>Friends</nuxt-link></li>
               <li class="nav-item"><nuxt-link to='/resume'>Resume</nuxt-link></li>
+              <li class="nav-item"><nuxt-link to='/message'>Message</nuxt-link></li>
               <li class="nav-item"><nuxt-link to='/about'>About</nuxt-link></li>
               <li class="nav-item"><nuxt-link to="/todo">Todo</nuxt-link></li>
             </ul>

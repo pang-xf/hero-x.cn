@@ -17,9 +17,7 @@
 <script>
 import marked from '~/plugins/marked'
 export default {
-  // layout: function(context){
-  //   return 'articles'
-  // },
+  layout: 'custom',
   data () {
     return {
       data:'',

@@ -1,7 +1,7 @@
 <template>
   <div class="global">
     <section class="container">
-      <leftWrap/>
+      <!-- <leftWrap/> -->
       <div class="content">
         <!-- <ad/> -->
         <div class="content_navbar">
@@ -49,8 +49,11 @@
             </svg>
           </div>
         </div>
+        <div class="next_page" v-if='!loaded'>
+          下一页
+        </div>
       </div>
-      <rightWrap/>
+      <!-- <rightWrap/> -->
     </section>
   </div>
 </template>
@@ -69,6 +72,7 @@ import ad from '~/components/ad'
 import leftWrap from '~/components/left_wrap'
 import rightWrap from '~/components/right_wrap'
 export default {
+  layout: 'custom',
   data () {
     return {
       article:'',

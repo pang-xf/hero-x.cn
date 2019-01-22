@@ -1,7 +1,6 @@
 <template>
   <div class="global">
     <section class="container">
-      <!-- <leftWrap/> -->
       <div class="content">
         <!-- <ad/> -->
         <div class="content_navbar">
@@ -53,7 +52,6 @@
           下一页
         </div>
       </div>
-      <!-- <rightWrap/> -->
     </section>
   </div>
 </template>
@@ -69,8 +67,6 @@ import music from '~/components/music'
 import sentence from '~/components/sentence'
 import friends from '~/components/index/friends'
 import ad from '~/components/ad'
-import leftWrap from '~/components/left_wrap'
-import rightWrap from '~/components/right_wrap'
 export default {
   layout: 'custom',
   data () {
@@ -119,7 +115,7 @@ export default {
     }
   },
   components: {
-    mode1Card,mode2Card,swiper,about,hotArticle,ad,friends,tags,sentence,music,leftWrap,rightWrap
+    mode1Card,mode2Card,swiper,about,hotArticle,ad,friends,tags,sentence,music
   },
   methods: {
     changeNavBar(item){
@@ -147,6 +143,13 @@ export default {
     if(localStorage.getItem('herox_active_mode')){
       this.active_mode_index = localStorage.getItem('herox_active_mode');
     }
+    _self.$axios.get('/article/getArticleByTag',{
+      params:{
+        tag:'前端'
+      }
+    }).then((res)=>{
+      console.log(res);
+    })
     _self.getArticle();
   },
 }

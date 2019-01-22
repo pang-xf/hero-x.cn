@@ -51,9 +51,16 @@ const getAllArticle = async ctx =>{
   };
 }
 const getPartOfArticle = async ctx =>{
-  let data = await arthandle.handlegetPartOfArticle(ctx.params.limit?ctx.params.limit:5);
+  let res = await arthandle.handlegetPartOfArticle(ctx.query.limit?ctx.query.limit:5);
   ctx.response.body = {
-    data: data,
+    data: res?res:[],
+    status: 200
+  };
+}
+const getArticleByTag = async ctx =>{
+  let res = await arthandle.handleGetArticleByTag(ctx.query.tag);
+  ctx.response.body = {
+    data: res?res:[],
     status: 200
   };
 }
@@ -67,6 +74,7 @@ const getArticleById = async ctx =>{
 const routers = router
   .get('/getAllArticle',getAllArticle)
   .get('/getPartOfArticle',getPartOfArticle)
+  .get('/getArticleByTag',getArticleByTag)
   .get('/getArticleById/:pid',getArticleById)
     // .get('/getArticle',getArticle)
     // .get('/getUserMsg',async (ctx,next) => {

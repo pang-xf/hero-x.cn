@@ -55,6 +55,22 @@ const artHandle = {
         });
       });
     })
+  },
+  async handleGetArticleByTag(tag){
+    return new Promise((resolve,reject)=>{
+      MongoClient.connect(mongoConnect,{useNewUrlParser: true },function(err, client) {
+        let db = client.db('herox');
+        db.collection('markdown').find({tag: tag}).toArray(function(err, result) {
+          if (err) {
+            console.log('Error:' + err);
+            reject(err)
+            return;
+          }
+          resolve(result)
+          client.close();
+        });
+      });
+    })
   }
 }
 module.exports = artHandle

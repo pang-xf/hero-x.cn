@@ -250,9 +250,16 @@ const getAllArticle = async ctx => {
   };
 };
 const getPartOfArticle = async ctx => {
-  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetPartOfArticle(ctx.params.limit ? ctx.params.limit : 5);
+  let res = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetPartOfArticle(ctx.query.limit ? ctx.query.limit : 5);
   ctx.response.body = {
-    data: data,
+    data: res ? res : [],
+    status: 200
+  };
+};
+const getArticleByTag = async ctx => {
+  let res = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handleGetArticleByTag(ctx.query.tag);
+  ctx.response.body = {
+    data: res ? res : [],
     status: 200
   };
 };
@@ -263,7 +270,7 @@ const getArticleById = async ctx => {
     status: 200
   };
 };
-const routers = router.get('/getAllArticle', getAllArticle).get('/getPartOfArticle', getPartOfArticle).get('/getArticleById/:pid', getArticleById);
+const routers = router.get('/getAllArticle', getAllArticle).get('/getPartOfArticle', getPartOfArticle).get('/getArticleByTag', getArticleByTag).get('/getArticleById/:pid', getArticleById);
 // .get('/getArticle',getArticle)
 // .get('/getUserMsg',async (ctx,next) => {
 //     let data = await getMarkdown()
@@ -337,6 +344,22 @@ const artHandle = {
             return;
           }
           resolve(result[0]);
+          client.close();
+        });
+      });
+    });
+  },
+  async handleGetArticleByTag(tag) {
+    return new Promise((resolve, reject) => {
+      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
+        let db = client.db('herox');
+        db.collection('markdown').find({ tag: tag }).toArray(function (err, result) {
+          if (err) {
+            console.log('Error:' + err);
+            reject(err);
+            return;
+          }
+          resolve(result);
           client.close();
         });
       });

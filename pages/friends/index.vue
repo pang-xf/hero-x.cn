@@ -56,9 +56,6 @@
 </template>
 <script>
 export default {
-  layout: function(context){
-    return 'custom'
-  },
   data () {
     return {
     }

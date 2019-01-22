@@ -1,5 +1,5 @@
 <template>
-  <div class='mode2_article' >
+  <div class='mode2_article' @click="goDetail(id)">
     <div class="post-image"><img :src="article.image" /></div>
     <div class="mode2_info">
       <nuxt-link to="#" class="mode2_tag">{{article.tag}}</nuxt-link>

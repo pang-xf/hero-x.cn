@@ -1,7 +1,7 @@
 <template>
   <div class='music left_item'>
     <audio :src=music_url loop id="music" preload="auto"></audio>
-    <p class="name"><i class="iconfont">&#xe60f;</i>音乐</p>
+    <p class="name"><i class="iconfont">&#xe60f;</i>Music</p>
     <div class="music_wrap">
       <div class="music_wrap_left noselect">
         <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fz9m6pnclwj30b40b4dfy.jpg" alt="" class="music_album">

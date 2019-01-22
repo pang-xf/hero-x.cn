@@ -1,6 +1,6 @@
 <template>
   <div class='textWrapItem left_item'>
-    <p class="name"><i class="iconfont">&#xe658;</i>一言</p>
+    <p class="name"><i class="iconfont">&#xe658;</i>OneTalk</p>
     <div class="textWrapItem_wrap">
       {{text}}
     </div>

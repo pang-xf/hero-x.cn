@@ -27,7 +27,7 @@ export default {
         
       },
       announcement:{
-        title:'公告',
+        title:'Announcement',
         content:'最昏暗的地方也变得明亮~。本站功能逐渐开发中... 开发时间->无限期延长~'
       }
     }

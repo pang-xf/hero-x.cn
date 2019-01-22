@@ -1,6 +1,6 @@
 <template>
   <div class='left_item'>
-    <p class="name"><i class="iconfont">&#xe88a;</i>标签</p>
+    <p class="name"><i class="iconfont">&#xe88a;</i>Tags</p>
     <div class="tag-wrap">
       <div class="tags" v-for="(item,index) in $store.state.articles.articles" :key="index">
         <img :src = item.image alt="标签">

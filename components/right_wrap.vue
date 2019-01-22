@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import barticle from '~/components/index/barticle'
 import swiper from '~/components/index/swiper'
 import about from '~/components/index/about'
 import hotArticle from '~/components/index/hotArticle'
@@ -38,7 +37,7 @@ export default {
     return { article: res.data}
   },
   components: {
-    barticle,swiper,about,hotArticle,ad,friends,sentence,music,textWrapItem
+    swiper,about,hotArticle,ad,friends,sentence,music,textWrapItem
   },
   methods: {
   },

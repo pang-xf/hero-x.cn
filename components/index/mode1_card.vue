@@ -1,5 +1,5 @@
 <template>
-  <div class='article' @click="goDetail(id)">
+  <div class='mode1_article' @click="goDetail(id)">
     <div class="art-left">
       <p class="title" :title="article.title">{{article.title}}</p>
       <p class="abstrack" :title="article.description">{{article.description}}</p>

@@ -11,13 +11,14 @@ export const mutations = {
   },
 }
 export const actions = {
-    async getAllArticles({ commit }) {
-        try {
-            const data = await axios.post('/article/getAllArticle');
-            commit('SET_ARTICLE', data.data);
-        } catch (error) {
-          console.log(error);
-          throw error.response
-        }
-    },
+  async getAllArticles({ commit }) {
+    let _self = this;
+    try {
+      const res = await _self.$axios.get('/article/getAllArticle');
+      commit('SET_ARTICLE', res.data.data);
+    } catch (error) {
+      console.log(error);
+      throw error.response
+    }
+  },
 }   

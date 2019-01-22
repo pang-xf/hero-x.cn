@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import barticle from '~/components/index/barticle'
 import swiper from '~/components/index/swiper'
 import about from '~/components/index/about'
 import tags from '~/components/tags'
@@ -29,7 +28,7 @@ export default {
     return { article: res.data}
   },
   components: {
-    barticle,swiper,about,ad,friends,tags
+    swiper,about,ad,friends,tags
   },
   methods: {
   },

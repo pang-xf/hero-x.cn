@@ -56,6 +56,9 @@ const artHandle = {
       });
     })
   },
+  /**
+   * @param  {} tag 传入的tag标签
+   */
   async handleGetArticleByTag(tag){
     return new Promise((resolve,reject)=>{
       MongoClient.connect(mongoConnect,{useNewUrlParser: true },function(err, client) {
@@ -67,6 +70,26 @@ const artHandle = {
             return;
           }
           resolve(result)
+          client.close();
+        });
+      });
+    })
+  },
+  /**
+   * 获取标签和热门文章
+   */
+  async handleGetTagsAndHotArticles(){
+    return new Promise((resolve,reject)=>{
+      MongoClient.connect(mongoConnect,{useNewUrlParser: true },function(err, client) {
+        let db = client.db('herox').collection('markdown');
+        let query = '{},{tag:1,_id:0}'
+        db.find({},{tag:1,_id:0}).toArray(function(err, res) {
+          if (err) {
+            console.log('Error:' + err);
+            reject(err)
+            return;
+          }
+          resolve(res)
           client.close();
         });
       });

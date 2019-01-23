@@ -1,36 +1,22 @@
+/**
+ * 需要检查的token的 请求地址
+ */
+const verifyPath = [
+  '/api/userlist',
+  '/api/createarticle',
+  '/api/articlelist',
+  '/api/setarticle'
+];
+
+const whitelist = ["http://boss.didiheng.com", "*"] //白名单
+
 export default {
-  user: {
-    role: 'superAdmin',
-    username: 'q',
-    password: 'q',
-    email: 'qq22337383@gmail.com',
-    nickname: 'VueBlog',
-    motto: 'Never too old to learn',
-    avatar: 'avatar.png'
+  db: {
+      url: 'mongodb://localhost/test'
   },
-  jwt: {
-    secret: 'vueblog'
-  },
-  mongodb: {
-    host: '127.0.0.1',
-    database: 'vueblog',
-    port: 27017,
-    username: '',
-    password: ''
-  },
-  githubConfig: {
-    githubClient: '',
-    githubSecret: '',
-    scope: 'user'
-  },
-  emailConfig: {
-    user: '',
-    pass: ''
-  },
-  app: {
-    domain: '',
-    host: '127.0.0.1',
-    port: 3000,
-    routerBaseApi: 'api'
-  }
+  secret: 'LiuHeng9227fe78182er',
+  port: process.env.port || '12345',
+  Imgurl: process.env.NODE_ENV === 'production' ? 'http://www.didiheng.com:8888' : `http://localhost:12345`,
+  // verifyPath,
+  // whitelist
 }

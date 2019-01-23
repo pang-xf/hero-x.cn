@@ -201,38 +201,6 @@ router.use('/user', __WEBPACK_IMPORTED_MODULE_2__user__["a" /* default */].route
 const fs = __webpack_require__(8);
 const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
 
-// 中间层，用来连接数据库
-// const db = require('monk')('localhost/herox') 
-// const url = '47.106.163.14:27017/herox';
-// const db = require('monk')(url) 
-// const markdown = db.get('markdown')
-// 必须异步操作，不然读不出来数据
-// const getArticle = async ctx => {
-//   const resMarkDown = await markdown.find();
-//   ctx.response.body = {
-//     data: resMarkDown,
-//     status: 200
-//   };
-// }
-//获取部分数据 首页 的 
-// const getPartOfArticle = async ctx => {
-//     let handleData = await markdown.find();
-//     handleData.map(v=>{
-//         // 只返回20个文字
-//         v.markdown.content = v.markdown.content.slice(0,20);
-//     })
-//     ctx.response.body = {
-//       data: handleData,
-//       status: 200
-//     };
-//   }
-// const getArticleById = async ctx => {
-//   const articles = await markdown.find({_id:ctx.params.pid})
-//   ctx.response.body = {
-//     data: articles[0],
-//     status: 200
-//   };
-// }
 
 async function getMarkdown() {
   return new Promise((resolve, reject) => {
@@ -270,7 +238,14 @@ const getArticleById = async ctx => {
     status: 200
   };
 };
-const routers = router.get('/getAllArticle', getAllArticle).get('/getPartOfArticle', getPartOfArticle).get('/getArticleByTag', getArticleByTag).get('/getArticleById/:pid', getArticleById);
+const getTagsAndHotArticles = async ctx => {
+  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handleGetTagsAndHotArticles();
+  ctx.response.body = {
+    data: data,
+    status: 200
+  };
+};
+const routers = router.get('/getAllArticle', getAllArticle).get('/getTagsAndHotArticles', getTagsAndHotArticles).get('/getPartOfArticle', getPartOfArticle).get('/getArticleByTag', getArticleByTag).get('/getArticleById/:pid', getArticleById);
 // .get('/getArticle',getArticle)
 // .get('/getUserMsg',async (ctx,next) => {
 //     let data = await getMarkdown()
@@ -349,6 +324,9 @@ const artHandle = {
       });
     });
   },
+  /**
+   * @param  {} tag 传入的tag标签
+   */
   async handleGetArticleByTag(tag) {
     return new Promise((resolve, reject) => {
       MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
@@ -360,6 +338,26 @@ const artHandle = {
             return;
           }
           resolve(result);
+          client.close();
+        });
+      });
+    });
+  },
+  /**
+   * 获取标签和热门文章
+   */
+  async handleGetTagsAndHotArticles() {
+    return new Promise((resolve, reject) => {
+      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
+        let db = client.db('herox').collection('markdown');
+        let query = '{},{tag:1,_id:0}';
+        db.find({}, { tag: 1, _id: 0 }).toArray(function (err, res) {
+          if (err) {
+            console.log('Error:' + err);
+            reject(err);
+            return;
+          }
+          resolve(res);
           client.close();
         });
       });
@@ -448,10 +446,6 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, {
       rel: 'stylesheet',
       href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
-    }, {
-      rel: 'stylesheet',
-      type: 'text/css',
-      href: 'http://cdn.webfont.youziku.com/webfonts/nomal/126872/29782/5c384b62f629d808f030e494.css'
     }],
     noscript: [{ innerHTML: 'This website requires JavaScript.' }],
     script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }]
@@ -504,7 +498,12 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {},
-    extractCSS: { allChunks: true }
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      }
+    }
+    // extractCSS: { allChunks: true }
   }
 };
 
@@ -512,7 +511,7 @@ module.exports = {
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongodb":"^3.1.10","mongoose":"^5.3.7","monk":"^6.0.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
+module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongodb":"^3.1.12","mongoose":"^5.4.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ })
 /******/ ]);

@@ -16,11 +16,6 @@ module.exports = {
       {
         rel: 'stylesheet',
         href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
-      },
-      {
-        rel: 'stylesheet',
-        type:'text/css',
-        href:'http://cdn.webfont.youziku.com/webfonts/nomal/126872/29782/5c384b62f629d808f030e494.css'
       }
     ],
     noscript: [
@@ -90,6 +85,11 @@ module.exports = {
     extend(config, ctx) {
       
     },
-    extractCSS: { allChunks: true }
+    optimization:{
+      splitChunks:{
+        chunks:'all'
+      }
+    },
+    // extractCSS: { allChunks: true }
   }
 }

@@ -54,7 +54,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.article);
   }
 }
 </script>

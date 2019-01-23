@@ -12,10 +12,12 @@
           </div>
         </div>
         <div v-if="!loaded&&active_mode_index==0">
-          <mode1Card v-for="(item,index) in $store.state.articles.articles" :key="index" :article='item' :id="item._id"></mode1Card>
+          <!-- <mode1Card v-for="(item,index) in $store.state.articles.articles" :key="index" :article='item' :id="item._id"></mode1Card> -->
+          <mode1Card v-for="(item,index) in article" :key="index" :article='item' :id="item._id"></mode1Card>
         </div>
         <div v-if="!loaded&&active_mode_index==1" class="mode2Card">
-          <mode2Card v-for="(item,index) in $store.state.articles.articles" :key="index" :article='item' :id="item._id"></mode2Card>
+          <mode2Card v-for="(item,index) in article" :key="index" :article='item' :id="item._id"></mode2Card>
+          <!-- <mode2Card v-for="(item,index) in $store.state.articles.articles" :key="index" :article='item' :id="item._id"></mode2Card> -->
         </div>
         <div class="article_loading" v-if='loaded'>
           <div class="loader loader--style6" title="5">
@@ -117,6 +119,11 @@ export default {
   components: {
     mode1Card,mode2Card,swiper,about,hotArticle,ad,friends,tags,sentence,music
   },
+  async asyncData ({app}) {
+    let res  = await app.$axios.get('/article/getAllArticle');
+    // let res2  = await app.$axios.get('/article/getTagsAndHotArticles');
+    return { article: res.data.data}
+  },
   methods: {
     changeNavBar(item){
       let _self = this;
@@ -143,14 +150,12 @@ export default {
     if(localStorage.getItem('herox_active_mode')){
       this.active_mode_index = localStorage.getItem('herox_active_mode');
     }
-    _self.$axios.get('/article/getArticleByTag',{
-      params:{
-        tag:'前端'
-      }
-    }).then((res)=>{
-      console.log(res);
+    if(_self.article)
+      _self.loaded = false;
+    _self.$axios.get('/article/getTagsAndHotArticles').then((res)=>{
+      console.log(res.data.data);
     })
-    _self.getArticle();
+    // _self.getArticle();
   },
 }
 </script>

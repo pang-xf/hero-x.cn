@@ -24,7 +24,7 @@ async function start () {
   router.use('', route.routes())
   app
   .use(router.routes())
-  .use(router.allowedMethods())
+  .use(router.allowedMethods())//注册路由
   // Import and Set Nuxt.js options
   const config = require('../nuxt.config.js')
   config.dev = !(app.env === 'production')

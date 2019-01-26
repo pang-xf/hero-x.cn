@@ -75,7 +75,7 @@ module.exports = require("koa-router");
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = require("mongodb");
+module.exports = require("mongoose");
 
 /***/ }),
 /* 2 */
@@ -92,9 +92,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_koa_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__koa_cors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_nuxt__);
 
 
@@ -120,9 +120,9 @@ async function start() {
   app.use(__WEBPACK_IMPORTED_MODULE_1_koa_static___default()('.'));
   const router = new __WEBPACK_IMPORTED_MODULE_3_koa_router___default.a();
   router.use('', __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */].routes());
-  app.use(router.routes()).use(router.allowedMethods());
+  app.use(router.routes()).use(router.allowedMethods()); //注册路由
   // Import and Set Nuxt.js options
-  const config = __webpack_require__(13);
+  const config = __webpack_require__(14);
   config.dev = !(app.env === 'production');
 
   // Instantiate nuxt.js
@@ -178,14 +178,15 @@ module.exports = require("koa-bodyparser");
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__article__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api__ = __webpack_require__(7);
 
-
+// import article from './article';
+// import user from './user';
 
 const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
-router.use('/article', __WEBPACK_IMPORTED_MODULE_1__article__["a" /* default */].routes(), __WEBPACK_IMPORTED_MODULE_1__article__["a" /* default */].allowedMethods());
-router.use('/user', __WEBPACK_IMPORTED_MODULE_2__user__["a" /* default */].routes(), __WEBPACK_IMPORTED_MODULE_2__user__["a" /* default */].allowedMethods());
+// router.use('/article', article.routes(), article.allowedMethods());
+// router.use('/user', user.routes(), user.allowedMethods());
+router.use('/api', __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].routes(), __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].allowedMethods());
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
@@ -193,248 +194,267 @@ router.use('/user', __WEBPACK_IMPORTED_MODULE_2__user__["a" /* default */].route
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__handle_article__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__handle_article___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__handle_article__);
-
-const fs = __webpack_require__(8);
-const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controller_article__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa_router__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_koa_router__);
 
 
-async function getMarkdown() {
-  return new Promise((resolve, reject) => {
-    fs.readFile('markdown/test.md', 'utf8', function (err, data) {
-      if (err) throw err;
-      resolve(data);
-    });
-  });
-}
-const getAllArticle = async ctx => {
-  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetAllArticle();
-  ctx.response.body = {
-    data: data,
-    status: 200
-  };
-};
-const getPartOfArticle = async ctx => {
-  let res = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handlegetPartOfArticle(ctx.query.limit ? ctx.query.limit : 5);
-  ctx.response.body = {
-    data: res ? res : [],
-    status: 200
-  };
-};
-const getArticleByTag = async ctx => {
-  let res = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handleGetArticleByTag(ctx.query.tag);
-  ctx.response.body = {
-    data: res ? res : [],
-    status: 200
-  };
-};
-const getArticleById = async ctx => {
-  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handleGetArticleById(ctx.params.pid);
-  ctx.response.body = {
-    data: data,
-    status: 200
-  };
-};
-const getTagsAndHotArticles = async ctx => {
-  let data = await __WEBPACK_IMPORTED_MODULE_1__handle_article___default.a.handleGetTagsAndHotArticles();
-  ctx.response.body = {
-    data: data,
-    status: 200
-  };
-};
-const routers = router.get('/getAllArticle', getAllArticle).get('/getTagsAndHotArticles', getTagsAndHotArticles).get('/getPartOfArticle', getPartOfArticle).get('/getArticleByTag', getArticleByTag).get('/getArticleById/:pid', getArticleById);
-// .get('/getArticle',getArticle)
-// .get('/getUserMsg',async (ctx,next) => {
-//     let data = await getMarkdown()
-//     ctx.body = {
-//     data: data,
-//     status: 200
-//     };
-// });
-/* harmony default export */ __webpack_exports__["a"] = (routers);
+const Api = new __WEBPACK_IMPORTED_MODULE_1_koa_router___default.a();
+/**
+ * 文章列表
+ */
+Api.post('/articlelist', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].articlelist);
+Api.post('/artById', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].artById);
+Api.post('/findByConditions', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].findByConditions);
+/* harmony default export */ __webpack_exports__["a"] = (Api);
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = require("fs");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__ = __webpack_require__(9);
+
+
+// import {
+//     ArticleModel
+// } from '../mongoose/dbConnect'
+
+
+/**
+ * article Controller
+ * Get List
+ * Create Article
+ * Set Article
+ */
+class ArticleController {
+  constructor() {
+    // 文章
+    this.articlelist = this.articlelist.bind(this);
+    this.artById = this.artById.bind(this);
+    this.findByConditions = this.findByConditions.bind(this);
+  }
+
+  /**
+   * 获取文章列表
+   * @param {*} ctx
+   * @param {*} next
+   */
+  async articlelist(ctx) {
+    const body = ctx.request.body;
+    try {
+      if (body.skip != undefined && body.limit) {
+        let option = {
+          skip: Number(body.skip),
+          limit: Number(body.limit)
+        };
+        let totalCount = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].countNum({});
+        let data = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].findArt({}, option);
+        ctx.body = {
+          code: 0,
+          totalCount: totalCount,
+          data: data,
+          desc: "成功"
+        };
+      } else {
+        ctx.body = {
+          code: 0,
+          data: {},
+          desc: "参数错误"
+        };
+      }
+    } catch (err) {
+      ctx.throw(err);
+    }
+  }
+  /**
+   * 获取文章详情
+   */
+  async artById(ctx) {
+    const body = ctx.request.body;
+    try {
+      if (body.id != undefined) {
+        let id = body.id;
+        let data = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].getArtById(id);
+        ctx.body = {
+          code: 0,
+          data: data,
+          desc: "成功"
+        };
+      } else {
+        ctx.body = {
+          code: 0,
+          data: {},
+          desc: "未指定的文章id"
+        };
+      }
+    } catch (err) {
+      ctx.throw(err);
+    }
+  }
+  /**
+   * 按条件查找
+   */
+  async findByConditions(ctx) {
+    const body = ctx.request.body;
+    const condition = body.condition;
+    let option = {};
+    switch (condition) {
+      case 'tag':
+        option = { tag: 1, _id: 0 };
+        break;
+      default:
+        option = {};
+        break;
+    }
+    let data = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].findByConditions({}, option);
+    ctx.body = {
+      code: 0,
+      data: data,
+      desc: "成功"
+    };
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (new ArticleController());
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-const MongoClient = __webpack_require__(1).MongoClient;
-let mongoConnect = 'mongodb://47.106.163.14:27017/herox';
-const ObjectID = __webpack_require__(1).ObjectID;
-const artHandle = {
-  async handlegetAllArticle() {
-    return new Promise((resolve, reject) => {
-      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
-        let db = client.db('herox');
-        db.collection('markdown').find().toArray(function (err, result) {
-          if (err) {
-            console.log('Error:' + err);
-            reject(err);
-            return;
-          }
-          resolve(result);
-          client.close();
-        });
-      });
-    });
-  },
-  /**
-   * @param  {} limit 返回查询条数  默认不传为10条数据
-   */
-  async handlegetPartOfArticle(limit = 4) {
-    return new Promise((resolve, reject) => {
-      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
-        let db = client.db('herox');
-        db.collection('markdown').find().limit(limit).toArray(function (err, result) {
-          if (err) {
-            console.log('Error:' + err);
-            reject(err);
-            return;
-          }
-          resolve(result);
-          client.close();
-        });
-      });
-    });
-  },
-  /**
-   * @param  {} pid 文章的id
-   */
-  async handleGetArticleById(pid) {
-    return new Promise((resolve, reject) => {
-      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
-        let db = client.db('herox');
-        db.collection('markdown').find({ _id: ObjectID(pid) }).toArray(function (err, result) {
-          if (err) {
-            console.log('Error:' + err);
-            reject(err);
-            return;
-          }
-          resolve(result[0]);
-          client.close();
-        });
-      });
-    });
-  },
-  /**
-   * @param  {} tag 传入的tag标签
-   */
-  async handleGetArticleByTag(tag) {
-    return new Promise((resolve, reject) => {
-      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
-        let db = client.db('herox');
-        db.collection('markdown').find({ tag: tag }).toArray(function (err, result) {
-          if (err) {
-            console.log('Error:' + err);
-            reject(err);
-            return;
-          }
-          resolve(result);
-          client.close();
-        });
-      });
-    });
-  },
-  /**
-   * 获取标签和热门文章
-   */
-  async handleGetTagsAndHotArticles() {
-    return new Promise((resolve, reject) => {
-      MongoClient.connect(mongoConnect, { useNewUrlParser: true }, function (err, client) {
-        let db = client.db('herox').collection('markdown');
-        let query = '{},{tag:1,_id:0}';
-        db.find({}, { tag: 1, _id: 0 }).toArray(function (err, res) {
-          if (err) {
-            console.log('Error:' + err);
-            reject(err);
-            return;
-          }
-          resolve(res);
-          client.close();
-        });
-      });
-    });
-  }
-};
-module.exports = artHandle;
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mongoose__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_ArticleModel__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_config__ = __webpack_require__(11);
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.connect(__WEBPACK_IMPORTED_MODULE_2__config_config__["a" /* default */].db.url, { useNewUrlParser: true });
+const db = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    console.log('db success');
+});
+// module.exports = {
+//     ArticleModel
+// }
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_1__model_ArticleModel__["a" /* default */]);
 
 /***/ }),
 /* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mongoose__);
 
-const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
-// 中间层，用来连接数据库
-// const db = require('monk')('localhost/herox') 
-// const markdown = db.get('markdown')
-let userInfo = {
-    name: '李宇童鞋丶',
-    sex: 'man',
-    desc: '间歇性踌躇满志，持续性混吃等死。',
-    avatar: 'https://ws1.sinaimg.cn/large/006tNbRwgy1fyhwhz6lwsj30b40b4aa7.jpg',
-    school: 'Pan Zhi Hua University',
-    professional: 'Mathematics and computers',
-    schoolTime: '2014年-2018年',
-    job: 'web development',
-    address: 'Shen Zhen',
-    homeTown: 'Si Chuan Za Zhong',
-    email: 'me0809@yeah.net',
-    github: 'https://github.com/hero-x',
-    zhihu: 'https://www.zhihu.com/people/xiang-ge-95-60/activities',
-    juejin: 'https://juejin.im/user/59561da16fb9a06ba646355d',
-    workExe: [{
-        name: '深圳市小行家科技有限公司',
-        startTime: '2018.3',
-        endTime: '至今'
-    }],
-    project: [{
-        name: '青年驿站',
-        startTime: '2018.6',
-        endTime: '2018.11',
-        content: '青年驿站是什么..',
-        dowhat: '负责整个小程序的开发',
-        technology: 'wepy'
-    }]
+/**
+ * 文章模型
+ */
+
+
+const ArticleSchema = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.Schema({
+    title: String, //标题
+    image: String, //图片地址
+    description: String, //文章简介        
+    time: { //创建时间
+        type: Date,
+        default: Date.now
+    },
+    content: String, //文章内容
+    read: Number, //查看人数
+    tag: String, //标签
+    comments: [], //评论列表
+    like: Number //喜欢人数
+    // isLower: { //是否下架
+    //     type: Boolean,
+    //     default: false
+    // }
+}, {
+    collection: 'markdown'
+});
+
+ArticleSchema.statics = {
+    /* 查找 分页*/
+    async findArt(data = {}, option = {}) {
+        const result = await this.find(data).skip(option.skip).limit(option.limit);
+        return result;
+    },
+    /* 文章详情 按id */
+    async getArtById(id) {
+        const hid = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.mongo.ObjectId(id);
+        const result = await this.find({ _id: hid });
+        return result[0];
+    },
+    /* 按条件查找*/
+    async findByConditions(data = {}, option = {}) {
+        const result = await this.find(data, option);
+        return result;
+    },
+    // /* 创建 */
+    // async createArt(data = {}) {
+    //     const result = await this.create(data);
+    //     return result;
+    // },
+    // /* 总条数 */
+    async countNum(data = {}, option = {}) {
+        const result = await this.countDocuments(data);
+        return result;
+    }
 };
-const getUserInfo = async ctx => {
-    ctx.response.body = {
-        data: userInfo,
-        status: 200
-    };
-};
 
-const routers = router.get('/getUserInfo', getUserInfo);
-
-/* harmony default export */ __webpack_exports__["a"] = (routers);
+const ArticleModel = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model('article', ArticleSchema);
+// module.exports = ArticleModel
+/* harmony default export */ __webpack_exports__["a"] = (ArticleModel);
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = require("@koa/cors");
+"use strict";
+/**
+ * 需要检查的token的 请求地址
+ */
+// const verifyPath = [
+//   '/api/userlist',
+//   '/api/createarticle',
+//   '/api/articlelist',
+//   '/api/setarticle'
+// ];
+
+// const whitelist = ["http://boss.didiheng.com", "*"] //白名单
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  db: {
+    // url: 'mongodb://localhost/test'
+    url: 'mongodb://47.106.163.14:27017/herox'
+  }
+  // secret: 'LiuHeng9227fe78182er',
+  // port: process.env.port || '12345',
+  // Imgurl: process.env.NODE_ENV === 'production' ? 'http://www.didiheng.com:8888' : `http://localhost:12345`,
+  // verifyPath,
+  // whitelist
+});
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = require("nuxt");
+module.exports = require("@koa/cors");
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports) {
+
+module.exports = require("nuxt");
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const pkg = __webpack_require__(14);
+const pkg = __webpack_require__(15);
 module.exports = {
   mode: 'universal',
   /*
@@ -508,7 +528,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongodb":"^3.1.12","mongoose":"^5.4.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}

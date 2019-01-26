@@ -25,7 +25,8 @@ export default {
     }
   },
   async asyncData ({app,route}) {
-    let res  = await app.$axios.$get('/article/getArticleById/'+route.params.id);
+    // let res  = await app.$axios.$get('/article/getArticleById/'+route.params.id);
+    let res  = await app.$axios.$post('/api/artById',{id:route.params.id});
     return { data: res.data}
   },
   methods: {

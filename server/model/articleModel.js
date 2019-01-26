@@ -4,42 +4,55 @@
  */
 import mongoose from 'mongoose'
 const ArticleSchema = mongoose.Schema({
-    content: String, //内容
-    userId: String, //用户ID
-    userName: String, //创建者用户名        
-    createTime: { //创建时间
-        type: Date,
-        default: Date.now
-    },
     title: String, //标题
-    oneNumber: Number, //查看人数
-    imgUrl: String, //图片地址
-    desc: String, //描述
-    tag: [], //标签列表
-    isLower: { //是否下架
-        type: Boolean,
-        default: false
-    }
+    image: String, //图片地址
+    description: String, //文章简介        
+    time: { //创建时间
+      type: Date,
+      default: Date.now
+    },
+    content: String, //文章内容
+    read: Number, //查看人数
+    tag: String, //标签
+    comments:[],//评论列表
+    like:Number,//喜欢人数
+    // isLower: { //是否下架
+    //     type: Boolean,
+    //     default: false
+    // }
+},{
+  collection: 'markdown'
 });
 
 ArticleSchema.statics = {
-    /* 查找 */
+    /* 查找 分页*/
     async findArt(data = {}, option = {}) {
         const result = await this.find(data).skip(option.skip).limit(option.limit);
         return result
     },
-    /* 创建 */
-    async createArt(data = {}) {
-        const result = await this.create(data);
-        return result;
+    /* 文章详情 按id */
+    async getArtById(id) {
+      const hid = mongoose.mongo.ObjectId(id);
+      const result = await this.find({_id:hid});
+      return result[0]
     },
-    /* 总页数 */
+    /* 按条件查找*/
+    async findByConditions(data = {}, option = {}) {
+      const result = await this.find(data,option);
+      return result
+    },
+    // /* 创建 */
+    // async createArt(data = {}) {
+    //     const result = await this.create(data);
+    //     return result;
+    // },
+    // /* 总条数 */
     async countNum(data = {}, option = {}) {
-        const result = await this.count(data);
+        const result = await this.countDocuments(data);
         return result;
     }
 }
 
 const ArticleModel = mongoose.model('article', ArticleSchema);
-
-module.exports = ArticleModel
+// module.exports = ArticleModel
+export default ArticleModel

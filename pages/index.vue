@@ -103,7 +103,7 @@ export default {
           text:'Git'
         }
       ],
-      loaded:true,
+      loaded:false,
       mode:[
         {
           index:0,
@@ -113,16 +113,20 @@ export default {
           index:1,
           text:'Mode2'
         }
-      ]
+      ],
+      tags:[]
     }
   },
   components: {
     mode1Card,mode2Card,swiper,about,hotArticle,ad,friends,tags,sentence,music
   },
   async asyncData ({app}) {
-    let res  = await app.$axios.get('/article/getAllArticle');
-    // let res2  = await app.$axios.get('/article/getTagsAndHotArticles');
-    return { article: res.data.data}
+    let tag  = await app.$axios.post('/api/findByConditions',{condition:'tag'});
+    let res  = await app.$axios.post('/api/articlelist',{
+      skip:0,
+      limit: 10
+    });
+    return { article: res.data.data,tags:tag.data.data}
   },
   methods: {
     changeNavBar(item){
@@ -150,11 +154,12 @@ export default {
     if(localStorage.getItem('herox_active_mode')){
       this.active_mode_index = localStorage.getItem('herox_active_mode');
     }
-    if(_self.article)
-      _self.loaded = false;
-    _self.$axios.get('/article/getTagsAndHotArticles').then((res)=>{
-      console.log(res.data.data);
-    })
+    console.log(this.tags);
+    // if(_self.article)
+    //   _self.loaded = false;
+    // _self.$axios.get('/article/getTagsAndHotArticles').then((res)=>{
+    //   console.log(res.data.data);
+    // })
     // _self.getArticle();
   },
 }

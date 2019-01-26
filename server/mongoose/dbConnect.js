@@ -8,7 +8,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     console.log('db success');
 });
-
-module.exports = {
-    ArticleModel
-}
+// module.exports = {
+//     ArticleModel
+// }
+export default ArticleModel

@@ -1,7 +1,7 @@
 <template>
   <div class='hotArticle left_item'>
     <p class="name"><i class="iconfont">&#xe661;</i>HotArticles</p>
-    <div class="hotArticle-wrap" v-for="(item,index) in $store.state.articles.articles.slice(0,5)" :key="index">
+    <div class="hotArticle-wrap" v-for="(item,index) in hots" :key="index">
       <p class="title" :title = item.title><span>{{index+1}}</span>{{item.title}}</p>
     </div>
   </div>
@@ -10,13 +10,18 @@
 export default {
   data () {
     return {
+      hots:[]
     }
   },
   components: {
   },
   methods: {
   },
-  mounted () {
+  created () {
+    let _self = this;
+    this.$axios.post('/api/findByConditions',{condition:'hots'}).then((res)=>{
+      _self.hots = res.data.data;
+    });
   }
 }
 </script>

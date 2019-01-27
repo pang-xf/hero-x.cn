@@ -3,7 +3,7 @@
     <bheads/>
     <div class="main">
       <leftWrap/>
-      <nuxt class="ng"/>
+      <nuxt/>
       <rightWrap/>
     </div>
     <bfooter/>
@@ -18,8 +18,11 @@ export default {
   components: {
     bheads,bfooter,leftWrap,rightWrap
   },
+  data(){
+    return{
+    }
+  },
   mounted () {
-    
   },
 }
 </script>

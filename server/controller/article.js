@@ -84,7 +84,10 @@ class ArticleController {
     let option = {}
     switch (condition) {
       case 'tag':
-        option = {tag:1,_id:0}
+        option = {tag:1,_id:0,image:1}
+        break;
+      case 'hots':
+        option = {title:1,_id:0}
         break;
       default:
         option = {}

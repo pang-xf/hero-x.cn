@@ -1,12 +1,12 @@
 @charset 'utf-8';
 @font-face {
   font-family: 'iconfont';  /* project id 981323 */
-  src: url('//at.alicdn.com/t/font_981323_8svsemicq15.eot');
-  src: url('//at.alicdn.com/t/font_981323_8svsemicq15.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_981323_8svsemicq15.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_981323_8svsemicq15.woff') format('woff'),
-  url('//at.alicdn.com/t/font_981323_8svsemicq15.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_981323_8svsemicq15.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_981323_mkopeb2fo.eot');
+  src: url('//at.alicdn.com/t/font_981323_mkopeb2fo.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_981323_mkopeb2fo.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_981323_mkopeb2fo.woff') format('woff'),
+  url('//at.alicdn.com/t/font_981323_mkopeb2fo.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_981323_mkopeb2fo.svg#iconfont') format('svg');
 }
 .iconfont{
     font-family:"iconfont" !important;
@@ -41,8 +41,8 @@ button{
   outline: none;    //消除默认点击蓝色边框效果
 }
 ul,li{ padding:0;margin:0;list-style:none}
-// 主题色 
 @bannerHeight:500px;
+@navBgColor:#fff;
 @glColor:rgba(0,0,0,.54);
 @glLinkColor:#D0104C;
 @glSolganColor:#434343;
@@ -54,6 +54,18 @@ ul,li{ padding:0;margin:0;list-style:none}
 @glWidth:1100px;
 @glContentWidth:600px;
 @glToolWidth:240px;
+.night_mode{
+  @glColor:#fff !important;
+  @navBgColor:rgba(0, 0, 0, 0.9) !important;
+  @glLinkColor:#D0104C;
+  @glSolganColor:#fff;
+  // @glHoverColor: rgba(0,0,0,.74);
+  @glHoverColor: #CC543A;
+  @glBgColor:rgba(0, 0, 0, 0.9) !important;
+  @glHoverBgColor:rgba(0, 0, 0, 1) !important;
+  background: @glBgColor !important;
+  background-image:none;
+}
 .pxtoRem (@px) when (iscolor(@c)){
 	color: @c;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="global">
+  <div class="global" ref="global">
     <section class="container">
       <div class="content">
         <!-- <ad/> -->
@@ -9,6 +9,10 @@
           </ul>
           <div class="article_mode">
             <span v-for="(mitem,mindex) in mode" :key="mindex" :class="{'active_mode_link':active_mode_index==mindex}" @click="changeMode(mitem)">{{mitem.text}}</span>
+            <span class="day_or_night" @click="change_day_or_night">
+              <i class="iconfont" v-if="isDay" title="更换夜间模式">&#xe64f;</i>
+              <i class="iconfont" v-else title="更换日间模式">&#xe626;</i>
+            </span>
           </div>
         </div>
         <div v-if="!loaded&&active_mode_index==0">
@@ -114,21 +118,31 @@ export default {
           text:'Mode2'
         }
       ],
-      tags:[]
+      tags:[],
+      isDay:true,
     }
   },
   components: {
     mode1Card,mode2Card,swiper,about,hotArticle,ad,friends,tags,sentence,music
   },
   async asyncData ({app}) {
-    let tag  = await app.$axios.post('/api/findByConditions',{condition:'tag'});
+    // let tag  = await app.$axios.post('/api/findByConditions',{condition:'tag'});
+    // let hotArticle  = await app.$axios.post('/api/findByConditions',{condition:'title'});
     let res  = await app.$axios.post('/api/articlelist',{
       skip:0,
       limit: 10
     });
-    return { article: res.data.data,tags:tag.data.data}
+    return { article: res.data.data}
   },
   methods: {
+    change_day_or_night(){
+      this.isDay=!this.isDay;
+      if(!this.isDay){
+        document.body.classList.add('night_mode');
+      }else{
+        document.body.classList.remove('night_mode');
+      }
+    },
     changeNavBar(item){
       let _self = this;
       _self.loaded = true;
@@ -154,7 +168,13 @@ export default {
     if(localStorage.getItem('herox_active_mode')){
       this.active_mode_index = localStorage.getItem('herox_active_mode');
     }
-    console.log(this.tags);
+    if(!this.isDay){
+      document.body.classList.remove('day_mode');
+      document.body.classList.add('night_mode');
+    }else{
+      document.body.classList.add('day_mode');
+      document.body.classList.remove('day_mode');
+    }
     // if(_self.article)
     //   _self.loaded = false;
     // _self.$axios.get('/article/getTagsAndHotArticles').then((res)=>{

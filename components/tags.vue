@@ -2,8 +2,8 @@
   <div class='left_item'>
     <p class="name"><i class="iconfont">&#xe88a;</i>Tags</p>
     <div class="tag-wrap">
-      <div class="tags" v-for="(item,index) in $store.state.articles.articles" :key="index">
-        <img :src = item.image alt="标签">
+      <div class="tags" v-for="(item,index) in tags" :key="index">
+        <img :src = item.image alt="">
         {{item.tag}}
       </div>
     </div>
@@ -13,13 +13,18 @@
 export default {
   data () {
     return {
+      tags:''
     }
   },
   components: {
   },
   methods: {
   },
-  mounted () {
+  created () {
+    let _self = this;
+    this.$axios.post('/api/findByConditions',{condition:'tag'}).then((res)=>{
+      _self.tags = res.data.data
+    });
   }
 }
 </script>

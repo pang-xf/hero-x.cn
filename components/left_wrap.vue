@@ -23,10 +23,6 @@ export default {
       }
     }
   },
-  async asyncData ({app}) {
-    let res  = await app.$axios.$get('/article/getPartOfArticle')
-    return { article: res.data}
-  },
   components: {
     swiper,about,ad,friends,tags
   },
@@ -34,7 +30,6 @@ export default {
   },
   mounted () {
     var _self = this
-    // console.log("\n     ___________________________\n    |             |             |\n    |___          |          ___|\n    |_  |         |         |  _|\n   .| | |.       ,|.       .| | |.\n   || | | )     ( | )     ( | | ||\n   '|_| |'       `|'       `| |_|'\n    |___|         |         |___|\n    |             |             |\n    |_____________|_____________|\n\n")
   }
 }
 </script>

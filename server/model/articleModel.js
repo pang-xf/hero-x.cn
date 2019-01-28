@@ -54,5 +54,4 @@ ArticleSchema.statics = {
 }
 
 const ArticleModel = mongoose.model('article', ArticleSchema);
-// module.exports = ArticleModel
 export default ArticleModel

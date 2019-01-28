@@ -92,9 +92,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_koa_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__koa_cors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_nuxt__);
 
 
@@ -122,7 +122,7 @@ async function start() {
   router.use('', __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */].routes());
   app.use(router.routes()).use(router.allowedMethods()); //注册路由
   // Import and Set Nuxt.js options
-  const config = __webpack_require__(14);
+  const config = __webpack_require__(15);
   config.dev = !(app.env === 'production');
 
   // Instantiate nuxt.js
@@ -329,7 +329,7 @@ class ArticleController {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mongoose__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_ArticleModel__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_config__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_config__ = __webpack_require__(12);
 
 
 
@@ -340,9 +340,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     console.log('db success');
 });
-// module.exports = {
-//     ArticleModel
-// }
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_1__model_ArticleModel__["a" /* default */]);
 
 /***/ }),
@@ -409,11 +406,11 @@ ArticleSchema.statics = {
 };
 
 const ArticleModel = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model('article', ArticleSchema);
-// module.exports = ArticleModel
 /* harmony default export */ __webpack_exports__["a"] = (ArticleModel);
 
 /***/ }),
-/* 11 */
+/* 11 */,
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -442,22 +439,22 @@ const ArticleModel = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model('art
 });
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = require("@koa/cors");
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("nuxt");
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const pkg = __webpack_require__(15);
+const pkg = __webpack_require__(16);
 module.exports = {
   mode: 'universal',
   /*
@@ -531,7 +528,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","animejs":"^3.0.1","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.4.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}

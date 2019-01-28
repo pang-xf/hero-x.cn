@@ -22,7 +22,6 @@ export default {
   },
   created () {
     let _self = this;
-    console.log(this.$axios.baseURL);
     this.$axios.post('/api/findByConditions',{condition:'tag'}).then((res)=>{
       _self.tags = res.data.data
     });

@@ -1,4 +1,3 @@
-"use strict"
 /**
  * 文章模型
  */
@@ -53,5 +52,5 @@ ArticleSchema.statics = {
     }
 }
 
-const ArticleModel = mongoose.model('article', ArticleSchema);
-export default ArticleModel
+// let ArticleModel = mongoose.model('article', ArticleSchema);
+export default mongoose.model('article', ArticleSchema)

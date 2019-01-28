@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-// import ArticleModel from './ArticleModel'
 import ArticleModel from "../model/Article"
 import config from '../config/config'
 

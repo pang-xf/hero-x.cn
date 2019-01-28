@@ -8,5 +8,5 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     console.log('db success');
 });
-import ArticleModel from '../model/ArticleModel'
+import ArticleModel from "../model/ArticleModel"
 export default ArticleModel

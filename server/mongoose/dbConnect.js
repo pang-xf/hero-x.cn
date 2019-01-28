@@ -1,7 +1,5 @@
 import mongoose from 'mongoose'
 // import ArticleModel from './ArticleModel'
-import ArticleModel from '../model/ArticleModel'
-console.log(ArticleModel);
 import config from '../config/config'
 
 mongoose.connect(config.db.url ,{ useNewUrlParser: true });
@@ -10,4 +8,5 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     console.log('db success');
 });
+import ArticleModel from '../model/ArticleModel'
 export default ArticleModel

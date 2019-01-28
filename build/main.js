@@ -333,7 +333,6 @@ class ArticleController {
 
 // import ArticleModel from './ArticleModel'
 
-console.log(__WEBPACK_IMPORTED_MODULE_1__model_ArticleModel__["a" /* default */]);
 
 
 __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.connect(__WEBPACK_IMPORTED_MODULE_2__config_config__["a" /* default */].db.url, { useNewUrlParser: true });

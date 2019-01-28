@@ -52,7 +52,8 @@ module.exports = {
     {
       src: '~/plugins/vueSwiper',
       ssr: false
-    }
+    },
+    '~/plugins/axios'
   ],
   vendor: [
     'marked',

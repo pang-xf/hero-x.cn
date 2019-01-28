@@ -495,7 +495,7 @@ module.exports = {
   plugins: [{
     src: '~/plugins/vueSwiper',
     ssr: false
-  }],
+  }, '~/plugins/axios'],
   vendor: ['marked', 'highlight.js'],
   /*
   ** Nuxt.js modules

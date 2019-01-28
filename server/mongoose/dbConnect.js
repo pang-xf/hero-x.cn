@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
-import ArticleModel from './ArticleModel'
+// import ArticleModel from './ArticleModel'
+import ArticleModel from '../model/ArticleModel'
 import config from '../config/config'
 
 mongoose.connect(config.db.url ,{ useNewUrlParser: true });

@@ -331,7 +331,9 @@ class ArticleController {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_ArticleModel__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_config__ = __webpack_require__(11);
 
+// import ArticleModel from './ArticleModel'
 
+console.log(__WEBPACK_IMPORTED_MODULE_1__model_ArticleModel__["a" /* default */]);
 
 
 __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.connect(__WEBPACK_IMPORTED_MODULE_2__config_config__["a" /* default */].db.url, { useNewUrlParser: true });
@@ -349,11 +351,9 @@ db.once('open', function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mongoose__);
-
 /**
  * 文章模型
  */
-
 
 const ArticleSchema = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.Schema({
     title: String, //标题

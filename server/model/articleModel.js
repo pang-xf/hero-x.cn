@@ -52,5 +52,5 @@ ArticleSchema.statics = {
     }
 }
 
-// let ArticleModel = mongoose.model('article', ArticleSchema);
-export default mongoose.model('article', ArticleSchema)
+const ArticleModel = mongoose.model('article', ArticleSchema);
+export default ArticleModel

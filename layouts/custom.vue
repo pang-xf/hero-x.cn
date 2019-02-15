@@ -31,7 +31,7 @@ export default {
 .main{
   width: 1100px;
   min-height: calc(100vh - 140px);
-  margin:  20px auto 10px auto;
+  margin:  70px auto 10px auto;
   display: flex;
   justify-content: center;
   position: relative;

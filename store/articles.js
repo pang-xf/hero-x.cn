@@ -11,10 +11,10 @@ export const mutations = {
   },
 }
 export const actions = {
-  async getAllArticles({ commit }) {
+  async findByConditions({ commit }) {
     let _self = this;
     try {
-      const res = await _self.$axios.get('/article/getAllArticle');
+      const res = await _self.$axios.post('/article/findByConditions');
       commit('SET_ARTICLE', res.data.data);
     } catch (error) {
       console.log(error);

@@ -7,4 +7,5 @@ const Api = new Router();
 Api.post('/articlelist',  ArticleController.articlelist);
 Api.post('/artById',  ArticleController.artById);
 Api.post('/findByConditions',  ArticleController.findByConditions);
+Api.post('/findByCate',  ArticleController.findByCate);
 export default Api

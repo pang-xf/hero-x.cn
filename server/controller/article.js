@@ -4,6 +4,7 @@
 //     ArticleModel
 // } from '../mongoose/dbConnect'
 import ArticleModel from "../mongoose/dbConnect";
+import moment from 'moment'; 
 /**
  * article Controller
  * Get List
@@ -32,7 +33,11 @@ class ArticleController {
           limit: Number(body.limit)
         };
         let totalCount = await ArticleModel.countNum({});
-        let data = await ArticleModel.findArt({}, option);
+        let data = JSON.parse(JSON.stringify(await ArticleModel.findArt({}, option)));
+        for(let i=0;i<data.length;i++){
+          var date = moment(data[i].time).format('YYYY-MM-DD HH:mm'); 
+          data[i].time = date
+        }
         ctx.body = {
           code: 0,
           totalCount: totalCount,
@@ -76,7 +81,7 @@ class ArticleController {
     }
   }
   /**
-   * 按条件查找
+   * 按条件查找 全部返回  不包括某些项目
    */
   async findByConditions(ctx) {
     const body = ctx.request.body;
@@ -94,6 +99,28 @@ class ArticleController {
         break;
     }
     let data = await ArticleModel.findByConditions({},option);
+    ctx.body = {
+      code: 0,
+      data: data,
+      desc: "成功"
+    };
+  }
+  /**
+   * 按分类查找
+   */
+  async findByCate(ctx) {
+    const body = ctx.request.body;
+    const tagName = body.condition;
+    const key = body.key;
+    let option = {}
+    switch (tagName) {
+      case 'cate':
+        option = {tag:key}
+        break;
+      default:
+        break;
+    }
+    let data = await ArticleModel.findByConditions(option);
     ctx.body = {
       code: 0,
       data: data,

@@ -12,7 +12,7 @@
 
 export default {
   db: {
-      // url: 'mongodb://localhost/test'
+      // url: 'mongodb://localhost:27017/herox'
       url: 'mongodb://47.106.163.14:27017/herox'
   },
   // secret: 'LiuHeng9227fe78182er',

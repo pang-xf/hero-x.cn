@@ -126,8 +126,6 @@ export default {
     mode1Card,mode2Card,swiper,about,hotArticle,ad,friends,tags,sentence,music
   },
   async asyncData ({app}) {
-    // let tag  = await app.$axios.post('/api/findByConditions',{condition:'tag'});
-    // let hotArticle  = await app.$axios.post('/api/findByConditions',{condition:'title'});
     let res  = await app.$axios.post('/api/articlelist',{
       skip:0,
       limit: 10
@@ -144,16 +142,41 @@ export default {
       }
     },
     changeNavBar(item){
-      let _self = this;
+      let _self = this,key='';
       _self.loaded = true;
       _self.active_link_index = item.index;
-      setTimeout(function () {
-        _self.getArticle(item);
-      },2000)
+      switch (item.index) {
+        case 0:
+          key = 'All'
+          break;
+        case 1:
+          key = '前端'
+          break;
+        case 2:
+          key = '生活'
+          break;
+        default:
+          key = ''
+          break;
+      }
+      if(key=='All'){
+        _self.$axios.post('/api/articlelist',{
+          skip:0,
+          limit: 10
+        }).then((res)=>{
+          _self.article = res.data.data
+          _self.loaded = false;
+        })
+      }else{
+        _self.getArticle(key);
+      }
     },
-    getArticle(item){
+    getArticle(key){
+      console.log('key = '+key);
       let _self = this;
-      _self.$store.dispatch('articles/getAllArticles').then(()=>{
+      _self.$axios.post('/api/findByCate',{condition:'cate',key:key}).then((res)=>{
+        console.log(res.data.data);
+        _self.article = res.data.data
         _self.loaded = false;
       })
     },
@@ -175,6 +198,7 @@ export default {
       document.body.classList.add('day_mode');
       document.body.classList.remove('day_mode');
     }
+    // console.log(this.article);
     // if(_self.article)
     //   _self.loaded = false;
     // _self.$axios.get('/article/getTagsAndHotArticles').then((res)=>{

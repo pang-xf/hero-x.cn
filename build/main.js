@@ -92,9 +92,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_koa_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__koa_cors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_nuxt__);
 
 
@@ -122,7 +122,7 @@ async function start() {
   router.use('', __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */].routes());
   app.use(router.routes()).use(router.allowedMethods()); //注册路由
   // Import and Set Nuxt.js options
-  const config = __webpack_require__(14);
+  const config = __webpack_require__(15);
   config.dev = !(app.env === 'production');
 
   // Instantiate nuxt.js
@@ -206,6 +206,7 @@ const Api = new __WEBPACK_IMPORTED_MODULE_1_koa_router___default.a();
 Api.post('/articlelist', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].articlelist);
 Api.post('/artById', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].artById);
 Api.post('/findByConditions', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].findByConditions);
+Api.post('/findByCate', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].findByCate);
 /* harmony default export */ __webpack_exports__["a"] = (Api);
 
 /***/ }),
@@ -214,11 +215,14 @@ Api.post('/findByConditions', __WEBPACK_IMPORTED_MODULE_0__controller_article__[
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
 
 
 // import {
 //     ArticleModel
 // } from '../mongoose/dbConnect'
+
 
 
 /**
@@ -249,7 +253,11 @@ class ArticleController {
           limit: Number(body.limit)
         };
         let totalCount = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].countNum({});
-        let data = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].findArt({}, option);
+        let data = JSON.parse(JSON.stringify((await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].findArt({}, option))));
+        for (let i = 0; i < data.length; i++) {
+          var date = __WEBPACK_IMPORTED_MODULE_1_moment___default()(data[i].time).format('YYYY-MM-DD HH:mm');
+          data[i].time = date;
+        }
         ctx.body = {
           code: 0,
           totalCount: totalCount,
@@ -293,7 +301,7 @@ class ArticleController {
     }
   }
   /**
-   * 按条件查找
+   * 按条件查找 全部返回  不包括某些项目
    */
   async findByConditions(ctx) {
     const body = ctx.request.body;
@@ -311,6 +319,28 @@ class ArticleController {
         break;
     }
     let data = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].findByConditions({}, option);
+    ctx.body = {
+      code: 0,
+      data: data,
+      desc: "成功"
+    };
+  }
+  /**
+   * 按分类查找
+   */
+  async findByCate(ctx) {
+    const body = ctx.request.body;
+    const tagName = body.condition;
+    const key = body.key;
+    let option = {};
+    switch (tagName) {
+      case 'cate':
+        option = { tag: key };
+        break;
+      default:
+        break;
+    }
+    let data = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].findByConditions(option);
     ctx.body = {
       code: 0,
       data: data,
@@ -425,7 +455,7 @@ const ArticleModel = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model('art
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   db: {
-    // url: 'mongodb://localhost/test'
+    // url: 'mongodb://localhost:27017/herox'
     url: 'mongodb://47.106.163.14:27017/herox'
   }
   // secret: 'LiuHeng9227fe78182er',
@@ -439,19 +469,25 @@ const ArticleModel = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model('art
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = require("@koa/cors");
+module.exports = require("moment");
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports) {
 
-module.exports = require("nuxt");
+module.exports = require("@koa/cors");
 
 /***/ }),
 /* 14 */
+/***/ (function(module, exports) {
+
+module.exports = require("nuxt");
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const pkg = __webpack_require__(15);
+const pkg = __webpack_require__(16);
 module.exports = {
   mode: 'universal',
   /*
@@ -460,12 +496,11 @@ module.exports = {
   head: {
     title: 'Still there will be a dream',
     meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0' }, { hid: 'description', name: 'description', content: pkg.description }],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, {
-      rel: 'stylesheet',
-      href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css'
-    }],
-    noscript: [{ innerHTML: 'This website requires JavaScript.' }],
-    script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    noscript: [{ innerHTML: 'This website requires JavaScript.' }]
+    // script: [
+    //   { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' },
+    // ]
   },
 
   /*
@@ -525,10 +560,10 @@ module.exports = {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","animejs":"^3.0.1","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","mongoose":"^5.4.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
+module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","animejs":"^3.0.1","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","moment":"^2.24.0","mongoose":"^5.4.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ })
 /******/ ]);

@@ -20,13 +20,16 @@ export default {
   layout: 'custom',
   data () {
     return {
-      data:'',
+      data:{
+        title:'123',
+        content:''
+      },
       isScroll:false,
     }
   },
   async asyncData ({app,route}) {
-    // let res  = await app.$axios.$get('/article/getArticleById/'+route.params.id);
     let res  = await app.$axios.$post('/api/artById',{id:route.params.id});
+    console.log(res);
     return { data: res.data}
   },
   methods: {

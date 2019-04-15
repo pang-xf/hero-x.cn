@@ -1,7 +1,7 @@
 <template>
   <section class="wrap_items right_wrap">
     <textWrapItem :title = 'announcement.title' :content = 'announcement.content'/>
-    <music/>
+    <!-- <music/> -->
     <sentence/>
     <hotArticle/>
     <!-- <friends/> -->

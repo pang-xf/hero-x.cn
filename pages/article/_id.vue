@@ -9,7 +9,7 @@
         <div class="article_intro counts">
           总计<span>12000</span>字，阅读大概<span>10</span>分钟
         </div>
-        <div class="content_wrap" v-html="markedContent(data.content)"></div>
+        <div class="content_wrap" v-html="markedContent(data.content.content)"></div>
       </div>
     </div>
   </div>

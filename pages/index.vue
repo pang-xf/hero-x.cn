@@ -3,200 +3,220 @@
     <section class="container">
       <div class="content">
         <!-- <ad/> -->
-        <div class="content_navbar">
+        <div class="content_navbar" ref='navbar'>
           <ul>
-            <li v-for="(item,index) in nav_link" :key="index" @click="changeNavBar(item)"><nuxt-link to='#' :class="{'active_nav_link':active_link_index==index}">{{item.text}}</nuxt-link></li>
+            <li v-for="(item,index) in nav_link" :key="index" @click="changeNavBar(item)">
+              <nuxt-link to="#" :class="{'active_nav_link' : active_link_index == index}">
+                {{item.text}}
+              </nuxt-link>
+            </li>
           </ul>
-          <div class="article_mode">
-            <span v-for="(mitem,mindex) in mode" :key="mindex" :class="{'active_mode_link':active_mode_index==mindex}" @click="changeMode(mitem)">{{mitem.text}}</span>
-            <span class="day_or_night" @click="change_day_or_night">
-              <i class="iconfont" v-if="isDay" title="更换夜间模式">&#xe64f;</i>
-              <i class="iconfont" v-else title="更换日间模式">&#xe626;</i>
-            </span>
-          </div>
         </div>
-        <div v-if="!loaded&&active_mode_index==0">
-          <!-- <mode1Card v-for="(item,index) in $store.state.articles.articles" :key="index" :article='item' :id="item._id"></mode1Card> -->
-          <mode1Card v-for="(item,index) in article" :key="index" :article='item' :id="item._id"></mode1Card>
-        </div>
-        <div v-if="!loaded&&active_mode_index==1" class="mode2Card">
-          <mode2Card v-for="(item,index) in article" :key="index" :article='item' :id="item._id"></mode2Card>
-          <!-- <mode2Card v-for="(item,index) in $store.state.articles.articles" :key="index" :article='item' :id="item._id"></mode2Card> -->
-        </div>
-        <div class="article_loading" v-if='loaded'>
+        <Card v-for="(item,index) in article" :key="index" :article="item" :id="item._id"></Card>
+        <div class="article_loading" v-if="loaded">
           <div class="loader loader--style6" title="5">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-              width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+            <svg
+              version="1.1"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              width="24px"
+              height="30px"
+              viewBox="0 0 24 30"
+              style="enable-background:new 0 0 50 50;"
+              xml:space="preserve"
+            >
               <rect x="0" y="13" width="4" height="5" fill="#D0104C">
-                <animate attributeName="height" attributeType="XML"
-                  values="5;21;5" 
-                  begin="0s" dur="0.6s" repeatCount="indefinite" />
-                <animate attributeName="y" attributeType="XML"
+                <animate
+                  attributeName="height"
+                  attributeType="XML"
+                  values="5;21;5"
+                  begin="0s"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                ></animate>
+                <animate
+                  attributeName="y"
+                  attributeType="XML"
                   values="13; 5; 13"
-                  begin="0s" dur="0.6s" repeatCount="indefinite" />
+                  begin="0s"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                ></animate>
               </rect>
               <rect x="10" y="13" width="4" height="5" fill="#D0104C">
-                <animate attributeName="height" attributeType="XML"
-                  values="5;21;5" 
-                  begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-                <animate attributeName="y" attributeType="XML"
+                <animate
+                  attributeName="height"
+                  attributeType="XML"
+                  values="5;21;5"
+                  begin="0.15s"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                ></animate>
+                <animate
+                  attributeName="y"
+                  attributeType="XML"
                   values="13; 5; 13"
-                  begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                  begin="0.15s"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                ></animate>
               </rect>
               <rect x="20" y="13" width="4" height="5" fill="#D0104C">
-                <animate attributeName="height" attributeType="XML"
-                  values="5;21;5" 
-                  begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-                <animate attributeName="y" attributeType="XML"
+                <animate
+                  attributeName="height"
+                  attributeType="XML"
+                  values="5;21;5"
+                  begin="0.3s"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                ></animate>
+                <animate
+                  attributeName="y"
+                  attributeType="XML"
                   values="13; 5; 13"
-                  begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                  begin="0.3s"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                ></animate>
               </rect>
             </svg>
           </div>
         </div>
-        <div class="next_page" v-if='!loaded'>
-          下一页
-        </div>
+        <!-- <div class="next_page" v-if="!loaded">下一页</div> -->
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import mode1Card from '~/components/index/mode1_card'
-import mode2Card from '~/components/index/mode2_card'
-import swiper from '~/components/index/swiper'
-import about from '~/components/index/about'
-import hotArticle from '~/components/index/hotArticle'
-import tags from '~/components/tags'
-import music from '~/components/music'
-import sentence from '~/components/sentence'
-import friends from '~/components/index/friends'
-import ad from '~/components/ad'
+import Card from "~/components/index/Card";
+import swiper from "~/components/index/swiper";
+import about from "~/components/index/about";
+import hotArticle from "~/components/index/hotArticle";
+import tags from "~/components/tags";
+import music from "~/components/music";
+import sentence from "~/components/sentence";
+import friends from "~/components/index/friends";
+import ad from "~/components/ad";
 export default {
-  layout: 'custom',
-  data () {
+  layout: "custom",
+  data() {
     return {
-      article:'',
-      isShowBanner:true,
-      isScroll:false,
-      talk:{
-        
-      },
-      active_link_index:0,
-      active_mode_index:0,
-      nav_link:[
+      article: "",
+      isShowBanner: true,
+      isScroll: false,
+      talk: {},
+      active_link_index: 0,
+      nav_link: [
         {
-          index:0,
-          text:'All'
+          index: 0,
+          text: "All"
         },
         {
-          index:1,
-          text:'FE'
+          index: 1,
+          text: "FE"
         },
         {
-          index:2,
-          text:'Live'
+          index: 2,
+          text: "Live"
         },
         {
-          index:3,
-          text:'Wchat'
+          index: 3,
+          text: "Wchat"
         },
         {
-          index:4,
-          text:'Git'
+          index: 4,
+          text: "Git"
         }
       ],
-      loaded:false,
-      mode:[
-        {
-          index:0,
-          text:'Mode1'
-        },
-        {
-          index:1,
-          text:'Mode2'
-        }
-      ],
-      tags:[],
-      isDay:true,
-    }
+      loaded: false,
+      tags: [],
+      isDay: true,
+    };
   },
   components: {
-    mode1Card,mode2Card,swiper,about,hotArticle,ad,friends,tags,sentence,music
+    Card,
+    swiper,
+    about,
+    hotArticle,
+    ad,
+    friends,
+    tags,
+    sentence,
+    music
   },
-  async asyncData ({app}) {
-    let res  = await app.$axios.post('/api/articlelist',{
-      skip:0,
+  async asyncData({ app }) {
+    let res = await app.$axios.post("/api/articlelist", {
+      skip: 0,
       limit: 10
     });
-    return { article: res.data.data}
+    return { article: res.data.data };
   },
   methods: {
-    change_day_or_night(){
-      this.isDay=!this.isDay;
-      if(!this.isDay){
-        document.body.classList.add('night_mode');
-      }else{
-        document.body.classList.remove('night_mode');
+    change_day_or_night() {
+      this.isDay = !this.isDay;
+      if (!this.isDay) {
+        document.body.classList.add("night_mode");
+      } else {
+        document.body.classList.remove("night_mode");
       }
     },
-    changeNavBar(item){
-      let _self = this,key='';
+    changeNavBar(item) {
+      let _self = this,
+        key = "";
       _self.loaded = true;
       _self.active_link_index = item.index;
       switch (item.index) {
         case 0:
-          key = 'All'
+          key = "All";
           break;
         case 1:
-          key = '前端'
+          key = "前端";
           break;
         case 2:
-          key = '生活'
+          key = "生活";
           break;
         default:
-          key = ''
+          key = "";
           break;
       }
-      if(key=='All'){
-        _self.$axios.post('/api/articlelist',{
-          skip:0,
-          limit: 10
-        }).then((res)=>{
-          _self.article = res.data.data
-          _self.loaded = false;
-        })
-      }else{
+      if (key == "All") {
+        _self.$axios
+          .post("/api/articlelist", {
+            skip: 0,
+            limit: 10
+          })
+          .then(res => {
+            _self.article = res.data.data;
+            _self.loaded = false;
+          });
+      } else {
         _self.getArticle(key);
       }
     },
-    getArticle(key){
-      console.log('key = '+key);
+    getArticle(key) {
+      console.log("key = " + key);
       let _self = this;
-      _self.$axios.post('/api/findByCate',{condition:'cate',key:key}).then((res)=>{
-        console.log(res.data.data);
-        _self.article = res.data.data
-        _self.loaded = false;
-      })
-    },
-    changeMode(item){
-      let _self = this;
-      _self.active_mode_index = item.index;
-      localStorage.setItem('herox_active_mode',item.index)
+      _self.$axios
+        .post("/api/findByCate", { condition: "cate", key: key })
+        .then(res => {
+          console.log(res.data.data);
+          _self.article = res.data.data;
+          _self.loaded = false;
+        });
     }
   },
-  mounted () {
-    var _self = this
-    if(localStorage.getItem('herox_active_mode')){
-      this.active_mode_index = localStorage.getItem('herox_active_mode');
-    }
-    if(!this.isDay){
-      document.body.classList.remove('day_mode');
-      document.body.classList.add('night_mode');
-    }else{
-      document.body.classList.add('day_mode');
-      document.body.classList.remove('day_mode');
+  mounted() {
+    var _self = this;
+    if (!this.isDay) {
+      document.body.classList.remove("day_mode");
+      document.body.classList.add("night_mode");
+    } else {
+      document.body.classList.add("day_mode");
+      document.body.classList.remove("day_mode");
     }
     // console.log(this.article);
     // if(_self.article)
@@ -205,8 +225,8 @@ export default {
     //   console.log(res.data.data);
     // })
     // _self.getArticle();
-  },
-}
+  }
+};
 </script>
 <style src='~/assets/css/global.less' lang="less"></style>
 <style src='~/assets/css/index.less' lang="less" scoped></style>

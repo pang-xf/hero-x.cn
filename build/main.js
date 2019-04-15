@@ -207,6 +207,7 @@ Api.post('/articlelist', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /
 Api.post('/artById', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].artById);
 Api.post('/findByConditions', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].findByConditions);
 Api.post('/findByCate', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].findByCate);
+Api.post('/findHotsArticle', __WEBPACK_IMPORTED_MODULE_0__controller_article__["a" /* default */].findHotsArticle);
 /* harmony default export */ __webpack_exports__["a"] = (Api);
 
 /***/ }),
@@ -306,19 +307,25 @@ class ArticleController {
   async findByConditions(ctx) {
     const body = ctx.request.body;
     const condition = body.condition;
-    let option = {};
+    let option = {},
+        data = [];
     switch (condition) {
       case 'tag':
         option = { tag: 1, _id: 0, image: 1 };
-        break;
-      case 'hots':
-        option = { title: 1, _id: 0 };
         break;
       default:
         option = {};
         break;
     }
-    let data = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].findByConditions({}, option);
+    data = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].findByConditions({}, option);
+    ctx.body = {
+      code: 0,
+      data: data,
+      desc: "成功"
+    };
+  }
+  async findHotsArticle(ctx) {
+    let data = await __WEBPACK_IMPORTED_MODULE_0__mongoose_dbConnect__["a" /* default */].findHotsArticle();
     ctx.body = {
       code: 0,
       data: data,
@@ -384,53 +391,54 @@ db.once('open', function () {
  */
 
 const ArticleSchema = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.Schema({
-    title: String, //标题
-    image: String, //图片地址
-    description: String, //文章简介        
-    time: { //创建时间
-        type: Date,
-        default: Date.now
-    },
-    content: String, //文章内容
-    read: Number, //查看人数
-    tag: String, //标签
-    comments: [], //评论列表
-    like: Number //喜欢人数
-    // isLower: { //是否下架
-    //     type: Boolean,
-    //     default: false
-    // }
+  title: String, //标题
+  type: String,
+  content: Object //文章内容
+  // like:Number,//喜欢人数
+  // isLower: { //是否下架
+  //     type: Boolean,
+  //     default: false
+  // }
 }, {
-    collection: 'markdown'
+  // collection: 'markdown'
+  collection: 'article'
 });
 
 ArticleSchema.statics = {
-    /* 查找 分页*/
-    async findArt(data = {}, option = {}) {
-        const result = await this.find(data).skip(option.skip).limit(option.limit);
-        return result;
-    },
-    /* 文章详情 按id */
-    async getArtById(id) {
-        const hid = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.mongo.ObjectId(id);
-        const result = await this.find({ _id: hid });
-        return result[0];
-    },
-    /* 按条件查找*/
-    async findByConditions(data = {}, option = {}) {
-        const result = await this.find(data, option);
-        return result;
-    },
-    // /* 创建 */
-    // async createArt(data = {}) {
-    //     const result = await this.create(data);
-    //     return result;
-    // },
-    // /* 总条数 */
-    async countNum(data = {}, option = {}) {
-        const result = await this.countDocuments(data);
-        return result;
-    }
+  /* 查找 分页*/
+  async findArt(data = {}, option = {}) {
+    const result = await this.find(data).skip(option.skip).limit(option.limit);
+    return result;
+  },
+  /* 文章详情 按id */
+  async getArtById(id) {
+    const hid = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.mongo.ObjectId(id);
+    const result = await this.find({ _id: hid });
+    return result[0];
+  },
+  /* 按条件查找*/
+  async findByConditions(data = {}, option = {}) {
+    const result = await this.find(data, option);
+    return result;
+  },
+  // 查找最热文章
+  async findHotsArticle() {
+    const result = await this.find({ type: "article" });
+    let res = result.map((item, index) => {
+      return { title: item.title, id: item.id };
+    });
+    return res;
+  },
+  // /* 创建 */
+  // async createArt(data = {}) {
+  //     const result = await this.create(data);
+  //     return result;
+  // },
+  // /* 总条数 */
+  async countNum(data = {}, option = {}) {
+    const result = await this.countDocuments(data);
+    return result;
+  }
 };
 
 const ArticleModel = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model('article', ArticleSchema);
@@ -531,7 +539,10 @@ module.exports = {
   */
   modules: [
   // Doc: https://github.com/nuxt-community/axios-module#usage
-  '@nuxtjs/axios'],
+  '@nuxtjs/axios', '@nuxtjs/style-resources'],
+  styleResources: {
+    less: '~/assets/css/global.less'
+  },
   /*
   ** Axios module configuration
   */
@@ -563,7 +574,7 @@ module.exports = {
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","animejs":"^3.0.1","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","moment":"^2.24.0","mongoose":"^5.4.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
+module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","@nuxtjs/style-resources":"^0.1.2","animejs":"^3.0.1","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","moment":"^2.24.0","mongoose":"^5.4.6","nuxt":"^2.0.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"nodemon":"^1.11.0","backpack-core":"^0.7.0"}}
 
 /***/ })
 /******/ ]);

@@ -86,19 +86,24 @@ class ArticleController {
   async findByConditions(ctx) {
     const body = ctx.request.body;
     const condition = body.condition;
-    let option = {}
+    let option = {},data = []
     switch (condition) {
       case 'tag':
         option = {tag:1,_id:0,image:1}
-        break;
-      case 'hots':
-        option = {title:1,_id:0}
         break;
       default:
         option = {}
         break;
     }
-    let data = await ArticleModel.findByConditions({},option);
+    data = await ArticleModel.findByConditions({},option);
+    ctx.body = {
+      code: 0,
+      data: data,
+      desc: "成功"
+    };
+  }
+  async findHotsArticle(ctx) {
+    let data = await ArticleModel.findHotsArticle();
     ctx.body = {
       code: 0,
       data: data,

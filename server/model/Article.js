@@ -4,23 +4,16 @@
 import mongoose from 'mongoose'
 const ArticleSchema = mongoose.Schema({
     title: String, //标题
-    image: String, //图片地址
-    description: String, //文章简介        
-    time: { //创建时间
-      type: Date,
-      default: Date.now
-    },
-    content: String, //文章内容
-    read: Number, //查看人数
-    tag: String, //标签
-    comments:[],//评论列表
-    like:Number,//喜欢人数
+    type:String,
+    content: Object, //文章内容
+    // like:Number,//喜欢人数
     // isLower: { //是否下架
     //     type: Boolean,
     //     default: false
     // }
 },{
-  collection: 'markdown'
+  // collection: 'markdown'
+  collection: 'article'
 });
 
 ArticleSchema.statics = {
@@ -39,6 +32,14 @@ ArticleSchema.statics = {
     async findByConditions(data = {}, option = {}) {
       const result = await this.find(data,option);
       return result
+    },
+    // 查找最热文章
+    async findHotsArticle() {
+      const result = await this.find({type:"article"});
+      let res = result.map((item,index)=>{
+        return {title:item.title,id:item.id}
+      })
+      return res
     },
     // /* 创建 */
     // async createArt(data = {}) {

@@ -96,9 +96,7 @@ module.exports = {
       }
     },
     babel: {
-      babel: {
-        presets: ['es2015', 'stage-0']
-      }
+      presets: ['es2015', 'stage-0']
     }
     // extractCSS: { allChunks: true }
   }

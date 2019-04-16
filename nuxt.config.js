@@ -21,9 +21,9 @@ module.exports = {
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
     ],
-    // script: [
-    //   { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' },
-    // ]
+    script: [
+      { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' },
+    ]
   },
 
   /*

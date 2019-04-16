@@ -505,10 +505,8 @@ module.exports = {
     title: 'Still there will be a dream',
     meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0' }, { hid: 'description', name: 'description', content: pkg.description }],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    noscript: [{ innerHTML: 'This website requires JavaScript.' }]
-    // script: [
-    //   { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' },
-    // ]
+    noscript: [{ innerHTML: 'This website requires JavaScript.' }],
+    script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }]
   },
 
   /*

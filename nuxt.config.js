@@ -21,9 +21,9 @@ module.exports = {
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
     ],
-    script: [
-      { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' },
-    ]
+    // script: [
+    //   { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' },
+    // ]
   },
 
   /*
@@ -53,7 +53,7 @@ module.exports = {
       src: '~/plugins/vueSwiper',
       ssr: false
     },
-    '~/plugins/axios'
+    '~/plugins/axios',
   ],
   vendor: [
     'marked',
@@ -88,16 +88,18 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+      if (ctx.isClient) {
+        // 拓展 webpack 配置
+        // 添加 alias 配置
+        // Object.assign(config.resolve.alias, {
+        //   'utils': path.resolve(__dirname, 'utils')
+        // })
+      }
     },
     optimization:{
       splitChunks:{
         chunks:'all'
       }
-    },
-    babel: {
-      presets: ['es2015', 'stage-0']
     }
-    // extractCSS: { allChunks: true }
   }
 }

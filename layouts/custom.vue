@@ -2,6 +2,7 @@
   <div>
     <bheads/>
     <div class="main">
+      <div v-if="$nuxt.isOffline">You are offline</div>
       <leftWrap/>
       <nuxt/>
     </div>

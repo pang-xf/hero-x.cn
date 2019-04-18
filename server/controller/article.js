@@ -120,7 +120,10 @@ class ArticleController {
     let option = {}
     switch (tagName) {
       case 'cate':
-        option = {tag:key}
+        option = {
+          "type": "article",
+		      "content.tag":key
+        }
         break;
       default:
         break;

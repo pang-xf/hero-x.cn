@@ -6,12 +6,29 @@
     <section class='updateLine'>
       <h3>更新日志</h3>
       <div class="up_wrap">
-        <h4 class="up_time">2019-04-14</h4>
-        <p class="up_text">- 重置首页样式，删除瀑布流布局</p>
-        <p class="up_text">- 重置页面模板layout，更新布局为双栏布局，左边栏下滑时浮动布局</p>
+        <h4 class="up_time">2019-04-17</h4>
+        <p class="up_text">- 增加图片card中图片预览功能</p>
+        <p class="up_text">- 解决首页下滑时候内容区不自然的Bug</p>
+        <p class="up_text">- 重构好友页</p>
+      </div>
+      <div class="up_wrap">
+        <h4 class="up_time">2019-04-16</h4>
+        <p class="up_text">- 增加掉线提醒</p>
+        <p class="up_text">- 增加底部全局提醒组件 默认第一次打开 关闭后默认cookie有效期为两天  后面会又显示</p>
+        <p class="up_text">- 解决左边栏在页面下拉到底部的时候被header组件覆盖的bug</p>
+        <p class="up_text">- 增加返回顶部功能</p>
+        <p class="up_text">- 修复首页文章顶部导航条分类点击无效的问题；增加文章无更多的显示</p>
+      </div>
+      <div class="up_wrap">
+        <h4 class="up_time">2019-04-15</h4>
         <p class="up_text">- 文章card仿知乎，并增加说说Card、图片Card、加密文章Card</p>
         <p class="up_text">- 去掉todo页并合并到更新日志页</p>
         <p class="up_text">- 修复关于我页面的bugs</p>
+      </div>
+      <div class="up_wrap">
+        <h4 class="up_time">2019-04-14</h4>
+        <p class="up_text">- 重置首页样式，删除瀑布流布局</p>
+        <p class="up_text">- 重置页面模板layout，更新布局为双栏布局，左边栏下滑时浮动布局</p>
       </div>
     </section>
     <section class='todo'>

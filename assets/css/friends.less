@@ -1,25 +1,40 @@
 .friends_title{
-  text-align: center;
-  color: #D7B98E;
+  margin: 0;
+  padding: 10px 0;
 }
 .friends{
-  width: @glWidth;
   min-height: 78vh;
-  margin: 0px auto;
-  padding: 10px 20px;
+  padding: 20px;
+  width: @glContentWidth;
+  margin-left: @glToolWidth+10px;
+  -webkit-overflow-scrolling:touch;
+  zoom: 1;
+  background: #fff;
+  border-radius: 4px;
+  .f_banner{
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 4px;
+    }
+  }
+  .friends_wrap{
+    display: flex;
+    flex-wrap: wrap;
+  }
   .friends_card{
-    display: block;
-    border:1px solid #999;
     display: flex;
     width: 23.48%;
     border-radius: 4px;
-    padding: 2px 2px 2px 0;
     transition: all .3s;
     height: 78px;
     margin: 0 10px 15px 0;
     overflow: hidden;
     background: #fff;
-    float: left;
+    border:1px solid #fff;
     &:nth-child(4n){
       margin-right: 0;
     }
@@ -36,25 +51,17 @@
       }
     }
     .avatar{
-      height: 80px !important;
+      height: 100%;
+      width: 78px;
       transition: all .3s;
       border-radius: 4px;
-      display: block;
     }
-    .right_wrap{
+    .f_right_wrap{
       padding:10px;
       .name{
         color: @glColor;
         margin-bottom: 10px;
         transition: all .3s;
-      }
-      .text{
-        color: @glSolganColor;
-        display: flex;
-        align-items: center;
-        font-size: 12px;
-        height: 26px;
-        .ellipsis-mult(2);
       }
     }
   }

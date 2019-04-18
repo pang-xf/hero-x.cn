@@ -1,6 +1,6 @@
 ### 更新日志
 
-2019.1.22  新增首页文章排版模式2  基于瀑布流 所有导航条 小组件Title英文化
+更新日志进----->[点我](http://47.106.163.14/todo)
 
 ![](https://ws4.sinaimg.cn/large/006tNc79gy1fzfe48g3rdj318y0u0qcv.jpg)
 

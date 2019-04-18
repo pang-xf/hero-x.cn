@@ -342,7 +342,10 @@ class ArticleController {
     let option = {};
     switch (tagName) {
       case 'cate':
-        option = { tag: key };
+        option = {
+          "type": "article",
+          "content.tag": key
+        };
         break;
       default:
         break;
@@ -417,8 +420,8 @@ ArticleSchema.statics = {
     return result[0];
   },
   /* 按条件查找*/
-  async findByConditions(data = {}, option = {}) {
-    const result = await this.find(data, option);
+  async findByConditions(option = {}) {
+    const result = await this.find(option);
     return result;
   },
   // 查找最热文章
@@ -505,10 +508,8 @@ module.exports = {
     title: 'Still there will be a dream',
     meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0' }, { hid: 'description', name: 'description', content: pkg.description }],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    noscript: [{ innerHTML: 'This website requires JavaScript.' }]
-    // script: [
-    //   { src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' },
-    // ]
+    noscript: [{ innerHTML: 'This website requires JavaScript.' }],
+    script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }]
   },
 
   /*
@@ -531,6 +532,9 @@ module.exports = {
   */
   plugins: [{
     src: '~/plugins/vueSwiper',
+    ssr: false
+  }, {
+    src: '~/plugins/imagePreview',
     ssr: false
   }, '~/plugins/axios'],
   vendor: ['marked', 'highlight.js'],
@@ -581,7 +585,7 @@ module.exports = {
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","@nuxtjs/style-resources":"^0.1.2","animejs":"^3.0.1","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","moment":"^2.24.0","mongoose":"^5.4.6","nuxt":"^2.5.0","vue-awesome-swiper":"^3.1.3"},"devDependencies":{"babel-cli":"^6.26.0","babel-core":"^6.26.3","babel-polyfill":"^6.26.0","babel-preset-es2015":"^6.24.1","babel-preset-stage-0":"^6.24.1","backpack-core":"^0.7.0","nodemon":"^1.11.0"}}
+module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","@nuxtjs/style-resources":"^0.1.2","animejs":"^3.0.1","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","js-cookie":"^2.2.0","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","moment":"^2.24.0","mongoose":"^5.4.6","nuxt":"^2.5.0","vue-awesome-swiper":"^3.1.3","vue-photo-preview":"^1.1.3"},"devDependencies":{"backpack-core":"^0.7.0","nodemon":"^1.11.0"}}
 
 /***/ })
 /******/ ]);

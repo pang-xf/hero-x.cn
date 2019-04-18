@@ -1,12 +1,12 @@
 @charset 'utf-8';
 @font-face {
   font-family: 'iconfont';  /* project id 981323 */
-  src: url('//at.alicdn.com/t/font_981323_kdy5c3t9tja.eot');
-  src: url('//at.alicdn.com/t/font_981323_kdy5c3t9tja.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_981323_kdy5c3t9tja.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_981323_kdy5c3t9tja.woff') format('woff'),
-  url('//at.alicdn.com/t/font_981323_kdy5c3t9tja.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_981323_kdy5c3t9tja.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_981323_uef5k7qpfv.eot');
+  src: url('//at.alicdn.com/t/font_981323_uef5k7qpfv.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_981323_uef5k7qpfv.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_981323_uef5k7qpfv.woff') format('woff'),
+  url('//at.alicdn.com/t/font_981323_uef5k7qpfv.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_981323_uef5k7qpfv.svg#iconfont') format('svg');
 }
 .iconfont{
     font-family:"iconfont" !important;
@@ -187,6 +187,39 @@ a{
 .clearFix{
   clear: both;
 }
+// 全局提醒样式  在页面底部出现  点击icon关闭
+.globalTips{
+  position: fixed;
+  min-height: 80px;
+  width:100%;
+  z-index: 999;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  animation: fadeInTop .8s ease-out  both;
+  .glt_close{
+    position: absolute;
+    right: 40px;
+    top: 10px;
+    cursor: pointer;
+    .iconfont{
+      transition: all .5s;
+      font-size: 26px;
+    }
+    &:hover{
+      .iconfont{
+        color: #175199;
+      }
+    }
+  }
+  .glt_text{
+    color: #666;
+    font-size: 18px;
+    padding:0 50px;
+  }
+}
 // 正在建设中
 .none_build{
   display: flex;
@@ -204,6 +237,10 @@ a{
     margin-right: 5px;
   }
 }
+// 解决图片预览层级问题
+.pswp {
+  z-index: 10002;
+}
 @keyframes fadeInUp{
   0%{
       opacity: 0;
@@ -211,4 +248,66 @@ a{
   100%{
       opacity: 1;
   }
+}
+@keyframes fadeInRight{
+  0%{
+      opacity: 0;
+      transform: translateX(100%);
+  }
+  100%{
+      opacity: 1;
+      transform: translateX(0%);
+  }
+}
+@keyframes fadeInTop{
+  0%{
+      opacity: 0;
+      transform: translateY(100%);
+  }
+  100%{
+      opacity: 1;
+      transform: translateY(0%);
+  }
+}
+@keyframes fadeInLeft{
+  0%{
+      opacity: 0;
+      transform: translateX(-20%);
+  }
+  100%{
+      opacity: 1;
+      transform: translateX(0%);
+  }
+}
+// @keyframes fadeInRight{
+//   0%{
+//       opacity: 1;
+//       transform: translateX(0%);
+//   }
+//   100%{
+//       opacity: 0;
+//       transform: translateX(-20%);
+//   }
+// }
+@keyframes fadeInRight{
+  0%{
+      opacity: 0;
+      transform: translateX(20%);
+  }
+  100%{
+      opacity: 1;
+      transform: translateX(0%);
+  }
+}
+.left-fade-enter-active{
+  animation: fadeInLeft .8s ease-out  both;
+}
+.left-fade-leave-active{
+  animation: fadeInLeft .8s ease-out  both reverse;
+}
+.right-fade-enter-active{
+  animation: fadeInRight 1s ease  both;
+}
+.right-fade-leave-active{
+  animation: fadeInRight 1s ease  both reverse;
 }

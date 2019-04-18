@@ -85,6 +85,9 @@
             </svg>
           </div>
         </div>
+        <div class="article_loading" v-if="!article.length&&!loaded">
+          <p class="no_more_text">暂无更多</p>
+        </div>
         <!-- <div class="next_page" v-if="!loaded">下一页</div> -->
       </div>
     </section>
@@ -146,7 +149,7 @@ export default {
     friends,
     tags,
     sentence,
-    music
+    music,
   },
   async asyncData({ app }) {
     let res = await app.$axios.post("/api/articlelist", {
@@ -203,7 +206,6 @@ export default {
       _self.$axios
         .post("/api/findByCate", { condition: "cate", key: key })
         .then(res => {
-          console.log(res.data.data);
           _self.article = res.data.data;
           _self.loaded = false;
         });

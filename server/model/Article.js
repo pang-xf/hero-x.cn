@@ -29,8 +29,8 @@ ArticleSchema.statics = {
       return result[0]
     },
     /* 按条件查找*/
-    async findByConditions(data = {}, option = {}) {
-      const result = await this.find(data,option);
+    async findByConditions(option = {}) {
+      const result = await this.find(option);
       return result
     },
     // 查找最热文章

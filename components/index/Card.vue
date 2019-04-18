@@ -1,6 +1,6 @@
 <template>
   <div class='article_cards'>
-    <div v-if="article.type=='article'">
+    <article v-if="article.type=='article'">
       <div class="article_card1 hoverTitle" v-if="!article.content.isSecret">
         <h2 class="title" :title="article.title">
           <span @click="goDetail(id)">{{article.title}}</span>
@@ -39,13 +39,13 @@
           </form>
         </div>
       </div>
-    </div>
-    <div v-if="article.type=='image'">
+    </article>
+    <article v-if="article.type=='image'">
       <div class="a_image article_card1">
         <h2 class="title" :title="article.title">
           <span @click="goDetail(id)">{{article.title}}</span>
         </h2>
-        <img :src="article.content.image" alt="">
+        <img :src="article.content.image" alt="" preview="1">
         <div class="meta">
           <span class="read">
             <button class="normal">
@@ -59,10 +59,10 @@
           <!-- <span class="read" v-if="article.read>0"><i class="iconfont icon-yanjing-kejian"></i>{{article.read}}</span> -->
         </div>
       </div>
-    </div>
-    <div v-if="article.type=='video1'">
-    </div>
-    <div v-if="article.type=='cof'">
+    </article>
+    <article v-if="article.type=='video1'">
+    </article>
+    <article v-if="article.type=='cof'">
       <div class="a_cof article_card1">
         <div class="cof_image_wrap">
           <div class="cof_modal"></div>
@@ -75,7 +75,7 @@
           <span class="time address"><i class="iconfont">&#xe668;</i>In:{{article.content.address}}</span>
         </div>
       </div>
-    </div>
+    </article>
   </div>
 </template>
 <script>

@@ -6,37 +6,37 @@
     <h3 class="friends_title">你的益达</h3>
       <div class="friends_wrap">
         <a href="http://guogai.top/" target="_blank" class="friends_card">
-          <img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1n60635v3j30b40b43yp.jpg" alt="" class="avatar">
+          <img src="https://s2.ax1x.com/2019/04/25/EZxEAf.jpg" alt="" class="avatar">
           <div class="f_right_wrap">
             <div class="name">xxxxxx测试名字</div>
           </div>
         </a>
         <a href="http://guogai.top/" target="_blank" class="friends_card">
-          <img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1n60635v3j30b40b43yp.jpg" alt="" class="avatar">
+          <img src="https://s2.ax1x.com/2019/04/25/EZxEAf.jpg" alt="" class="avatar">
           <div class="f_right_wrap">
             <div class="name">xxxxxx测试名字</div>
           </div>
         </a>
         <a href="http://guogai.top/" target="_blank" class="friends_card">
-          <img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1n60635v3j30b40b43yp.jpg" alt="" class="avatar">
+          <img src="https://s2.ax1x.com/2019/04/25/EZxEAf.jpg" alt="" class="avatar">
           <div class="f_right_wrap">
             <div class="name">xxxxxx测试名字</div>
           </div>
         </a>
         <a href="http://guogai.top/" target="_blank" class="friends_card">
-          <img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1n60635v3j30b40b43yp.jpg" alt="" class="avatar">
+          <img src="https://s2.ax1x.com/2019/04/25/EZxEAf.jpg" alt="" class="avatar">
           <div class="f_right_wrap">
             <div class="name">xxxxxx测试名字</div>
           </div>
         </a>
         <a href="http://guogai.top/" target="_blank" class="friends_card">
-          <img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1n60635v3j30b40b43yp.jpg" alt="" class="avatar">
+          <img src="https://s2.ax1x.com/2019/04/25/EZxEAf.jpg" alt="" class="avatar">
           <div class="f_right_wrap">
             <div class="name">xxxxxx测试名字</div>
           </div>
         </a>
         <a href="http://guogai.top/" target="_blank" class="friends_card">
-          <img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1n60635v3j30b40b43yp.jpg" alt="" class="avatar">
+          <img src="https://s2.ax1x.com/2019/04/25/EZxEAf.jpg" alt="" class="avatar">
           <div class="f_right_wrap">
             <div class="name">xxxxxx测试名字</div>
           </div>

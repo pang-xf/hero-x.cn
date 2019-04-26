@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       person:{
-        avatar:'https://ws1.sinaimg.cn/large/006tNc79gy1fz9m6s64k4j30b40b4dfy.jpg'
+        avatar:'https://s2.ax1x.com/2019/04/25/EZxEAf.jpg'
       }
     }
   },

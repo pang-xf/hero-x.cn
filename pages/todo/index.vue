@@ -1,7 +1,7 @@
 <template>
   <div class="updatePage">
     <div class="up_banner">
-      <img src="https://ws1.sinaimg.cn/large/006tNc79gy1g249p7iy6uj31hc0u0aea.jpg" alt="banner...">
+      <img src="https://s2.ax1x.com/2019/04/25/EZxGNT.jpg" alt="banner...">
     </div>
     <section class='updateLine'>
       <h3>更新日志</h3>

@@ -3,7 +3,7 @@
     <header>
       <div class="header-wrap">
         <div class="site-title">
-          <nuxt-link to='/'>Hero-X</nuxt-link>
+          <nuxt-link to='/'>37927QAQ</nuxt-link>
         </div>
         <nav class="site-navigation">
           <ul class="nav-menu">

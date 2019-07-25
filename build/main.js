@@ -104,51 +104,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 async function start() {
-  const app = new __WEBPACK_IMPORTED_MODULE_0_koa___default.a();
-  const host = process.env.HOST || '127.0.0.1';
-  const port = process.env.PORT || 3000;
-  // const host = process.env.NODE_ENV=='production'? 'http://47.106.163.14': '127.0.0.1'
-  // const port = process.env.NODE_ENV=='production'? 3002 : 3000
-  // const host =  '127.0.0.1'
-  // const port =  3000
-  app.on('error', function (err, ctx) {
-    console.log('-------统一错误打印-------');
-    console.log(err);
-  });
-  app.use(__WEBPACK_IMPORTED_MODULE_5__koa_cors___default()());
-  app.use(__WEBPACK_IMPORTED_MODULE_2_koa_bodyparser___default()());
-  app.use(__WEBPACK_IMPORTED_MODULE_1_koa_static___default()('.'));
-  const router = new __WEBPACK_IMPORTED_MODULE_3_koa_router___default.a();
-  router.use('', __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */].routes());
-  app.use(router.routes()).use(router.allowedMethods()); //注册路由
-  // Import and Set Nuxt.js options
-  const config = __webpack_require__(15);
-  config.dev = !(app.env === 'production');
-
-  // Instantiate nuxt.js
-  const nuxt = new __WEBPACK_IMPORTED_MODULE_6_nuxt__["Nuxt"](config);
-
-  // Build in development
-  if (config.dev) {
-    const builder = new __WEBPACK_IMPORTED_MODULE_6_nuxt__["Builder"](nuxt);
-    await builder.build();
-  }
-
-  app.use(async (ctx, next) => {
-    await next();
-    ctx.status = 200; // koa defaults to 404 when it sees that status is unset
-    return new Promise((resolve, reject) => {
-      ctx.res.on('close', resolve);
-      ctx.res.on('finish', resolve);
-      nuxt.render(ctx.req, ctx.res, promise => {
-        // nuxt.render passes a rejected promise into callback on error.
-        promise.then(resolve).catch(reject);
-      });
+    const app = new __WEBPACK_IMPORTED_MODULE_0_koa___default.a();
+    const host = process.env.HOST || '127.0.0.1';
+    const port = process.env.PORT || 4000;
+    // const host = process.env.NODE_ENV=='production'? 'http://47.106.163.14': '127.0.0.1'
+    // const port = process.env.NODE_ENV=='production'? 3002 : 3000
+    // const host =  '127.0.0.1'
+    // const port =  3000
+    app.on('error', function (err, ctx) {
+        console.log('-------统一错误打印-------');
+        console.log(err);
     });
-  });
+    app.use(__WEBPACK_IMPORTED_MODULE_5__koa_cors___default()());
+    app.use(__WEBPACK_IMPORTED_MODULE_2_koa_bodyparser___default()());
+    app.use(__WEBPACK_IMPORTED_MODULE_1_koa_static___default()('.'));
+    const router = new __WEBPACK_IMPORTED_MODULE_3_koa_router___default.a();
+    router.use('', __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */].routes());
+    app.use(router.routes()).use(router.allowedMethods()); //注册路由
+    // Import and Set Nuxt.js options
+    const config = __webpack_require__(15);
+    config.dev = !(app.env === 'production');
 
-  app.listen(port, host);
-  console.log('Server listening on ' + `http://${host}:${port}`);
+    // Instantiate nuxt.js
+    const nuxt = new __WEBPACK_IMPORTED_MODULE_6_nuxt__["Nuxt"](config);
+
+    // Build in development
+    if (config.dev) {
+        const builder = new __WEBPACK_IMPORTED_MODULE_6_nuxt__["Builder"](nuxt);
+        await builder.build();
+    }
+
+    app.use(async (ctx, next) => {
+        await next();
+        ctx.status = 200; // koa defaults to 404 when it sees that status is unset
+        return new Promise((resolve, reject) => {
+            ctx.res.on('close', resolve);
+            ctx.res.on('finish', resolve);
+            nuxt.render(ctx.req, ctx.res, promise => {
+                // nuxt.render passes a rejected promise into callback on error.
+                promise.then(resolve).catch(reject);
+            });
+        });
+    });
+
+    app.listen(port, host);
+    console.log('Server listening on ' + `http://${host}:${port}`);
 }
 
 start();
@@ -500,92 +500,89 @@ module.exports = require("nuxt");
 
 const pkg = __webpack_require__(16);
 module.exports = {
-  mode: 'universal',
-  /*
-  ** Headers of the page
-  */
-  head: {
-    title: 'Still there will be a dream',
-    meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0' }, { hid: 'description', name: 'description', content: pkg.description }],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    noscript: [{ innerHTML: 'This website requires JavaScript.' }],
-    script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }]
-  },
-
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#E16B8C' },
-
-  /*
-  ** Global CSS
-  */
-  css: [{
-    src: '~assets/css/global.less',
-    lang: 'less'
-  }, '~assets/css/page-transletion.css', 'highlight.js/styles/atom-one-dark-reasonable.css'],
-  router: {
-    linkActiveClass: 'active-link'
-  },
-  /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [{
-    src: '~/plugins/vueSwiper',
-    ssr: false
-  }, {
-    src: '~/plugins/imagePreview',
-    ssr: false
-  }, '~/plugins/axios'],
-  vendor: ['marked', 'highlight.js'],
-  /*
-  ** Nuxt.js modules
-  */
-  modules: [
-  // Doc: https://github.com/nuxt-community/axios-module#usage
-  '@nuxtjs/axios', '@nuxtjs/style-resources'],
-  styleResources: {
-    less: '~/assets/css/global.less'
-  },
-  /*
-  ** Axios module configuration
-  */
-  axios: {
-    // proxy: true
-    // See https://github.com/nuxt-community/axios-module#options
-  },
-  proxy: {
-    // '/api/': 'http://127.0.0.1:4000',
-  },
-  /*
-  ** Build configuration
-  */
-  build: {
+    mode: 'universal',
     /*
-    ** You can extend webpack config here
+    ** Headers of the page
     */
-    extend(config, ctx) {
-      if (ctx.isClient) {
-        // 拓展 webpack 配置
-        // 添加 alias 配置
-        // Object.assign(config.resolve.alias, {
-        //   'utils': path.resolve(__dirname, 'utils')
-        // })
-      }
+    head: {
+        title: 'Still there will be a dream',
+        meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0' }, { hid: 'description', name: 'description', content: pkg.description }],
+        link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+        noscript: [{ innerHTML: 'This website requires JavaScript.' }],
+        script: [{ src: 'https://webapi.amap.com/maps?v=1.4.8&key=fbfea934b19ea5bb8ad1d741a5b10077' }]
     },
-    optimization: {
-      splitChunks: {
-        chunks: 'all'
-      }
+
+    /*
+    ** Customize the progress-bar color
+    */
+    loading: { color: '#E16B8C' },
+
+    /*
+    ** Global CSS
+    */
+    css: [{
+        src: '~assets/css/global.less',
+        lang: 'less'
+    }, '~assets/css/page-transletion.css', 'highlight.js/styles/atom-one-dark-reasonable.css'],
+    router: {
+        linkActiveClass: 'active-link'
+    },
+    /*
+    ** Plugins to load before mounting the App
+    */
+    plugins: [{
+        src: '~/plugins/imagePreview',
+        ssr: false
+    }, '~/plugins/axios'],
+    vendor: ['marked', 'highlight.js'],
+    /*
+    ** Nuxt.js modules
+    */
+    modules: [
+    // Doc: https://github.com/nuxt-community/axios-module#usage
+    '@nuxtjs/axios', '@nuxtjs/style-resources'],
+    styleResources: {
+        less: '~/assets/css/global.less'
+    },
+    /*
+    ** Axios module configuration
+    */
+    axios: {
+        // proxy: true
+        // See https://github.com/nuxt-community/axios-module#options
+    },
+    proxy: {
+        // '/api/': 'http://127.0.0.1:4000',
+    },
+    /*
+    ** Build configuration
+    */
+    build: {
+        /*
+        ** You can extend webpack config here
+        */
+        extend(config, ctx) {
+            if (ctx.isClient) {
+                // 拓展 webpack 配置
+                // 添加 alias 配置
+                // Object.assign(config.resolve.alias, {
+                //   'utils': path.resolve(__dirname, 'utils')
+                // })
+            }
+        },
+        optimization: {
+            splitChunks: {
+                chunks: 'all'
+            }
+        }
     }
-  }
 };
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","@nuxtjs/style-resources":"^0.1.2","animejs":"^3.0.1","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","js-cookie":"^2.2.0","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","moment":"^2.24.0","mongoose":"^5.4.6","nuxt":"^2.5.0","vue-awesome-swiper":"^3.1.3","vue-photo-preview":"^1.1.3"},"devDependencies":{"backpack-core":"^0.7.0","nodemon":"^1.11.0"}}
+module.exports = {"name":"herox_fe","version":"1.0.0","description":"My Nuxt.js project","author":"liyushilezhi","private":true,"scripts":{"dev":"backpack dev","start":"cross-env NODE_ENV=production node build/main.js","build":"nuxt build && backpack build","generate":"nuxt generate","runTStart":"npm run build&&npm run start"},"dependencies":{"@koa/cors":"^2.2.2","@nuxtjs/axios":"^5.0.0","@nuxtjs/style-resources":"^0.1.2","animejs":"^3.0.1","cross-env":"^5.2.0","highlight.js":"^9.13.1","jparticles":"^2.0.1","js-cookie":"^2.2.0","koa":"^2.6.1","koa-bodyparser":"^4.2.1","koa-router":"^7.4.0","koa-static":"^5.0.0","less":"^3.8.1","less-loader":"^4.1.0","marked":"^0.5.1","moment":"^2.24.0","mongoose":"^5.4.6","nuxt":"^2.5.0","vue-photo-preview":"^1.1.3"},"devDependencies":{"backpack-core":"^0.7.0","nodemon":"^1.11.0"}}
 
 /***/ })
 /******/ ]);

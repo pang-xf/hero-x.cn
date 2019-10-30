@@ -28,7 +28,7 @@
     "less-loader": "^4.1.0",
     "marked": "^0.5.1",
     "moment": "^2.24.0",
-    "mongoose": "^5.4.6",
+    "mongoose": "^5.7.5",
     "nuxt": "^2.5.0",
     "vue-photo-preview": "^1.1.3"
   },
